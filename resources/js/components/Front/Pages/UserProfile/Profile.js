@@ -179,7 +179,7 @@ class Profile extends Component {
                                 <div className="gems-section-vb">
                                     <div className="row padding-bt">
                                     <div className="create-btn">
-                                        <a href="create-team.html">Create Team</a>
+                                        <a href="/create-team">Create Team</a>
                                     </div>
                                     <div className="join-btn">
                                         <a href="join-team.html">Join Team</a>
