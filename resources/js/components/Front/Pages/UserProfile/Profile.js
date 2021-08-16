@@ -1,8 +1,24 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import {connect} from 'react-redux';
 
 
 class Profile extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state={
+            tournaments:[],
+        }
+    }
+
+    componentDidMount(){
+        Axios.post('/api/get_user_enroll_tournament',{id:this.props.user.data.id}).then(res=>{
+            this.setState({
+                
+            })
+        })
+    }
     render() {
         return (
             <div>
@@ -26,8 +42,9 @@ class Profile extends Component {
                             <div className="profile-sec">
                             <div className="row">
                                 <div className="col-md-5 col-sm-4 col-xs-12">
-                                <h3>Novakiane</h3>
-                                <span><img src="/images/common/usa-flag.png" /> USA Columbus</span>
+                                <h3>{this.props.user.data.first_name} {this.props.user.data.last_name}</h3>
+                                {/* <img src="/images/common/usa-flag.png" /> */}
+                                <span> {this.props.user.data.country}</span>
                                 </div>
                                 <div className="col-md-4 col-sm-8 col-xs-12">
                                 
@@ -176,4 +193,11 @@ class Profile extends Component {
         )
     }
 }
-export default Profile;
+
+const mapStateToProps=(state)=>{
+    return{
+        user:state.user
+    }
+}
+
+export default connect(mapStateToProps,null) (Profile);

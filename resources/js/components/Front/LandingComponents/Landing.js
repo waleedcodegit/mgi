@@ -37,11 +37,11 @@ class Landing extends Component {
                       <div className="col-md-5 col-sm-6">
                         <h5>Trending<br /> <span>Videos</span></h5>
                       </div>
-                      <Link to="/videos"><div className="col-md-7 col-sm-6">
-                      <a href className="btn-news">
+                      <div className="col-md-7 col-sm-6">
+                        <a href="/videos" className="btn-news">
                           View All
                         </a>
-                      </div></Link>
+                      </div>
                     </div>
                     <div className="row">
                     {

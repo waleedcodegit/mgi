@@ -31,11 +31,11 @@ class News extends Component {
           <div className="col-md-5 col-sm-6">
             <h5>Updated<br /> <span>News/Articles</span></h5>
           </div>
-          <Link to="/articles"><div className="col-md-7 col-sm-6">
-            <a className="btn-news">
+          <div className="col-md-7 col-sm-6">
+            <a href="/articles" className="btn-news">
               View All
             </a>
-          </div></Link>
+          </div>
         </div>
         
         <div className="row row-eq-height">

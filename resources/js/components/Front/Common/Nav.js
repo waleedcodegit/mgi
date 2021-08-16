@@ -26,7 +26,7 @@ class Nav extends Component {
             <div>
                 <div className="main-menu-wrap sticky-menu">
                   <div className="container-long">
-                    <a href="#" className="custom-logo-link"><img src="/images/common/mgl-logo.png" alt="logo" className="custom-logo" /></a>
+                    <a href="/" className="custom-logo-link"><img src="/images/common/mgl-logo.png" alt="logo" className="custom-logo" /></a>
                     <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#team-menu" aria-expanded="false">
                       <span className="sr-only">Toggle navigation</span>
                       <span className="icon-bar" />
@@ -72,7 +72,7 @@ class Nav extends Component {
                                     <a className="dropdown-item" href="/profile"> <i className="fa fa-user" aria-hidden="true" />Profile</a>
                                     <a className="dropdown-item" href="chat.html"> <i className="fa fa-commenting" aria-hidden="true" />Chat Massenger</a>
                                     <a className="dropdown-item" href="#"><i className="fa fa-credit-card-alt" aria-hidden="true" />Wallet</a>
-                                    <a className="dropdown-item" href="setting.html"><i className="fa fa-cog" aria-hidden="true" />Setting</a>
+                                    <a className="dropdown-item" href="/settings"><i className="fa fa-cog" aria-hidden="true" />Setting</a>
                                     <a className="dropdown-item log-end" onClick={this.logout.bind(this)}><i className="fa fa-sign-out" aria-hidden="true" />Log Out</a>
                                   </div>
                                 </li>   

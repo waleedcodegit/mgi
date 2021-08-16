@@ -15,6 +15,7 @@ import Enrollment from '../Pages/tournamentDeatil/EnrollmentForm/Enrollmentform'
 import Profile from '../Pages/UserProfile/Profile';
 import PrivacyPolicy from '../Pages/privacy_policy/PrivacyPolicy';
 import TermAndCondition from '../Pages/TermsAndCondition/TermAndCondition';
+import Setting from '../Pages/Settings/Setting';
 
 import Axios from 'axios';
 import { connect } from 'react-redux';
@@ -66,7 +67,7 @@ class Index extends Component {
                         <Route path="/profile" component={Profile}></Route>
                         <Route path="/privacy" component={PrivacyPolicy}></Route>
                         <Route path="/term-and-condition" component={TermAndCondition}></Route>
-                        
+                        <Route path="/settings" component={Setting}></Route>
                         </>
                     }
                 <Footer></Footer>

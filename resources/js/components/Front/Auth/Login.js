@@ -109,13 +109,13 @@ class Login extends Component {
                                 <div className="col-md-12">
                                 <div className="long-btn">
                                     {/* <span>Forgot Password?</span> */}
-                                    <a onClick={this.login.bind(this)}>Login</a>
+                                    <a href="" onClick={this.login.bind(this)}>Login</a>
                                 </div>
                                 </div>
                                 <div className="col-md-12">
                                 <div className="social-login text-center">
                                     New Here?
-                                    <span><a href="signup.html"> Get An Account </a></span><br />
+                                    <span><a href="/signup"> Get An Account </a></span><br />
                                 </div>
                                 </div>
                                 <div className="col-md-12">

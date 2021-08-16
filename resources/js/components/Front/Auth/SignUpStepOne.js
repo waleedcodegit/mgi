@@ -91,7 +91,7 @@ class SignUpStepOne extends Component {
                                         </div>
                                         <div className="col-md-12">
                                             <div className="long-btn">
-                                                <a onClick={this.nextForm.bind(this)}>Next</a>
+                                                <a href="" onClick={this.nextForm.bind(this)}>Next</a>
                                             </div>
                                         </div>
                                         <div className="col-md-12">
