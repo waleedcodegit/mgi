@@ -9,7 +9,5 @@ class PrivacyAndPolicy extends Model
     protected $table = 'privacies__and_policies';
     protected $fillable = [
     	'privacies__and_policies'
-		
-    	
     ];
 }

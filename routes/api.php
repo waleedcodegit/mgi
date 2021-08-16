@@ -103,10 +103,8 @@ Route::post('update-tournament-modes','Admin\TournamentController@update_tournam
 Route::post('get-tournament-by-id','Admin\TournamentController@get_tournament_by_id');
 Route::post('update-tournament-status','Admin\TournamentController@update_tournament_status');
 
+
 Route::post('get_user_enroll_tournament','Front\TournamentController@get_user_enroll_tournament');
-
-
-
 
 
 Route::post('enrollment_check','User\EnrollmentController@enrollment_check');
