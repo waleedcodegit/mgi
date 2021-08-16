@@ -55,6 +55,7 @@ class subsciption extends Component {
                             </div>
                         </div>
                         </div>
+                        <a href="" class="button-skip">Skip</a>
                     </div>
                     </div>
                 </section>
