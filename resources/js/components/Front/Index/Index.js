@@ -17,9 +17,11 @@ import PrivacyPolicy from '../Pages/privacy_policy/PrivacyPolicy';
 import TermAndCondition from '../Pages/TermsAndCondition/TermAndCondition';
 import Setting from '../Pages/Settings/Setting';
 import CreateTeam from '../Pages/Teams/CreateTeam';
+import JoinTeam from '../Pages/Teams/JoinTeam';
 
 import Axios from 'axios';
 import { connect } from 'react-redux';
+
 
 class Index extends Component {
     constructor(props){
@@ -70,6 +72,7 @@ class Index extends Component {
                         <Route path="/term-and-condition" component={TermAndCondition}></Route>
                         <Route path="/settings" component={Setting}></Route>
                         <Route path="/create-team" component={CreateTeam}></Route>
+                        <Route path="/join-team" component={JoinTeam}></Route>
                         </>
                     }
                 <Footer></Footer>

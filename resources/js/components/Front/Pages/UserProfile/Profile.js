@@ -59,22 +59,7 @@ class Profile extends Component {
                                 </div>
                                 
                             </div>
-                            <div className="divide-line-pr" />
-                            <div className="row">
-                                <div className="col-md-8">
-                                <span> Pabst irony tattooed, synth sriracha selvage pok pok. Wayfarers kinfolk sartorial, helvetica you probably haven't heard of them tumeric venmo deep v mixtape semiotics brunch.</span>
-                                </div>
-                                <div className="col-md-4">
-                                <div className="profile-count">
-                                    <span>20</span>
-                                    <p>Badges Earned</p>
-                                </div>
-                                <div className="profile-count">
-                                    <span>20</span>
-                                    <p>Games Played</p>
-                                </div>
-                                </div>
-                            </div>
+                           
                             </div>
                         </div>
                         </div>
@@ -182,7 +167,7 @@ class Profile extends Component {
                                         <a href="/create-team">Create Team</a>
                                     </div>
                                     <div className="join-btn">
-                                        <a href="join-team.html">Join Team</a>
+                                        <a href="/join-team">Join Team</a>
                                     </div>
                                     </div>
                                 </div>

@@ -30,7 +30,8 @@ class Index extends Component {
                 '/privacy',
                 '/term-and-condition',
                 '/settings',
-                '/create-team'
+                '/create-team',
+                '/join-team'
             ]
         }
     }
@@ -54,6 +55,7 @@ class Index extends Component {
                         <Route  path='/term-and-condition' component={FrontIndex}></Route>
                         <Route  path='/settings' component={FrontIndex}></Route>
                         <Route  path='/create-team' component={FrontIndex}></Route>
+                        <Route  path='/join-team' component={FrontIndex}></Route>
                         
                         {/* {
                             this.state.paths.map((data, index)=>{

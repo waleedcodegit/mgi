@@ -26,7 +26,7 @@ class CreateTeam extends Component {
                                 <div className="item">
                                     <label>
                                     <span>Team Type <i>*</i></span>
-                                    <select className="basic">
+                                    <select className="form-input">
                                         <option>Select</option>
                                         <option>Public</option>
                                         <option>Private</option>
