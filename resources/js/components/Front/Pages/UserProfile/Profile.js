@@ -172,6 +172,22 @@ class Profile extends Component {
                             </div>
                             </div>
                         </div>
+
+                            <div className="full-sec">
+                                <h2>Team 
+                                </h2>
+                                <div className="gems-section-vb">
+                                    <div className="row padding-bt">
+                                    <div className="create-btn">
+                                        <a href="create-team.html">Create Team</a>
+                                    </div>
+                                    <div className="join-btn">
+                                        <a href="join-team.html">Join Team</a>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     </div>
