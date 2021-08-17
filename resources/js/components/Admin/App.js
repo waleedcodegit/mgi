@@ -25,6 +25,7 @@ class App extends Component {
         is_header_footer_banner: true,
         is_subadmins: true,
         is_PrivacyAndPolicy:true,
+        is_subscription: true
         // is_display: false
     }
 }
