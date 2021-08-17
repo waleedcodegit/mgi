@@ -2,26 +2,50 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import { baseurl, img_base } from '../../../../Configs/baseUrls';
 
-class List extends Component {
+class VideoDetail extends Component {
     constructor(props){
         super(props);
         this.state = {
-            videos: []
+            
+            title: '',
+            video_youtube_id: '',
+            description: '',
+            id:this.props.match.params.id,
+            loading:false
         }
     }
-    async  componentDidMount(){
+    async componentDidMount(){
         const video_id = this.props.match.params.id;
-        // Axios.post('/api/get_videos_list').then(res=>{
-            const res = await axios.get(`/api/show_videos/${video_id}`);
-            if(res.data.status === 200)
-            {
-            console.log(res.data);
-            this.setState({
-                videos:res.data
-            });
-        }
-        }
-
+        // console.log(term_and_condition_id);
+      const res = await axios.get(`/api/show_videos/${video_id}`);
+    //   console.log(res.data.video.title);
+      if(res.data.status === 200)
+      {
+          this.setState({
+            title:res.data.video.title,
+            video_youtube_id:res.data.video.video_youtube_id,
+            description:res.data.video.description,
+          });
+      }
+    }
+    title(value){
+        
+        this.setState({
+            title:value
+        })
+    }
+    video_youtube_id(value){
+        
+        this.setState({
+            video_youtube_id:value
+        })
+    }
+    description(value){
+        
+        this.setState({
+            description:value
+        })
+    }
     render() {
         return (
             <div>
@@ -38,22 +62,21 @@ class List extends Component {
                         <div className="container">
                         <div className="row">
                             <div className="col-md-5 col-sm-6">
-                            <h5>Most Popular<br /> <span>Videos</span></h5>
+                            <h5><span>Video Details</span></h5>
                             </div>
                             <div className="col-md-7 col-sm-6">
                             </div>
                         </div>
                         <div className="row">
                             
-                            {
-                                this.state.videos.map((data,index)=>{
-                                        return(
+                           
+                                       
                                             <>
-                                            <a href={`/video-detail/${data.id}`} className="article-wprapper">
+                                            <a href={`/video-detail`} className="article-wprapper">
                                             <div className="col-md-4">
                                                 <div className="lt-video">
                                                     <div className="ifram-video">
-                                                        <iframe width={300} height={270} src={"https://www.youtube.com/embed/"+data.video_youtube_id} title="YouTube video player" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                                                        <iframe width={300} height={270} src={"https://www.youtube.com/embed/"+this.state.video_youtube_id} title="YouTube video player" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
                                                     </div>
                                                     
                                                 </div>
@@ -61,19 +84,15 @@ class List extends Component {
                                             <div className="col-md-8">
                                             <div className="video-text">
                                                 <h3>Video</h3>
-                                                                <span>{data.title}</span>
-                                                                <p dangerouslySetInnerHTML={{__html:data.description}}></p>
-                                                                {/* <div className="divide-line" />
-                                                                <div className="play-video">
-                                                                    
-                                                                </div>                                                                 */}
+                                                                <span>{this.state.title}</span>
+                                                                <p dangerouslySetInnerHTML={{__html:this.state.description}}></p>
+                                                                                                                             
                                                                 </div>
                                             </div>
                                             </a>
                                             </>
-                                        )
-                                })
-                            }
+                                        
+                             
                             
                             
 
@@ -87,4 +106,4 @@ class List extends Component {
     }
 }
 
-export default List;
+export default VideoDetail;

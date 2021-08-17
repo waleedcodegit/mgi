@@ -1,6 +1,54 @@
 import React, { Component } from 'react'
+import Axios from 'axios';
+import { baseurl, img_base } from '../../../../Configs/baseUrls';
 
 class ArticalDetail extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            
+            title: '',
+            image: '',
+            body: '',
+            id:this.props.match.params.id,
+            loading:false
+        }
+    }
+    
+    
+    async componentDidMount(){
+        const articals_id = this.props.match.params.id;
+        // console.log(term_and_condition_id);
+      const res = await axios.get(`/api/show_articals/${articals_id}`);
+      console.log(res.data.posts.title);
+      if(res.data.status === 200)
+      {
+          this.setState({
+            title:res.data.posts.title,
+            image:res.data.posts.image,
+            body:res.data.posts.body,
+          });
+      }
+    }
+
+      title(value){
+        
+        this.setState({
+            title:value
+        })
+    }
+    body(value){
+        
+        this.setState({
+            body:value
+        })
+    }
+    image(value){
+        
+        this.setState({
+            image:value
+        })
+    }
     render() {
         return (
             <div>
@@ -16,21 +64,30 @@ class ArticalDetail extends Component {
                             <button type="button" className="btn sidebar-btn" data-toggle="offcanvas" title="Toggle sidebar">sidebar</button>
                         </p>
                         <div className="item">
-                            <div className="top-info">
-                            <div className="date"><a href="#">25 Sep 2016</a> by <a href="#">Mason Carrington</a></div>
-                            <div className="comment-quantity">3 comments</div>
-                            </div>
-                            <div className="img-wrap">
-                            <div className="bage highlight">highlight</div>
-                            <img src="/images/common/article-list.jpg" alt="news-single" />
-                            </div>
-                            <div className="post-text">
-                            <p>Pabst irony tattooed, synth sriracha selvage pok pok. Wayfarers kinfolk sartorial, helvetica you probably haven't heard of them tumeric venmo deep v mixtape semiotics brunch.  Next level paleo taxidermy, bespoke messenger bag leggings occupy food truck. <br />Hella pop-up flexitarian, semiotics migas humblebrag schlitz literally tofu deep v thundercats skateboard viral cornhole. Lomo knausgaard truffaut selfies flexitarian, tbh swag kickstarter gastropub mustache readymade artisan keffiyeh gochujang.</p>
-                            <blockquote>
-                                <p>Ogi farm-to-table migas vinyl, semiotics yuccie swag ugh helvetica 8-bit. Austin mustache man bun vice helvetica.</p>
-                                <p className="name">Brandon Campbell</p>
-                            </blockquote>
-                            <p>Fixie four dollar toast meggings, 8-bit letterpress schlitz kale chips vexillologist yr venmo blog kitsch hammock affogato. Tbh kombucha typewriter pug, cliche ramps try-hard. Salvia enamel pin quinoa twee edison bulb, affogato typewriter unicorn cray asymmetrical. Scenester bitters kinfolk, small batch green juice cliche flexitarian poutine fixie cornhole dreamcatcher. Mustache irony pickled schlitz wayfarers tattooed. Kale chips roof party activated charcoal, paleo kogi affogato coloring book direct trade. Blue bottle dreamcatcher cardigan, bicycle rights live-edge shoreditch echo park sartorial deep v heirloom narwhal mumblecore.</p>
+                        
+                                    
+                                        <div className="row no-gutters row-eq-height">
+                                            <div className="col-md-12">
+                                            <a href={`/artical-detail`} className="article-wprapper">
+                                                <img src={img_base+this.state.image} value="image"alt="news-img" />
+                                                <div className="news-border">
+                                                <div className="left-news">
+                                                    <span>News</span>
+                                                </div>
+                                                <div className="right-news">
+                                                    <i className="fa fa-commenting" aria-hidden="true" />
+                                                    <span>200</span>
+                                                </div>
+                                                <div className="artcle-text">
+                                                    <span className="date" value="title" onChange="">{this.state.title}</span>
+                                                    <span className="name" dangerouslySetInnerHTML={{__html:this.state.body}} value="body"></span>
+                                                </div>
+                                                </div>
+                                            </a>
+                                            </div>
+                                        </div>
+                                
+                            
                             <div className="row">
                                 <div className="col-md-6">
                                 </div>
@@ -144,7 +201,7 @@ class ArticalDetail extends Component {
                                 </form>
                             </div>
                             </div>
-                        </div>
+                        
                         </section>
                         <section className="sidebar col-xs-6 col-sm-6 col-md-3 sidebar-offcanvas" id="sidebar">
                         <div className="recent-news">

@@ -73,6 +73,7 @@ Route::view('/tournamentDetail/{id}', 'front');
 Route::view('/productDetail/{id}', 'front');
 Route::view('/enrollment/{id}', 'front');
 Route::view('/artical-detail/{id}', 'front');
+Route::view('/video-detail/{id}', 'front');
 
 Route::get('/{path?}', function () {
     return view('front');

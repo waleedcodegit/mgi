@@ -126,6 +126,9 @@ Route::get('Edit_term_and_condition/{id}','TermsAndConditionsController@Edit_ter
 Route::get('term_and_condition_list','TermsAndConditionsController@term_and_condition_list');
 Route::post('Update_term_and_condition','TermsAndConditionsController@Update_term_and_condition');
 
+Route::get('show_articals/{id}','Admin\PostsController@show');
+Route::get('show_videos/{id}','Admin\VideoController@show');
+
 Route::post('form_one_validation', 'User\UserController@form_one_validation');
 Route::post('form_secound_validation', 'User\UserController@form_secound_validation');
 Route::post('register_user', 'User\UserController@register_user');

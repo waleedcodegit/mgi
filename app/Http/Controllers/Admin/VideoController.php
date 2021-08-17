@@ -71,5 +71,14 @@ class VideoController extends Controller
         $video = Video::limit(6)->get();
         return $video;
     }
+    public function show($id){
+        $video = Video::find($id);
+        
+        return response()->json([
+         'status' =>200,
+         'video' => $video
+        ]);
+       
+    }
 
 }

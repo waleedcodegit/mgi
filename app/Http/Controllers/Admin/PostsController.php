@@ -166,7 +166,15 @@ class PostsController extends Controller
             ];
         return $response;
     }
-
+    public function show($id){
+        $posts = Post::find($id);
+        
+        return response()->json([
+         'status' =>200,
+         'posts' => $posts
+        ]);
+       
+    }
     
     
 }
