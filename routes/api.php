@@ -106,6 +106,8 @@ Route::post('update-tournament-status','Admin\TournamentController@update_tourna
 
 Route::post('get_user_enroll_tournament','Front\TournamentController@get_user_enroll_tournament');
 
+Route::post('create_team','Front\TeamController@create_team');
+Route::post('get_user_team','Front\TeamController@get_user_team');
 
 Route::post('enrollment_check','User\EnrollmentController@enrollment_check');
 Route::post('create_enrollment','User\EnrollmentController@create_enrollment');

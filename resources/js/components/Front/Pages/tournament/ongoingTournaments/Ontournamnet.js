@@ -109,6 +109,9 @@ class Ontournamnet extends Component {
 
       <div className="tab-content">
         <div className="tab-pane active" id="Today" role="tabpanel">
+        {
+            this.state.today_tournaments[0] ?
+            <>
           <div className="row">
             <div className="col-md-6 col-sm-6">
               <h3>Watch Game <span> Live!</span></h3>
@@ -117,8 +120,7 @@ class Ontournamnet extends Component {
             <div className="col-md-6 col-sm-6">
             </div>
           </div>
-          {
-            this.state.today_tournaments[0] ? 
+           
               <div className="trnmt-back">
                 <a>
                     <img src={img_base+this.state.today_tournaments[0].header_image} />
@@ -161,6 +163,7 @@ class Ontournamnet extends Component {
                   </div>
                 </div>
               </div>
+              </>
             :null
           }
           
@@ -214,6 +217,11 @@ class Ontournamnet extends Component {
                   )
                 })
           } 
+
+          {
+              this.state.today_tournaments.length == 0 ? 
+              <h3 className="text-light text-center">No records founded</h3>:null
+          }
             
           </div>
         </div>
@@ -268,6 +276,11 @@ class Ontournamnet extends Component {
                 )
               })
             }
+
+          {
+              this.state.week_tournaments.length == 0 ? 
+              <h3 className="text-light text-center">No records founded</h3>:null
+          }
           </div>
           <div className="row">
             <div className="col-md-3">
@@ -336,6 +349,11 @@ class Ontournamnet extends Component {
                   </div>
                 )
               })
+          }
+
+          {
+              this.state.month_tournaments.length == 0 ? 
+              <h3 className="text-light text-center">No records founded</h3>:null
           }
           </div>
           <div className="row">

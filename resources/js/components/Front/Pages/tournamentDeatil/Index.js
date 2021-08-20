@@ -27,7 +27,6 @@ class Index extends Component {
             tournament_id: this.props.match.params.id
           }
         Axios.post('/api/enrollment_check',datasend).then(res => {
-            console.log(res);
             if (res.data.status == 200) {
                 this.setState({
                     display: true

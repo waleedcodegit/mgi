@@ -2,7 +2,8 @@ import Axios from 'axios';
 import React, { Component } from 'react';
 import { baseurl, img_base } from '../../Configs/baseUrls';
 import {connect} from 'react-redux';
-import Swal from 'sweetalert2';import '../admin.css'
+import Swal from 'sweetalert2';
+import '../admin.css'
 class Game extends Component {
     constructor(props) {
         super(props);

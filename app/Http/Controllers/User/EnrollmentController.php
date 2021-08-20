@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Enrollment;
+use App\TournamentRequiredFieldUserAnswer;
 
 class EnrollmentController extends Controller
 {
@@ -26,15 +27,22 @@ class EnrollmentController extends Controller
     }
     public function create_enrollment(Request $request){
             if(count($request->ansFields)) {
+
+                $enroll = new Enrollment();
+                $enroll->user_id = $request->user_id;
+                $enroll->tournament_id = $request->tournament_id;
+                $enroll->save();
+
                 foreach($request->ansFields as $val) {
-                    $data = new Enrollment();
-                    $data->tournament_id = $val['field']['tournament_id'];
+                    $data = new TournamentRequiredFieldUserAnswer();
+                    $data->tournament_id = $request->tournament_id;
                     $data->field_name = $val['field']['name'];
                     $data->field_value = $val['answer'];
                     $data->user_id = $request->user_id;
+                    $data->enrollment_id = $enroll->id;
                     $data->save();
                 }
-        
+
                 $response = [ 
                     'msg'=>'Enrollment Data Save',
                     'status'=>'200'

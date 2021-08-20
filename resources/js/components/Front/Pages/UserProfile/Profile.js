@@ -9,13 +9,24 @@ class Profile extends Component {
         super(props);
         this.state={
             tournaments:[],
+            team_image: '',
+            team_name: ''
         }
     }
 
     componentDidMount(){
         Axios.post('/api/get_user_enroll_tournament',{id:this.props.user.data.id}).then(res=>{
+            console.log(res);
             this.setState({
                 
+            })
+        })
+
+        Axios.post('/api/get_user_team',{id:this.props.user.data.id}).then(res=>{
+            console.log(res.data.team.title);
+            this.setState({
+                team_image: res.data.team.image,
+                team_name: res.data.team.title
             })
         })
     }
@@ -135,43 +146,52 @@ class Profile extends Component {
                         </div>
                         </div>
                         <div className="col-md-4 col-sm-6">
-                        
-                        <div className="full-sec">
-                            <h2>Team 
-                            </h2>
-                            <div className="gems-section-vb">
-                            <div className="row padding-bt">
-                                <div className="col-md-5 col-sm-5">
-                                <div className="calnder-img">
-                                    <img src="/images/common/cl-1.jpg" />
-                                </div>
-                                </div>
-                                <div className="col-md-7 col-sm-7">
-                                <div className="calnder-div">
-                                    <h3>Team Name Here</h3>
-                                    <p> 26 members</p>
-                                    <span>Wins  20</span>
-                                    <h5>Loses 30</h5>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
+                        {
+                            this.state.team_name ?
 
                             <div className="full-sec">
                                 <h2>Team 
                                 </h2>
                                 <div className="gems-section-vb">
-                                    <div className="row padding-bt">
-                                    <div className="create-btn">
-                                        <a href="/create-team">Create Team</a>
+                                <div className="row padding-bt">
+                                    <div className="col-md-5 col-sm-5">
+                                    <div className="calnder-img">
+                                        <img src="/images/common/cl-1.jpg" />
                                     </div>
-                                    <div className="join-btn">
-                                        <a href="/join-team">Join Team</a>
+                                    </div>
+                                    <div className="col-md-7 col-sm-7">
+                                    <div className="calnder-div">
+                                        <h3>{this.state.team_name}</h3>
+                                        {/* <p> 26 members</p>
+                                        <span>Wins  20</span>
+                                        <h5>Loses 30</h5> */}
                                     </div>
                                     </div>
                                 </div>
+                                </div>
                             </div>
+
+                        : 
+                        
+                            <div className="full-sec">
+                                    <h2>Team 
+                                    </h2>
+                                    <div className="gems-section-vb">
+                                        <div className="row padding-bt">
+                                        <div className="create-btn">
+                                            <a href="/create-team">Create Team</a>
+                                        </div>
+                                        <div className="join-btn">
+                                            <a href="/join-team">Join Team</a>
+                                        </div>
+                                        </div>
+                                    </div>
+                            </div>
+
+                        }
+                        
+
+                            
 
                         </div>
                     </div>

@@ -17298,7 +17298,7 @@ padding: 4px 20px;
 }
 
 .form-input{
-	    padding: 15px 10px!important;
+	    /* padding: 15px 10px!important; */
     border-bottom: 2px solid #333!important;
     width: 100%!important;
     background: #09060252!important;
