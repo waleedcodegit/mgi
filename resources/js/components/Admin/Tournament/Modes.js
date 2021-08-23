@@ -16,6 +16,7 @@ class Modes extends Component {
             region:'',
             country: [],
             platforms:'',
+            fee: '',
             game_id:window.localStorage.getItem('game_id'),
             id:window.localStorage.getItem('tournament_id'),
             loading: false
@@ -54,6 +55,13 @@ class Modes extends Component {
             mode:e.target.value
         })
     }
+
+    tournament_fee(e) {
+        this.setState({
+            fee:e.target.value
+        })
+    }
+
     registration_limit(e){
         this.setState({
             registration_limit:e.target.value
@@ -128,11 +136,21 @@ class Modes extends Component {
                <div className="row col-md-12">
                     <div class="form-group input_div col-md-12">
                         <label className="input_label" for="exampleInputEmail1">Registration Limit</label>
-                        <input  onChange={this.registration_limit.bind(this)} type="email" className="form-control " aria-describedby="emailHelp" />
+                        <input  onChange={this.registration_limit.bind(this)} type="text" className="form-control" />
                     </div>
                    
                    
                </div>  
+
+               <div className="row col-md-12">
+                    <div class="form-group input_div col-md-12">
+                        <label className="input_label" for="exampleInputEmail1">Tournament Fee</label>
+                        <input  onChange={this.tournament_fee.bind(this)} type="number" className="form-control" />
+                    </div>
+                   
+                   
+               </div> 
+
                <div className="row col-md-12">
                     <div class="form-group input_div col-md-12">
                         <label className="input_label" for="exampleInputEmail1">Modes</label>

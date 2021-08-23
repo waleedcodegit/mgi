@@ -70,10 +70,8 @@ class TournamentController extends Controller
                 $tournament->start_time = $request->start_time;
                 $name = 'noimage.png';
                 if ($request->image) {
-                    
-                        $name = time() . '.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
-                        \Image::make($request->image)->save(public_path('images/').  $name);
-                    
+                    $name = time() . '.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+                    \Image::make($request->image)->save(public_path('images/').  $name);
                 }
                 else{
                     $response = ['status' => 219 , 'msg' => 'Header Image Field is Required'];
@@ -122,12 +120,12 @@ class TournamentController extends Controller
     public function update_tournament_modes(Request $request){
         $validator = Validator::make($request->all(), [
             'mode' => 'required',
+            'fee' => 'required',
             'registration_limit' => 'required',
             'registration_status' => 'required',
             'country' => 'required',
             'region' => 'required',
             'platforms' => 'required'
-
         ]);
         if($validator->fails()){
                 $response = ['status' => 219 , 'msg' => $validator->errors()->first()];
@@ -136,6 +134,7 @@ class TournamentController extends Controller
             if($request->id){
                 $tournament = Tournament::find($request->id);
                 $tournament->mode= $request->mode;
+                $tournament->fee= $request->fee;
                 $tournament->registration_limit= $request->registration_limit;
                 $tournament->registration_status= $request->registrations_status;
                 $tournament->country= $request->country;

@@ -43,7 +43,8 @@ class Index extends Component {
                 this.setState({
                     loading:false
                 })
-            } else {
+            } 
+            else {
                 this.setState({
                     loading:false
                 })

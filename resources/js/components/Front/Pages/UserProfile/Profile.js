@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import {connect} from 'react-redux';
+import {img_base} from '../../../Configs/baseUrls';
 
 
 class Profile extends Component {
@@ -12,18 +13,20 @@ class Profile extends Component {
             team_image: '',
             team_name: ''
         }
+
+        if(!this.props.user.is_login) {
+            window.open('/login', '_self');
+        }
     }
 
     componentDidMount(){
         Axios.post('/api/get_user_enroll_tournament',{id:this.props.user.data.id}).then(res=>{
-            console.log(res);
             this.setState({
-                
+                tournaments: res.data.data
             })
         })
 
         Axios.post('/api/get_user_team',{id:this.props.user.data.id}).then(res=>{
-            console.log(res.data.team.title);
             this.setState({
                 team_image: res.data.team.image,
                 team_name: res.data.team.title
@@ -85,64 +88,69 @@ class Profile extends Component {
                         <h2>Tournaments</h2>
                                                
                         <div className="gems-section">
-                            <div className="row">
-                            <div className="col-md-3">
-                                <div className="profile-img">
-                                <img src="/images/common/stuff-person3.jpg" />
-                                </div>
-                            </div>
-                            <div className="col-md-7">
-                                <div className="profile-sec">				
-                                <h3>Pubg: Player Unknown Battleground</h3>
-                                <div className="divide-line-pr2" />
-                                <div className="prf-batch2">
-                                    <ul>
-                                    <li><img src="images/common/bounty_hunter_icon.png" /></li>
-                                    <li><img src="images/common/Arbeiderpartiet-logo.png" /></li>
-                                    <li><img src="images/common/beastmaster_icon.png" /></li>
-                                    <li><img src="images/common/centaur_icon.png" /></li>
-                                    <li><img src="images/common/earth_spirit_icon.png" /></li>
-                                    <li><img src="images/common/ember_spirit_icon.png" /></li>
-                                    <li><img src="images/common/juggernaut_icon.png" /></li>
-                                    <li><img src="images/common/enigma_icon.png" /></li>
-                                    </ul>
-                                    <ul>
-                                    <li><img src="images/common/bounty_hunter_icon.png" /></li>
-                                    <li><img src="images/common/Arbeiderpartiet-logo.png" /></li>
-                                    <li><img src="images/common/beastmaster_icon.png" /></li>
-                                    <li><img src="images/common/centaur_icon.png" /></li>
-                                    <li><img src="images/common/earth_spirit_icon.png" /></li>
-                                    <li><img src="images/common/ember_spirit_icon.png" /></li>
-                                    <li><img src="images/common/juggernaut_icon.png" /></li>
-                                    <li><img src="images/common/enigma_icon.png" /></li>
-                                    </ul>
-                                    <div className="prog-sec2">
-                                    <h3>Achivments</h3>
-                                    <div className="progress">
-                                        <div className="progress-bar2" role="progressbar" aria-valuenow={30} aria-valuemin={0} aria-valuemax={100} style={{width: '30%'}}>
-                                        <span className="sr-only">70% Complete</span>
+                            {
+                                this.state.tournaments.map((data,index)=>{
+                                    return(
+                                        <div className="row">
+                                            <div className="col-md-3">
+                                                <div className="profile-img">
+                                                    <img src={img_base+data.tournament.header_image} />
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <div className="profile-sec">				
+                                                <h3>{data.tournament.title}</h3>
+                                                <div className="divide-line-pr2" />
+                                                <div className="prf-batch2">
+                                                    <ul>
+                                                    <li><img src="images/common/bounty_hunter_icon.png" /></li>
+                                                    <li><img src="images/common/Arbeiderpartiet-logo.png" /></li>
+                                                    <li><img src="images/common/beastmaster_icon.png" /></li>
+                                                    <li><img src="images/common/centaur_icon.png" /></li>
+                                                    <li><img src="images/common/earth_spirit_icon.png" /></li>
+                                                    <li><img src="images/common/ember_spirit_icon.png" /></li>
+                                                    <li><img src="images/common/juggernaut_icon.png" /></li>
+                                                    </ul>
+                                                    <ul>
+                                                    <li><img src="images/common/bounty_hunter_icon.png" /></li>
+                                                    <li><img src="images/common/Arbeiderpartiet-logo.png" /></li>
+                                                    <li><img src="images/common/beastmaster_icon.png" /></li>
+                                                    <li><img src="images/common/centaur_icon.png" /></li>
+                                                    <li><img src="images/common/earth_spirit_icon.png" /></li>
+                                                    <li><img src="images/common/ember_spirit_icon.png" /></li>
+                                                    <li><img src="images/common/juggernaut_icon.png" /></li>
+                                                    </ul>
+                                                    <div className="prog-sec2">
+                                                    <h3>Achivments</h3>
+                                                    <div className="progress">
+                                                        <div className="progress-bar2" role="progressbar" aria-valuenow={30} aria-valuemin={0} aria-valuemax={100} style={{width: '30%'}}>
+                                                        <span className="sr-only">70% Complete</span>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div className="divide-line-pr2" />
+                                                </div>
+                                            </div>
+                                            <div className="col-md-3">
+                                                <div className="profile-count2">
+                                                <span>{data.tournament.start_date}</span>
+                                                <p>Start Date</p>
+                                                </div>
+                                                <div className="profile-count2">
+                                                <span>{data.tournament.start_time}</span>
+                                                <p>Start Time</p>
+                                                </div>
+                                                <div className="profile-count2">
+                                                <span>{data.tournament.mode}</span>
+                                                <p>Game Mode</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div className="divide-line-pr2" />
-                                </div>
-                            </div>
-                            <div className="col-md-2">
-                                <div className="profile-count2">
-                                <span>25</span>
-                                <p>Tournmants Played</p>
-                                </div>
-                                <div className="profile-count2">
-                                <span>20</span>
-                                <p>Achivments</p>
-                                </div>
-                                <div className="profile-count2">
-                                <span>03</span>
-                                <p>Skitform Played</p>
-                                </div>
-                            </div>
-                            </div>
+                                    )
+                                })
+                            }
+                            
                         </div>
                         </div>
                         <div className="col-md-4 col-sm-6">
