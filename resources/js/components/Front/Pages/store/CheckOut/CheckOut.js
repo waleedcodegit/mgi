@@ -49,6 +49,17 @@ export default class CheckOut extends Component {
           })
     }
 
+    getFirstName(e) {
+        this.setState({
+            first_name: e.target.value,
+        });
+    };
+    getLastName(e) {
+        this.setState({
+            last_name: e.target.value,
+        });
+    };
+
     
     render() {
         return (
