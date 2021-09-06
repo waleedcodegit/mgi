@@ -54,9 +54,6 @@ Route::post('get_product_by_slug','Admin\StoreController@get_product_by_slug');
 Route::post('add_product_in_cart','Admin\StoreController@add_product_in_cart');
 Route::post('delete_variations','Admin\StoreController@delete_variations');
 Route::post('get_cookie_session_cart','Admin\StoreController@get_cookie_session_cart');
-Route::post('/remove_product_from_cart', 'Admin\StoreController@remove_product_from_cart');
-Route::post('/update_cart', 'Admin\StoreController@update_cart');
-Route::post('/check_customer_auth', 'Admin\StoreController@check_customer_auth');
 
 //Videos Routes
 Route::post('create_video','Admin\VideoController@add_video');
@@ -105,24 +102,9 @@ Route::post('update-tournament-info','Admin\TournamentController@update_tourname
 Route::post('update-tournament-modes','Admin\TournamentController@update_tournament_modes');
 Route::post('get-tournament-by-id','Admin\TournamentController@get_tournament_by_id');
 Route::post('update-tournament-status','Admin\TournamentController@update_tournament_status');
+
+
 Route::post('get_user_enroll_tournament','Front\TournamentController@get_user_enroll_tournament');
-Route::post('get_tournament_with_game_id','Admin\TournamentController@get_tournament_with_game_id');
-
-
-
-
-
-Route::post('create_team','Front\TeamController@create_team');
-Route::get('all_teams','Front\TeamController@get_all_teams');
-Route::post('get_user_team','Front\TeamController@get_user_team');
-Route::post('/search_team', 'Front\TeamController@search_team');
-Route::post('/team-detail', 'Front\TeamController@team_detail');
-Route::post('/join-team-request', 'Front\TeamController@join_team_request');
-Route::post('/team_add_request', 'Front\TeamController@team_add_request');
-Route::post('/approve_team_request', 'Front\TeamController@approve_team_request');
-
-
-
 
 
 Route::post('enrollment_check','User\EnrollmentController@enrollment_check');
@@ -142,7 +124,6 @@ Route::get('Edit_term_and_condition/{id}','TermsAndConditionsController@Edit_ter
 Route::get('term_and_condition_list','TermsAndConditionsController@term_and_condition_list');
 Route::post('Update_term_and_condition','TermsAndConditionsController@Update_term_and_condition');
 
-
 Route::get('show_articals/{id}','Admin\PostsController@show');
 Route::get('show_videos/{id}','Admin\VideoController@show');
 
@@ -152,6 +133,8 @@ Route::post('register_user', 'User\UserController@register_user');
 
 Route::post('user-login','User\UserController@userLogin');
 Route::post('user_check_auth','User\UserController@user_check_auth');
+Route::post('get_user_profile','User\UserController@get_user_profile');
+Route::post('update_user_info','User\UserController@update_user_info');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

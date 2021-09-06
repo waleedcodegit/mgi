@@ -1,6 +1,179 @@
 import React, { Component } from 'react';
-
+import Axios from 'axios';
+import {connect} from 'react-redux';
+import Swal from 'sweetalert2';
+import {  img_base } from '../../../Configs/baseUrls';
 class Setting extends Component {
+    constructor(props) {
+        super(props);
+        this.state={
+         
+            first_name: '',
+            last_name: '',
+            primary_game: '',
+            game_id: '',
+            dob: '',
+            phone: '',
+            country: '',
+            gender : '',
+            city : '', 
+            address : '', 
+            postcode : '', 
+            image : '',
+            binary_img:'',
+            email : '',
+            password: '',
+            id:this.props.user.data.id,
+            loading:false
+        }
+    }
+
+    componentDidMount(){
+
+        this.setState({
+            email: this.props.user.data.email,
+               first_name: this.props.user.data.first_name,
+               last_name: this.props.user.data.last_name,
+               primary_game: this.props.user.data.primary_game,
+               game_id: this.props.user.data.game_id,
+               
+               dob: this.props.user.data.dob,
+               phone: this.props.user.data.phone,
+               country: this.props.user.data.country,
+               gender: this.props.user.data.gender,
+               city: this.props.user.data.city,
+               address: this.props.user.data.address,
+               postcode: this.props.user.data.postcode,
+               image: this.props.user.data.image
+
+                
+        });
+    }
+    firstName(e){
+        this.setState({
+            first_name:e.target.value
+        })
+    }
+    lastName(e){
+        
+        this.setState({
+            last_name:e.target.value
+        })
+    }
+    primaryGame(e){
+        
+        this.setState({
+            primary_game:e.target.value
+        })
+    }
+    game_Id(e){
+        
+        this.setState({
+            game_id:e.target.value
+        })
+    }
+    Dob(e){
+        
+        this.setState({
+            dob:e.target.value
+        })
+    }
+    Phone(e){
+        
+        this.setState({
+            phone:e.target.value
+        })
+    }
+    Country(e){
+        
+        this.setState({
+            country:e.target.value
+        })
+    }
+    Gender(e){
+        
+        this.setState({
+            gender:e.target.value
+        })
+    }
+    City(e){
+        
+        this.setState({
+            city:e.target.value
+        })
+    }
+    Address(e){
+        
+        this.setState({
+            address:e.target.value
+        })
+    }
+    Postcode(e){
+        
+        this.setState({
+            postcode:e.target.value
+        })
+    }
+    Email(e){
+        
+        this.setState({
+            email:e.target.value
+        })
+    }
+
+    Image(e){
+        if (e.target.files) {
+            const files = Array.from(e.target.files);
+
+            const promises = files.map(file => {
+                return (new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.addEventListener('load', (ev) => {
+                        resolve(ev.target.result);
+                    });
+                    reader.addEventListener('error', reject);
+                    reader.readAsDataURL(file);
+                }))
+            });
+           
+            Promise.all(promises).then(images => {
+                this.setState({
+                    image: images[0],
+                    binary_img: images
+                })
+            }, error => { console.error(error); });
+           
+        }
+    }
+  
+    update(e){
+        e.preventDefault();
+        this.setState({
+            loading:true
+        })
+        Axios.post('/api/update_user_info',this.state).then(res=>{
+            this.setState({
+                loading:false
+            })
+            if(res.data.status == 200){
+                Swal.fire({
+                    icon: 'success',
+                    title: res.data.msg,
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+                    // this.props.history.push('/adminpanel/banners-list');
+            }else{
+                Swal.fire({
+                    icon: 'warning',
+                    title: res.data.msg,
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+            }
+        })
+    }
+   
     render() {
         return (
             <div>
@@ -30,44 +203,86 @@ class Setting extends Component {
                                     <div className="col-md-12 col-sm-12">
                                         <section className="css-g0mr221 css-19m9brh">
                                         <div className="css-g0mr222 css-gx84ul">
-                                            <div className="css-g0mr224 css-1ex6nkr">
-                                            <p className="css-g0mr223 css-wjd590">Email</p>
-                                            <p className="css-g0mr226 css-1o2xxxc">shehrozb946@gmail.com</p>
-                                            </div><a className="css-1khann70 css-1khann72 css-1jau80d">
+                                        {/* <div className="css-g0mr224 css-1ex6nkr">
+                                            <label className="css-g0mr223 css-wjd590">Email</label>
+                                            <input value="" className="css-1l4244b0 css-13owws" ></input>
+                                        </div> */}
+                                        {/* <div className="css-g0mr224 css-1ex6nkr">
+                                            <label className="css-g0mr223 css-wjd590">Password</label>
+                                            <input value="" className="css-1l4244b0 css-13owws" ></input>
+                                        </div> */}
+                                            <a className="css-1khann70 css-1khann72 css-1jau80d">
                                             Change email</a></div>
-                                        <div className="css-g0mr222 css-gx84ul"><div className="css-g0mr224 css-1ex6nkr">
-                                            <p className="css-g0mr223 css-wjd590">Password</p>
-                                            <p className="css-g0mr226 css-1o2xxxc">••••••••</p></div>
+                                        <div className="css-g0mr222 css-gx84ul">                  
                                             <a className="css-1khann70 css-1khann72 css-1jau80d">Change password</a>
-                                        </div></section>
+                                        </div>
+                                        </section>
                                     </div>
                                     <div className="col-md-12 col-sm-12">
                                         <section className="css-g0mr221 css-19m9brh">
                                         <div className="css-g0mr224 css-1ex6nkr">
-                                            <p className="css-g0mr223 css-wjd590">Username</p>
-                                            <input name="updatedUserName" className="css-1l4244b0 css-13owws" defaultValue="shehrozb946" />
-                                        </div><div className="css-g0mr224 css-1ex6nkr">
-                                            <p className="css-g0mr223 css-wjd590">Timezone</p>
-                                            <select name="timezone" className="css-11531hf0 css-qchxnk">
-                                            <option value>Select your timezone</option>
-                                            <option value="Pacific/Midway">(UTC-12:00) Midway Island, American Samoa</option>
-                                            <option value="Pacific/Honolulu">(UTC-10:00) Hawaii</option>
-                                            <option value="America/Anchorage">(UTC-9:00) Alaska</option>
-                                            <option value="America/Los_Angeles">(UTC-08:00) Pacific Time (US and Canada)</option>
-                                            <option value="America/Phoenix">(UTC-07:00) Arizona</option>
-                                            <option value="America/Chihuahua">(UTC-07:00) Chihuahua, La Paz, Mazatlan</option>
-                                            <option value="America/Denver">(UTC-07:00) Mountain Time (US and Canada)</option>
-                                            <option value="America/Belize">(UTC-06:00) Central America</option><option value="America/Chicago">(UTC-06:00) Central Time (US and Canada)</option><option value="America/Mexico_City">(UTC-06:00) Guadalajara, Mexico City, Monterrey</option><option value="America/Regina">(UTC-06:00) Saskatchewan</option><option value="America/Bogota">(UTC-05:00) Bogota, Lima, Quito</option><option value="America/Jamaica">(UTC-05:00) Kingston, George Town</option><option value="America/New_York">(UTC-05:00) Eastern Time (US and Canada)</option><option value="America/Indiana/Indianapolis">(UTC-05:00) Indiana (East)</option><option value="America/Caracas">(UTC-04:30) Caracas</option><option value="America/Asuncion">(UTC-04:00) Asuncion</option><option value="America/Halifax">(UTC-04:00) Atlantic Time (Canada)</option><option value="America/Cuiaba">(UTC-04:00) Cuiaba</option><option value="America/Manaus">(UTC-04:00) Georgetown, La Paz, Manaus, San Juan</option><option value="America/St_Johns">(UTC-03:30) Newfoundland and Labrador</option><option value="America/Sao_Paulo">(UTC-03:00) Brasilia</option><option value="America/Buenos_Aires">(UTC-03:00) Buenos Aires</option><option value="America/Cayenne">(UTC-03:00) Cayenne, Fortaleza</option><option value="America/Godthab">(UTC-03:00) Greenland</option><option value="America/Montevideo">(UTC-03:00) Montevideo</option><option value="America/Bahia">(UTC-03:00) Salvador</option><option value="America/Santiago">(UTC-04:00) Santiago</option><option value="America/Noronha">(UTC-02:00) Mid-Atlantic</option><option value="Atlantic/Azores">(UTC-01:00) Azores</option><option value="Atlantic/Cape_Verde">(UTC-01:00) Cape Verde Islands</option><option value="Europe/London">(UTC+00:00) Dublin, Edinburgh, Lisbon, London</option><option value="Africa/Casablanca">(UTC+00:00) Casablanca</option><option value="Africa/Monrovia">(UTC+00:00) Monrovia, Reykjavik</option><option value="Europe/Amsterdam">(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option><option value="Europe/Belgrade">(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option><option value="Europe/Brussels">(UTC+01:00) Brussels, Copenhagen, Madrid, Paris</option><option value="Europe/Warsaw">(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb</option><option value="Africa/Algiers">(UTC+01:00) West Central Africa</option><option value="Africa/Windhoek">(UTC+02:00) Windhoek</option><option value="Europe/Athens">(UTC+02:00) Athens, Bucharest</option><option value="Asia/Beirut">(UTC+02:00) Beirut</option><option value="Africa/Cairo">(UTC+02:00) Cairo</option><option value="Asia/Damascus">(UTC+02:00) Damascus</option><option value="EET">(UTC+02:00) Eastern Europe</option><option value="Africa/Harare">(UTC+02:00) Harare, Pretoria</option><option value="Europe/Helsinki">(UTC+02:00) Helsinki, Kiev, Riga, Sofia, Tallinn, Vilnius</option><option value="Asia/Istanbul">(UTC+02:00) Istanbul</option><option value="Asia/Jerusalem">(UTC+02:00) Jerusalem</option><option value="Europe/Kaliningrad">(UTC+02:00) Kaliningrad</option><option value="Africa/Tripoli">(UTC+02:00) Tripoli</option><option value="Asia/Amman">(UTC+02:00) Amman</option><option value="Asia/Baghdad">(UTC+03:00) Baghdad</option><option value="Asia/Kuwait">(UTC+03:00) Kuwait, Riyadh</option><option value="Europe/Minsk">(UTC+03:00) Minsk</option><option value="Europe/Moscow">(UTC+03:00) Moscow, St. Petersburg, Volgograd</option><option value="Africa/Nairobi">(UTC+03:00) Nairobi</option><option value="Asia/Tehran">(UTC+03:30) Tehran</option><option value="Asia/Muscat">(UTC+04:00) Abu Dhabi, Muscat</option><option value="Asia/Baku">(UTC+04:00) Baku</option><option value="Europe/Samara">(UTC+04:00) Izhevsk, Samara</option><option value="Indian/Mauritius">(UTC+04:00) Port Louis</option><option value="Asia/Tbilisi">(UTC+04:00) Tbilisi</option><option value="Asia/Yerevan">(UTC+04:00) Yerevan</option><option value="Asia/Kabul">(UTC+04:30) Kabul</option><option value="Asia/Tashkent">(UTC+05:00) Tashkent, Ashgabat</option><option value="Asia/Karachi">(UTC+05:00) Islamabad, Karachi</option><option value="Asia/Kolkata">(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi</option><option value="Asia/Colombo">(UTC+05:30) Sri Jayawardenepura</option><option value="Asia/Katmandu">(UTC+05:45) Kathmandu</option><option value="Asia/Almaty">(UTC+06:00) Astana</option><option value="Asia/Dhaka">(UTC+06:00) Dhaka</option><option value="Asia/Novosibirsk">(UTC+07:00) Novosibirsk</option><option value="Asia/Rangoon">(UTC+06:30) Yangon (Rangoon)</option><option value="Asia/Bangkok">(UTC+07:00) Bangkok, Hanoi, Jakarta</option><option value="Asia/Krasnoyarsk">(UTC+07:00) Krasnoyarsk</option><option value="Asia/Chongqing">(UTC+08:00) Beijing, Chongqing, Hong Kong SAR, Urumqi</option><option value="Asia/Irkutsk">(UTC+08:00) Irkutsk</option><option value="Asia/Kuala_Lumpur">(UTC+08:00) Kuala Lumpur, Singapore</option><option value="Australia/Perth">(UTC+08:00) Perth</option><option value="Asia/Taipei">(UTC+08:00) Taipei</option><option value="Asia/Ulaanbaatar">(UTC+08:00) Ulaanbaatar</option><option value="Asia/Tokyo">(UTC+09:00) Osaka, Sapporo, Tokyo</option><option value="Asia/Seoul">(UTC+09:00) Seoul</option><option value="Asia/Yakutsk">(UTC+09:00) Yakutsk</option><option value="Australia/Adelaide">(UTC+10:30) Adelaide</option><option value="Australia/Darwin">(UTC+09:30) Darwin</option><option value="Australia/Brisbane">(UTC+10:00) Brisbane</option><option value="Australia/Canberra">(UTC+11:00) Canberra, Melbourne, Sydney</option><option value="Pacific/Guam">(UTC+10:00) Guam, Port Moresby</option><option value="Australia/Hobart">(UTC+11:00) Hobart</option><option value="Asia/Magadan">(UTC+10:00) Magadan</option><option value="Asia/Vladivostok">(UTC+10:00) Vladivostok, Magadan</option><option value="Asia/Srednekolymsk">(UTC+11:00) Chokirdakh</option><option value="Pacific/Guadalcanal">(UTC+11:00) Solomon Islands, New Caledonia</option><option value="Asia/Anadyr">(UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky</option><option value="Pacific/Auckland">(UTC+13:00) Auckland, Wellington</option><option value="Pacific/Fiji">(UTC+12:00) Fiji Islands, Kamchatka, Marshall Islands</option><option value="Pacific/Tongatapu">(UTC+13:00) Nuku'alofa</option>
-                                            <option value="Pacific/Apia">(UTC+14:00) Samoa</option>
-                                            </select>
-                                            <p>Current time: <span className="css-g0mr228 css-1re5wml">11:54 PM PDT</span></p>
+                                            <label className="css-g0mr223 css-wjd590">Email</label>
+                                            <input value={this.state.email} className="css-1l4244b0 css-13owws"  onChange={this.Email.bind(this)}></input>
                                         </div>
+                                      
+                                        <div className="css-g0mr224 css-1ex6nkr">
+                                            <label className="css-g0mr223 css-wjd590">First Name</label>
+                                            <input  name="updatedfirst_name" className="css-1l4244b0 css-13owws" value={this.state.first_name} onChange={this.firstName.bind(this)} />
+                                        </div>
+                                        <div className="css-g0mr224 css-1ex6nkr">
+                                            <label className="css-g0mr223 css-wjd590">Last Name</label>
+                                            <input type="" name="updatedlast_name" className="css-1l4244b0 css-13owws" value={this.state.last_name} onChange={this.lastName.bind(this)}/>
+                                        </div>
+                                        <div className="css-g0mr224 css-1ex6nkr">
+                                            <label className="css-g0mr223 css-wjd590">Primary Game</label>
+                                            <input name="updatedprimary_id" className="css-1l4244b0 css-13owws"value={this.state.primary_game} onChange={this.primaryGame.bind(this)}></input>
+                                        </div>
+                                        <div className="css-g0mr224 css-1ex6nkr">
+                                            <label className="css-g0mr223 css-wjd590">Game Id</label>
+                                            <input type=""name="updatedgame_id" className="css-1l4244b0 css-13owws" value={this.state.game_id} onChange={this.game_Id.bind(this)}></input>
+                                        </div>
+                                        <div className="css-g0mr224 css-1ex6nkr">
+                                            <label className="css-g0mr223 css-wjd590">Date of Birth</label>
+                                            <input name="updateddob" className="css-1l4244b0 css-13owws" value={this.state.dob} onChange={this.Dob.bind(this)}></input>
+                                        </div>
+                                        <div className="css-g0mr224 css-1ex6nkr">
+                                            <label className="css-g0mr223 css-wjd590">Phone</label>
+                                            <input name="updatedcountry" className="css-1l4244b0 css-13owws" value={this.state.phone} onChange={this.Phone.bind(this)}></input>
+                                        </div>
+                                       
+                                        <div className="css-g0mr224 css-1ex6nkr">
+                                            <label className="css-g0mr223 css-wjd590">Country</label>
+                                            <input name="updatedcountry" className="css-1l4244b0 css-13owws" value={this.state.country} onChange={this.Country.bind(this)}></input>
+                                        </div>
+                                        <div className="css-g0mr224 css-1ex6nkr">
+                                            <label className="css-g0mr223 css-wjd590">Gender</label>
+                                            <input name="updatedgender" className="css-1l4244b0 css-13owws" value={this.state.gender} onChange={this.Gender.bind(this)}></input>
+                                        </div>
+                                        <div className="css-g0mr224 css-1ex6nkr">
+                                            <label className="css-g0mr223 css-wjd590">City</label>
+                                            <input name="updatedgender" className="css-1l4244b0 css-13owws" value={this.state.city} onChange={this.City.bind(this)}></input>
+                                        </div>
+                                        <div className="css-g0mr224 css-1ex6nkr">
+                                            <label className="css-g0mr223 css-wjd590">Address</label>
+                                            <input name="updatedgender" className="css-1l4244b0 css-13owws" value={this.state.address} onChange={this.Address.bind(this)}></input>
+                                        </div>
+                                        <div className="css-g0mr224 css-1ex6nkr">
+                                            <label className="css-g0mr223 css-wjd590">Postcode</label>
+                                            <input name="updatedgender" className="css-1l4244b0 css-13owws" value={this.state.postcode} onChange={this.Postcode.bind(this)}></input>
+                                        </div>
+                                        <div className="css-g0mr224 css-1ex6nkr">
+                                            <label className="css-g0mr223 css-wjd590">Image</label>
+                                           <br></br> <img className="img_thumb" style={{width:'300px', height:'200px'}} src={this.state.binary_img !=''? this.state.binary_img : img_base+this.state.image}></img>
+                                        <input   type="file" className="m-2" onChange={this.Image.bind(this)}></input>
+                                            
+                                        </div>
+                                        
                                         <div className="css-g0mr224 css-1ex6nkr">
                                             <p className="css-g0mr223 css-wjd590">Mailing Preferences</p><label>
                                             <input name="emailConsented" type="checkbox" />
                                             <span className="css-g0mr227 css-ay9r4x">I want to receive news about cool tournaments and promotional emails.</span></label>
                                         </div>
-                                        <a className="css-1khann70 css-1khann71 css-g0mr225 css-zj48px">Save Changes</a>
+                                        <button  onClick={this.update.bind(this)} className="css-1khann70 css-1khann71 css-g0mr225 css-zj48px">Save Changes</button>
                                         </section>
                                     </div>
                                     </div>
@@ -209,4 +424,10 @@ class Setting extends Component {
     }
 }
 
-export default Setting;
+const mapStateToProps=(state)=>{
+    return{
+        user:state.user
+    }
+}
+
+export default connect(mapStateToProps,null) (Setting);

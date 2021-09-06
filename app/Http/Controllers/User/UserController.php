@@ -160,4 +160,46 @@ class UserController extends Controller
             return $response;
         }                                                       
     }
+    public function get_user_profile(Request $request) {
+        $data = User::find($request->id)->get();
+        $response = [
+                'status' => 200,
+                'msg' => 'User profile', 
+                'data' => $data
+            ];
+            return $response;
+    }
+    public function update_user_info(Request $request){
+
+
+        $user = User::find($request->id);
+        
+                
+                $user->email  = $request->email;
+                $user->first_name = $request->first_name;
+                $user->last_name = $request->last_name;
+                $user->primary_game = $request->primary_game;
+                $user->game_id = $request->game_id;
+                $user->dob = $request->dob;
+                $user->phone = $request->phone;
+                $user->country = $request->country;
+                $user->gender = $request->gender;
+                $user->city = $request->city;
+                $user->address = $request->address;
+                $user->postcode = $request->postcode;
+                if ($request->image == $user->image) {
+                
+                }else{
+                    $users = time() . '.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
+                    \Image::make($request->image)->save(public_path('images/').  $users);
+                    $user->image = $users;
+                }
+               
+                $user->save();
+        $response = [ 
+            'msg'=>'User info Updated',
+            'status'=>'200'
+        ];
+        return $response;
+    }
 }
