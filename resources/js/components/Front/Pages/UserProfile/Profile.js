@@ -11,7 +11,8 @@ class Profile extends Component {
         this.state={
             tournaments:[],
             team_image: '',
-            team_name: ''
+            team_name: '',
+            
         }
 
         if(!this.props.user.is_login) {
@@ -91,7 +92,7 @@ class Profile extends Component {
                             {
                                 this.state.tournaments.map((data,index)=>{
                                     return(
-                                        <div className="row">
+                                        <div className="row" key={index}>
                                             <div className="col-md-3">
                                                 <div className="profile-img">
                                                     <img src={img_base+data.tournament.header_image} />
@@ -103,28 +104,28 @@ class Profile extends Component {
                                                 <div className="divide-line-pr2" />
                                                 <div className="prf-batch2">
                                                     <ul>
-                                                    <li><img src="images/common/bounty_hunter_icon.png" /></li>
-                                                    <li><img src="images/common/Arbeiderpartiet-logo.png" /></li>
-                                                    <li><img src="images/common/beastmaster_icon.png" /></li>
-                                                    <li><img src="images/common/centaur_icon.png" /></li>
-                                                    <li><img src="images/common/earth_spirit_icon.png" /></li>
-                                                    <li><img src="images/common/ember_spirit_icon.png" /></li>
-                                                    <li><img src="images/common/juggernaut_icon.png" /></li>
+                                                        <li><img src="images/common/bounty_hunter_icon.png" /></li>
+                                                        <li><img src="images/common/Arbeiderpartiet-logo.png" /></li>
+                                                        <li><img src="images/common/beastmaster_icon.png" /></li>
+                                                        <li><img src="images/common/centaur_icon.png" /></li>
+                                                        <li><img src="images/common/earth_spirit_icon.png" /></li>
+                                                        <li><img src="images/common/ember_spirit_icon.png" /></li>
+                                                        <li><img src="images/common/juggernaut_icon.png" /></li>
                                                     </ul>
                                                     <ul>
-                                                    <li><img src="images/common/bounty_hunter_icon.png" /></li>
-                                                    <li><img src="images/common/Arbeiderpartiet-logo.png" /></li>
-                                                    <li><img src="images/common/beastmaster_icon.png" /></li>
-                                                    <li><img src="images/common/centaur_icon.png" /></li>
-                                                    <li><img src="images/common/earth_spirit_icon.png" /></li>
-                                                    <li><img src="images/common/ember_spirit_icon.png" /></li>
-                                                    <li><img src="images/common/juggernaut_icon.png" /></li>
+                                                        <li><img src="images/common/bounty_hunter_icon.png" /></li>
+                                                        <li><img src="images/common/Arbeiderpartiet-logo.png" /></li>
+                                                        <li><img src="images/common/beastmaster_icon.png" /></li>
+                                                        <li><img src="images/common/centaur_icon.png" /></li>
+                                                        <li><img src="images/common/earth_spirit_icon.png" /></li>
+                                                        <li><img src="images/common/ember_spirit_icon.png" /></li>
+                                                        <li><img src="images/common/juggernaut_icon.png" /></li>
                                                     </ul>
                                                     <div className="prog-sec2">
                                                     <h3>Achivments</h3>
                                                     <div className="progress">
                                                         <div className="progress-bar2" role="progressbar" aria-valuenow={30} aria-valuemin={0} aria-valuemax={100} style={{width: '30%'}}>
-                                                        <span className="sr-only">70% Complete</span>
+                                                            <span className="sr-only">70% Complete</span>
                                                         </div>
                                                     </div>
                                                     </div>
@@ -134,21 +135,26 @@ class Profile extends Component {
                                             </div>
                                             <div className="col-md-3">
                                                 <div className="profile-count2">
-                                                <span>{data.tournament.start_date}</span>
-                                                <p>Start Date</p>
+                                                    <span>{data.tournament.start_date}</span>
+                                                    <p>Start Date</p>
                                                 </div>
                                                 <div className="profile-count2">
-                                                <span>{data.tournament.start_time}</span>
-                                                <p>Start Time</p>
+                                                    <span>{data.tournament.start_time}</span>
+                                                    <p>Start Time</p>
                                                 </div>
                                                 <div className="profile-count2">
-                                                <span>{data.tournament.mode}</span>
-                                                <p>Game Mode</p>
+                                                    <span>{data.tournament.mode}</span>
+                                                    <p>Game Mode</p>
                                                 </div>
                                             </div>
                                         </div>
                                     )
                                 })
+                            }
+
+                            {
+                                this.state.tournaments.length == 0 ? 
+                                <div><h3>No records founded</h3></div>:null
                             }
                             
                         </div>
@@ -164,7 +170,7 @@ class Profile extends Component {
                                 <div className="row padding-bt">
                                     <div className="col-md-5 col-sm-5">
                                     <div className="calnder-img">
-                                        <img src="/images/common/cl-1.jpg" />
+                                        <img src={img_base+this.state.team_image} />
                                     </div>
                                     </div>
                                     <div className="col-md-7 col-sm-7">

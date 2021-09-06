@@ -17252,6 +17252,25 @@ padding: 4px 20px;
     background: #ed2024;
 }
 
+.btn-prf3 {
+    padding: 4px 20px;
+        border-radius: 100px;
+        background: #83ed20;
+        font-size: 12px;
+        font-weight: 400;
+        color: #fff;
+        border: solid 1px #fff;
+        font-family: Montserrat, sans-serif;
+        margin-top: 20px;
+        float: right;
+    
+    }
+    
+    .btn-prf3:hover {
+        color: #fff;
+        background: #20ed5d;
+    }
+
 
 .btn.small {
     font-size: 12px
@@ -27423,7 +27442,7 @@ table tr td:last-child span {
     color: #fff;
 }
 
-table tr td:nth-last-child(2) span {
+/* table tr td:nth-last-child(2) span {
     width: 40px;
     height: 30px;
     line-height: 28px;
@@ -27431,7 +27450,7 @@ table tr td:nth-last-child(2) span {
     background: green;
     display: inline-block;
     color: #fff;
-}
+} */
 
 table tr td .team {
     padding: 0 15px 0 0
@@ -39807,4 +39826,51 @@ display: block;
     overflow: hidden;
     display: block;
 }
+.pointer {
+    cursor: pointer
+}
 
+.checkout-wrap h4{
+	color: #fff;
+}
+.customer-inform {
+    background: rgb(0 0 0 / 0%);
+    overflow: hidden;
+    margin: 0px;
+    padding: 10px;
+}
+.customer-inform .item {
+    padding-bottom: 15px;
+    color: #ccc;
+}
+.customer-inform .item label {
+    margin-bottom: 10px;
+    cursor: pointer;
+    display: block;
+    font-weight: 400;
+}
+.customer-inform .item span {
+    padding-bottom: 7px;
+    display: block;
+    font-size: 14px;
+    color: #666;
+    line-height: normal;
+    font-weight: 400;
+}
+.customer-inform .item span i {
+    font-style: normal;
+    color: #ED2024;
+}
+.inform-input {
+    border-bottom: solid 1px #cccccc54!important;
+}
+.textarea-inform {
+    padding: 15px 10px;
+    width: 100%;
+    height: 180px;
+    background: #ffffff24;
+    border: none;
+    font-size: 14px;
+    color: #666;
+    line-height: normal;
+}

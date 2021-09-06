@@ -143,6 +143,15 @@ class StoreController extends Controller
         $product =  Product::find($request->id);
         $product->images = DB::table('product_images')->where('product_id',$product->id)->get();
         $product->varients = DB::table('product_variations')->where('product_id',$product->id)->get();
+
+        $cheep_varient = $product->varients[0];
+        foreach($product->varients as $v){
+            if($cheep_varient->price > $v->price){
+                $cheep_varient = $v;
+            }
+        }
+        $product->cheep_varient = $cheep_varient;
+            
         return $product;
     }
     public function add_product_img(Request $request){
@@ -210,19 +219,17 @@ class StoreController extends Controller
             $discount = 0;
             $sub_cart_totals = 0;
             foreach($cart as $key => $c){
-                $sub_cart_totals = (float) $sub_cart_totals + (float)$c->original_price;
-                $cart_totals =  $cart_totals + $c->price ;
-                $product = DB::table('products')
-                            ->where('id',$c->product_id)
-                            ->get();
-                foreach($product as $p){
-                    $images = DB::table('product_images')->where('product_id',$p->id)->get();
-                    $p->images = $images;
-                    $varients = DB::table('product_variations')->where('id',$c->varient_id)->get();
-                    $p->varients = $varients;
-                    $cheep_varient = $varients[0];
-                    $price = 0;
-                }
+                $sub_cart_totals = (float) $sub_cart_totals + (float)$c->price;
+                $cart_totals =  $cart_totals + $c->price * $c->quantity ;
+                $product = Product::where('id',$c->product_id)->with('images','varients')->get();
+                // foreach($product as $p){
+                //     $images = DB::table('product_images')->where('product_id',$p->id)->get();
+                //     $p->images = $images;
+                //     $varients = DB::table('product_variations')->where('id',$c->varient_id)->get();
+                //     $p->varients = $varients;
+                //     $cheep_varient = $varients[0];
+                //     $price = 0;
+                // }
                 $cart[$key]->product = $product;
             }
             $cart[0]->sub_cart_totals = $sub_cart_totals;
@@ -231,6 +238,30 @@ class StoreController extends Controller
             return $response;
         }else{
             $response = ['status' => 401 , 'msg' => 'Cart Is Empty'];
+            return $response;
+        }
+    }
+
+    public function remove_product_from_cart(Request $request){
+        $cart = Cart::find($request->id);
+        $cart->delete();
+    }
+
+    public function update_cart(Request $request){
+        $data = $request->items;
+        foreach($data as $d){
+            $cart = Cart::where('id',$d['id'])->update(['quantity'=>$d['quantity']]);
+        }
+    }
+
+    public function check_customer_auth(Request $request){
+        $c = DB::table('user_auth_meta')->where('token',$request->token)->first();
+        if($c){
+            $c->user = DB::table('users')->where('id', $c->user_id)->first();
+            $response = ['status' => 200 , 'cus' => $c];
+            return $response;
+        }else{
+            $response = ['status' => 401 , 'msg' => 'Error- Authentication failed'];
             return $response;
         }
     }

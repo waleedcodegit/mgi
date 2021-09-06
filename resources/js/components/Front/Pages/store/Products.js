@@ -10,8 +10,8 @@ class Products extends Component {
         }
     }
     componentDidMount(){
-        Axios.post('/api/get_all_products').then(res=>{
-            console.log('res');
+        Axios.post('/api/get_all_enabled_products').then(res=>{
+            console.log(res.data);
             this.setState({
                 products:res.data
             })
@@ -20,7 +20,7 @@ class Products extends Component {
     render() {
         return (
             <div>
-            <section class="image-header">
+            <section className="image-header">
                 
             </section>
             <div className="store-wrap">
@@ -35,18 +35,18 @@ class Products extends Component {
                         {
                             this.state.products.map((data,index)=>{
                                 return(
-                                    <div className="col-md-4 col-sm-6">
+                                    <div className="col-md-4 col-sm-6" key={index}>
                                         <div className="store-list-item">
                                             <div>
-                                                <a href="">
-                                                <img src={data.images.length > 0 ? img_base+data.images[0].image :''} alt="product" />
+                                                <a href={`/product-detail/${data.id}`}>
+                                                    <img src={data.images.length > 0 ? img_base+data.images[0].image :''} alt="product" />
                                                 </a>
                                                 <div className="info">
                                                     <span className="name">{data.name}</span>
-                                                    <span className="price">$ 155</span>	
+                                                    <span className="price">$ {data.cheep_varient.price}</span>	
                                                     <div className="btn-wrap">
                                                         <button className="btn small"><a href="cart.html">add to cart</a></button>
-                                                        <button className="btn small"><a href="product.html">Details</a></button>
+                                                        <button className="btn small"><a href={`/product-detail/${data.id}`}>Details</a></button>
                                                     </div>
                                                 </div>
                                             </div>

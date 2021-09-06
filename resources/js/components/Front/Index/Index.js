@@ -20,9 +20,14 @@ import CreateTeam from '../Pages/Teams/CreateTeam';
 import JoinTeam from '../Pages/Teams/JoinTeam';
 import ArticalDetail from '../Pages/articles/articalDetail/ArticalDetail';
 import VideoDetail from '../Pages/videos/videosdetails/videodetails';
+import TeamDetail from '../Pages/Teams/TeamDeatil';
+import ProductDetail from '../Pages/store/productDetail/index';
+import Cart from '../Pages/store/cart/Cart';
+import CheckOut from '../Pages/store/CheckOut/CheckOut';
 
 import Axios from 'axios';
 import { connect } from 'react-redux';
+
 
 
 
@@ -77,8 +82,12 @@ class Index extends Component {
                         <Route path="/settings" component={Setting}></Route>
                         <Route path="/create-team" component={CreateTeam}></Route>
                         <Route path="/join-team" component={JoinTeam}></Route>
+                        <Route path="/team-detail/:id" component={TeamDetail}></Route>
                         <Route path="/artical-detail/:id" component={ArticalDetail}></Route>
                         <Route path="/video-detail/:id" component={VideoDetail}></Route>
+                        <Route path="/product-detail/:id" component={ProductDetail}></Route>
+                        <Route path="/cart" component={Cart}></Route>
+                        <Route path="/check-out" component={CheckOut}></Route>
                         </>
                     }
                 <Footer></Footer>

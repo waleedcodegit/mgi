@@ -277,7 +277,7 @@ class EditProduct extends Component {
                                 <select value={this.state.p_varient_type || ""} onChange={this.p_varient_type.bind(this)}  class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp"  >
                                     <option value="">Choose..</option>
                                     <option value="size">size</option>
-                                    <option value="color">color</option>
+                                    {/* <option value="color">color</option> */}
 
                                 </select>
                             </div>
@@ -288,7 +288,6 @@ class EditProduct extends Component {
                                     <option value="Piece">Piece</option>
                                     <option value="KG">KG</option>
                                     <option value="Pack">Pack</option>
-
                                 </select>
                             </div>
                         </div>

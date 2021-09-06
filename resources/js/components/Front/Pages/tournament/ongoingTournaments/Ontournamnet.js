@@ -11,6 +11,7 @@ class Ontournamnet extends Component {
       today_tournaments: [],
       week_tournaments: [],
       month_tournaments: [],
+      game_tournaments: [],
       display_drop_down: false,
     }
   }
@@ -21,7 +22,7 @@ class Ontournamnet extends Component {
         })
     })
     Axios.get('/api/get_today_tournaments').then(res=>{
-      console.log(res);
+      // console.log(res);
       this.setState({
         today_tournaments:res.data.todayTournaments
       })
@@ -43,6 +44,19 @@ class Ontournamnet extends Component {
       display_drop_down: !this.state.display_drop_down
     })
   }
+
+  gameTournament(game_id) {
+    let senddata = {
+      game_id: game_id
+    }
+    Axios.post('/api/get_tournament_with_game_id', senddata).then(res=>{
+      console.log(res);
+      this.setState({
+        game_tournaments:res.data.tournaments
+      })
+    })
+  }
+
     render() {
         return (
             <div className="row">
@@ -53,11 +67,11 @@ class Ontournamnet extends Component {
                     {
                       this.state.games.map((data,index)=>{
                         return(
-                              <li><a><img src={img_base+data.image} /></a></li>
+                              <li key={index}><a onClick={this.gameTournament.bind(this,data.id)}><img src={img_base+data.image} /></a></li>
                             )
                         })
                     }  
-                    <li><a>More</a></li>
+                    <li></li>
                   </ul>
                 </div>
             </div>
@@ -130,7 +144,7 @@ class Ontournamnet extends Component {
                     <div className="col-md-9 col-sm-12">
                       <div className="battle-div">
                         <h2>{this.state.today_tournaments[0].mode}</h2>
-                        <p><span>Total Prize </span>{this.state.today_tournaments[0].prizez}</p>
+                        <p><span>Total Prize </span><span dangerouslySetInnerHTML={{__html:this.state.today_tournaments[0].prizez}}></span></p>
                       </div>
                     </div>
                   </a><div className="col-md-3 col-sm-12"><a href="">
@@ -158,7 +172,7 @@ class Ontournamnet extends Component {
                           <h3>Region</h3>
                           <p>{this.state.today_tournaments[0].region}</p>
                         </div>
-                      </a><a href className="btn-live"><i className="fa fa-video-camera" aria-hidden="true" /> Live Match </a>
+                      </a><a className="btn-live"><i className="fa fa-video-camera" aria-hidden="true" /> Live Match </a>
                     </div>
                   </div>
                 </div>
@@ -171,7 +185,7 @@ class Ontournamnet extends Component {
           {
             this.state.today_tournaments.map((data,index)=>{
               return(
-                  <div className="col-md-4 col-sm-6">
+                  <div className="col-md-4 col-sm-6" key={index}>
                       <div className="main-lates-matches">
                         <div className="tournament-card-container mb-10">
                           <bf-tournament-card className="vertical mb-20">
@@ -230,7 +244,7 @@ class Ontournamnet extends Component {
             {
               this.state.week_tournaments.map((data,index)=>{
                 return(
-                  <div className="col-md-4 col-sm-6">
+                  <div className="col-md-4 col-sm-6" key={index}>
                     <div className="main-lates-matches">
                       <div className="tournament-card-container mb-10">
                         <bf-tournament-card className="vertical mb-20">
@@ -304,7 +318,7 @@ class Ontournamnet extends Component {
           {
               this.state.month_tournaments.map((data,index)=>{
                 return(
-                  <div className="col-md-4 col-sm-6">
+                  <div className="col-md-4 col-sm-6" key={index}>
                     <div className="main-lates-matches">
                       <div className="tournament-card-container mb-10">
                         <bf-tournament-card className="vertical mb-20">

@@ -1,6 +1,42 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Axios from 'axios';
+import Swal from 'sweetalert2';
+import {img_base} from '../../../Configs/baseUrls';
 
 class JoinTeam extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            teams: [],
+            search_string: ''
+        }
+    }
+
+    componentDidMount() {
+        Axios.get('/api/all_teams').then(res=>{
+            this.setState({
+                teams: res.data.teams
+            })
+        })
+    }
+
+    search(e){
+        this.setState({
+            search_string:e.target.value
+        })
+    }
+
+    search_teams(e){
+        e.preventDefault();
+        let senderdata = {
+            string:this.state.search_string
+        }
+        Axios.post('/api/search_team',senderdata).then(res=>{
+            this.setState({
+                teams:res.data
+            })
+        })
+    }
     render() {
         return (
             <div>
@@ -15,8 +51,8 @@ class JoinTeam extends Component {
                             <div className="search-field">
                             <form>
                                 <div className="wrap">
-                                <input type="text" defaultValue="Enter name to search" />
-                                <button><i className="fa fa-search" aria-hidden="true" /></button>
+                                <input type="text" onChange={this.search.bind(this)} />
+                                <button onClick={this.search_teams.bind(this)}><i className="fa fa-search" aria-hidden="true" /></button>
                                 </div>
                             </form>
                             </div>
@@ -24,36 +60,28 @@ class JoinTeam extends Component {
                         <div className="col-md-12">
                             <div className="overflow-scroll">
                             <table>
-                                <tbody><tr>
-                                    <th>Season</th>
-                                    <th className="club">Club</th>
-                                    <th>Games</th>
-                                    <th>Wins</th>
-                                    <th>Loses</th>
-                                </tr>
                                 <tr>
-                                    <td>2016/2017</td>
-                                    <td className="club">
-                                    <a href="team-detail.html">
-                                        <span className="team"><img src="images/common/team-logo2.png" width={30} height={30} alt="trophy" /></span> <span style={{margin: 'auto'}}>Internacional</span>
-                                    </a>
-                                    </td>
-                                    <td>27</td>
-                                    <td><span>7</span></td>
-                                    <td><span>3</span></td>
+                                    <th>Date</th>
+                                    <th className="club">Title</th>
+                                    <th>Type</th>
                                 </tr>
-                                <tr>
-                                    <td>2016/2017</td>
-                                    <td className="club">
-                                    <a href="team-detail.html">
-                                        <span className="team"><img src="images/soccer/team-logo2.png" width={30} height={30} alt="trophy" /></span><span style={{margin: 'auto'}}> Internacional </span>
-                                    </a>
-                                    </td>
-                                    <td>27</td>
-                                    <td><span>7</span></td>
-                                    <td><span>3</span></td>
-                                </tr>
-                                </tbody></table>
+
+                                {
+                                    this.state.teams.map((data,index)=>{
+                                        return(
+                                            <tr key={index}>
+                                                <td>{data.created_at}</td>
+                                                <td className="club">
+                                                    <a href={`/team-detail/${data.id}`}>
+                                                        <span className="team"><img src={img_base+data.image} width={30} height={30} alt="team" /></span> <span style={{margin: 'auto'}}>{data.title}</span>
+                                                    </a>
+                                                </td>
+                                                <td>{data.type}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                                </table>
                             </div>
                         </div>
                         </div>

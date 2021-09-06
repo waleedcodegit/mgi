@@ -257,8 +257,8 @@ class Addproduct extends Component {
                                 <select onChange={this.p_varient_type.bind(this)}  class="form-control " id="exampleInputEmail1"   >
                                     <option value="">Choose..</option>
                                     <option value="size">size</option>
-                                    <option value="color">color</option>
-                                    <option value="Weight">Weight</option>
+                                    {/* <option value="color">color</option>
+                                    <option value="Weight">Weight</option> */}
                                 </select>
                             </div>
                            

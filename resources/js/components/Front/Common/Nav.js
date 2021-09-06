@@ -1,25 +1,69 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
+import Axios from 'axios';
+import { img_base } from '../../Configs/baseUrls';
+import Swal from 'sweetalert2';
 
 class Nav extends Component {
   constructor(props) {
     super(props);
     this.state={
-        
+      display_drop_down: false,
+      team_request_notification: []
     }
   }
 
-  // componentDidMount(){
-  //   console.log(this.props.user.data.first_name);
-  // }
+  componentDidMount() {
+    
+  }
+
+  notification() {
+    Axios.post('/api/team_add_request',{id:this.props.user.data.id}).then(res=>{
+      if(res.data.status == 200){
+          this.setState({
+            team_request_notification: res.data.data,
+            display_drop_down: !this.state.display_drop_down
+          })
+      } else {
+        this.setState({
+          team_request_notification: [],
+          display_drop_down: !this.state.display_drop_down
+        })
+      }
+    })
+  }
+
+  approveTeam(user_id,team_id,check) {     
+      let senddata = {
+        user_id: user_id,
+        team_id: team_id,
+        check: check
+      }
+
+      Axios.post('/api/approve_team_request',senddata).then(res=>{
+        if(res.data.status == 200){
+          Swal.fire({
+              icon: 'success',
+              title: res.data.msg,
+              showConfirmButton: false,
+              timer: 1500
+              })      
+          }else{
+              Swal.fire({
+                  icon: 'warning',
+                  title: res.data.msg,
+                  showConfirmButton: false,
+                  timer: 1500
+              })
+          }
+          this.notification();
+      })
+  }
 
   logout(){
-    console.log('here');
     window.localStorage.setItem('mgltokenlogin','');
     window.open('/', '_self');
-    // window.location.reload();
-    // this.props.history.push('/');
   }
     render() {
         return (
@@ -45,13 +89,42 @@ class Nav extends Component {
                           <li><a href="/store"><span>Store</span></a></li>
                           <li><a href="/"><span>Support</span></a></li>
                           <li className="cart full">
-                            <a>
+                            <a href="/cart">
                               <span><i className="fa fa-shopping-cart" aria-hidden="true" /></span>
                             </a>
                           </li>
                         </ul>
                         <div className="lg-sec">
                         {this.props.user.is_login ?
+                        <div>
+                          <div className="icon" id="bell" onClick={this.notification.bind(this)}> <img src="/images/common/nt-bell.png" alt /> </div>
+                          <div className="notifications" id="box" style = {this.state.display_drop_down ? {height: "auto", opacity: "1"} : {height: "0", opacity: "0"}}>
+                            <h2>Notifications</h2>
+                            {
+                                this.state.team_request_notification.map((data,index)=>{
+                                    return(
+                                      <div className="notifications-item" key={index}> 
+                                        {
+                                          data.user.image ? 
+                                            <img src={img_base+data.user.image} alt="img" />
+                                          : 
+                                            <img src="/images/common/uIgDDDd.jpg" alt="img" />
+                                        }
+                                        <div className="text">
+                                          <h4>{data.user.first_name}</h4>
+                                          <button className="btn-prf3" onClick={this.approveTeam.bind(this,data.user_id,data.team_id,"Approve")}>Approve</button> <button onClick={this.approveTeam.bind(this,data.user_id,data.team_id,"Disapprove")} className="btn-prf2">Dis Approve</button>
+                                        </div>
+                                      </div>
+                                    )
+                                })
+                            }
+                            {
+                                this.state.team_request_notification.length == 0 ? 
+                                <div>No records founded</div>:null
+                            }
+                          </div>
+                        
+
                           <nav className="navbar navbar-dark bg-dark navbar-expand-sm pr-dropdown">
                             <div className="collapse navbar-collapse" id="navbar-list-4">
                               <ul className="navbar-nav">
@@ -79,6 +152,7 @@ class Nav extends Component {
                               </ul>
                             </div>
                           </nav>
+                          </div>
 
                           : 
                           <>

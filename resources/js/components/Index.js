@@ -32,8 +32,12 @@ class Index extends Component {
                 '/settings',
                 '/create-team',
                 '/join-team',
+                '/team-detail/:id',
                 '/artical-detail/:id',
-                '/video-detail/:id'
+                '/video-detail/:id',
+                '/product-detail/:id',
+                '/cart',
+                '/check-out'
             ]
         }
     }
@@ -58,8 +62,12 @@ class Index extends Component {
                         <Route  path='/settings' component={FrontIndex}></Route>
                         <Route  path='/create-team' component={FrontIndex}></Route>
                         <Route  path='/join-team' component={FrontIndex}></Route>
+                        <Route  path='/team-detail/:id' component={FrontIndex}></Route>
                         <Route  path='/artical-detail/:id' component={FrontIndex}></Route>
                         <Route  path='/video-detail/:id' component={FrontIndex}></Route>
+                        <Route  path='/product-detail/:id' component={FrontIndex}></Route>
+                        <Route  path='/cart' component={FrontIndex}></Route>
+                        <Route  path='/check-out' component={FrontIndex}></Route>
                         
                         {/* {
                             this.state.paths.map((data, index)=>{
