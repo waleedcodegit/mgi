@@ -92,76 +92,74 @@ export default class ProductInfo extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12"><h4>{this.state.product_name}</h4></div>
-                    <div className="col-md-7">
-                    <div className="product-slider">
-                        <div className="connected-carousels">
-                        
-                        <div className="stage">
-                            <div className="carousel carousel-stage">
-                                <Carousel
-                                    indicators={false} interval={4000} animation={"slide"} stopAutoPlayOnHover={false}
-                                    >
-                                        {
-                                            this.state.product_images.map((data,index)=>{
-                                                return(
-                                                    <div key={index}>
-                                                        <img src={img_base+data.image} alt="product-thumb"/>
-                                                    </div>
-                                                )
-                                            })
-                                        }
-                                </Carousel>
+                        <div className="col-md-7">
+                            <div className="product-slider">
+                                <div className="connected-carousels">
+                                
+                                <div className="stage">
+                                    <div className="carousel carousel-stage">
+                                        <Carousel
+                                            indicators={false} interval={4000} animation={"slide"} stopAutoPlayOnHover={false}
+                                            >
+                                                {
+                                                    this.state.product_images.map((data,index)=>{
+                                                        return(
+                                                            <div key={index}>
+                                                                <img src={img_base+data.image} alt="product-thumb"/>
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+                                        </Carousel>
+                                    </div>
+                                </div>
+                                </div>
                             </div>
                         </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div className="col-md-5">
-                    <div className="product-right-info">
-                        <div className="price">$ {this.state.cheep_varient != '' ? this.state.cheep_varient.price: ''}</div>
-                        <p>{this.state.short_description}</p>
-                        <div className="title">Quantity Type</div>
-                        <div className="color-filter-item">
-                            <span style={{color: "#fff"}}>{this.state.quantity_type}</span>
-                        </div>
-
-                        
-                        { 
-                            this.state.varient_type == "size" ?
-                            <>
-                                <div className="title">Sizes</div>
-                                <div className="size-filter-item">
-                                <ul>
-                                    {
-                                        this.state.product_varients.map((data,index)=>{
-                                            return (
-                                                <li key={index}>
-                                                    <label className="size-check">
-                                                        <input onChange={this.chnage_varient_price.bind(this,data)} type="checkbox" checked={this.state.cheep_varient.id == data.id} />
-                                                        <span className="size">{data.name}</span>
-                                                    </label>
-                                                </li>
-                                            )
-                                        })
-                                    }
-                                </ul>	
+                        <div className="col-md-5">
+                            <div className="product-right-info">
+                                <div className="price">$ {this.state.cheep_varient != '' ? this.state.cheep_varient.price: ''}</div>
+                                <p>{this.state.short_description}</p>
+                                <div className="title">Quantity Type</div>
+                                <div className="color-filter-item">
+                                    <span style={{color: "#fff"}}>{this.state.quantity_type}</span>
                                 </div>
-                            </>
-                            : null
-                        
-                        }
-                        
-                        <div className="title">Quantity</div>
-                        <div className="quantity-wrap">
-                        <input type="number" value={this.state.qty} onChange={this.quantity.bind(this)} />
-                        <a onClick={this.addProductInCart.bind(this)} className="btn-product">Add to cart</a>
+
+                                
+                                { 
+                                    this.state.varient_type == "size" ?
+                                    <>
+                                        <div className="title">Sizes</div>
+                                        <div className="size-filter-item">
+                                        <ul>
+                                            {
+                                                this.state.product_varients.map((data,index)=>{
+                                                    return (
+                                                        <li key={index}>
+                                                            <label className="size-check">
+                                                                <input onChange={this.chnage_varient_price.bind(this,data)} type="checkbox" checked={this.state.cheep_varient.id == data.id} />
+                                                                <span className="size">{data.name}</span>
+                                                            </label>
+                                                        </li>
+                                                    )
+                                                })
+                                            }
+                                        </ul>	
+                                        </div>
+                                    </>
+                                    : null
+                                
+                                }
+                                
+                                <div className="title">Quantity</div>
+                                <div className="quantity-wrap">
+                                <input type="number" value={this.state.qty} onChange={this.quantity.bind(this)} />
+                                <a onClick={this.addProductInCart.bind(this)} className="btn-product">Add to cart</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    </div>
                 </div>
-                </div>
-
-
         )
     }
 }

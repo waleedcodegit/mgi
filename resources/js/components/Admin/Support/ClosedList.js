@@ -81,7 +81,8 @@ class ClosedList extends Component {
                         }
                     </tbody>
                 </table>
-                    </div> : 
+                    </div> 
+                    : 
                        <div>
                             <div id="displayspinner" style={{ display: 'block', marginLeft: '48%', marginTop: '10%' }}>
                                 <div className="spinner-border text-info ml-2 spinner_format mb-5"  role="status">
@@ -90,7 +91,6 @@ class ClosedList extends Component {
                             </div>
                         </div>
                         }
-                
             </div>
         );
     }

@@ -39,7 +39,7 @@ class List extends Component {
                                     return(
                                         <div className="row no-gutters row-eq-height">
                                             <div className="col-md-12">
-                                            <a href="articles-detail.html" className="article-wprapper">
+                                            <a href="" className="article-wprapper">
                                                 <img src={img_base+data.image} alt="news-img" />
                                                 <div className="news-border">
                                                 <div className="left-news">

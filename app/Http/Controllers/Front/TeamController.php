@@ -181,17 +181,26 @@ class TeamController extends Controller
 
     public function approve_team_request(Request $request) {
         $teamLimit = ListUserTeams::where('team_id', $request->team_id)->where('status', 1)->count();
-        if($teamLimit < 4) {
+        
             if($request->check == "Approve") {
-                $approve = ListUserTeams::where('team_id', $request->team_id)->where('user_id', $request->user_id)->update([
-                    'status' => 1
-                ]);
-    
-                $response = [
-                    'status' => 200,
-                    'msg' => 'Approved',
-                ];
-                return $response;
+                if($teamLimit < 4) {
+                    $approve = ListUserTeams::where('team_id', $request->team_id)->where('user_id', $request->user_id)->update([
+                        'status' => 1
+                    ]);
+        
+                    $response = [
+                        'status' => 200,
+                        'msg' => 'Approved',
+                    ];
+                    return $response;
+                } else {
+                    $response = [
+                        'status' => 201,
+                        'msg' => 'Team Full',
+                    ];
+                    return $response;
+                }     
+                
             } else {
                 $disapprove = ListUserTeams::where('team_id', $request->team_id)->where('user_id', $request->user_id)->delete();
                 $response = [
@@ -200,12 +209,5 @@ class TeamController extends Controller
                 ];
                 return $response;
             }
-        } else {
-            $response = [
-                'status' => 201,
-                'msg' => 'Team Full',
-            ];
-            return $response;
-        }        
-    }
+        }
 }

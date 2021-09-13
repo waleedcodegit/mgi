@@ -16,7 +16,7 @@ class List extends Component {
         Axios.get('/api/get_open_tickets').then(res=>{
             console.log(res);
             this.setState({
-                tickets:res.data.tickets,
+                tickets: res.data.ticket,
                 is_display: true
             })
         })
@@ -48,7 +48,6 @@ class List extends Component {
                                     <tr>
                                         <td>{index+1}</td>
                                         <td>{data.title}</td>
-                                        <td>{data.description}</td>
                                         <td>{data.user.email}</td>
                                         <td><Link to={`/adminpanel/edit-ticket/${data.id}`}><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link></td>
                                     </tr>

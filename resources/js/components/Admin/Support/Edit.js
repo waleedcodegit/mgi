@@ -9,10 +9,8 @@ class Edit extends Component {
     constructor(props) {
         super(props);
         this.state={
-            title:"",
+            details: [],
             descritpion:"",
-            reply:'',
-            status:'Closed',
             error_string:'',
             id:this.props.match.params.id,
             token:'',
@@ -20,17 +18,17 @@ class Edit extends Component {
         }
     }
     componentDidMount(){
-        Axios.post('/api/get_ticket_by_id',{id:this.props.match.params.id}).then(res=>{
+        Axios.post('/api/get_support_comment',{id:this.props.match.params.id}).then(res=>{
+            console.log(res);
             this.setState({
-                title:res.data.ticket.title,
-                descritpion:res.data.ticket.description,
-                token:  window.localStorage.getItem('sop256skikl')
+                details: res.data.data,
             })
         })
     }
-    reply(e){
+    
+    getDescription(e){
         this.setState({
-            reply:e
+            descritpion:e.target.value
         })
     }
    
@@ -41,7 +39,12 @@ class Edit extends Component {
         this.setState({
             loading:true
         })
-        Axios.post('/api/update_ticket',this.state).then(res=>{
+        let senddata = {
+            description: this.state.descritpion,
+            support_id:this.props.match.params.id,
+            token: window.localStorage.getItem('sop256skikl')
+        }
+        Axios.post('/api/create_comment_admin',senddata).then(res=>{
             this.setState({
                 loading:false
             })
@@ -52,7 +55,8 @@ class Edit extends Component {
                     showConfirmButton: false,
                     timer: 1500
                     })
-                    window.open('/adminpanel/tickets-open', '_self');
+                    window.location.reload();
+                    // window.open('/adminpanel/tickets-open', '_self');
             }else{
                 Swal.fire({
                     icon: 'warning',
@@ -69,23 +73,53 @@ class Edit extends Component {
                 <div className="top_section_title_div">
                     <h2 className="section_title">Ticket</h2>
                 </div>
-                <div className="card container content_card_div mt-4 mb-5 pb-5 pt-3">
-                <div className="row col-md-12">
-                        <div class="form-group input_div col-md-7">
-                            <label className="input_label" for="exampleInputEmail1">Ticket:</label>
-                            <label className="input_label" for="exampleInputEmail1">{this.state.descritpion }</label>
-                           
-
+                <div className="row">
+                    <div className="col-12 col-sm-12 col-lg-12">
+                        <div className="card">
+                        <div className="card-header">
+                            <h4>Comments</h4>
                         </div>
-                        
-                       
-                   </div>
+                        <div className="card-body">
+                            <ul className="list-unstyled list-unstyled-border list-unstyled-noborder">
+                                {
+                                    this.state.details.map((data,index)=> {
+                                        return (
+                                            <li className="media">
+                                                {
+                                                    data.user != null ? 
+                                                        <img alt="image" className="mr-3 rounded-circle" width={70} src={img_base+data.user.image} />
+                                                    :
+                                                        <img alt="image" className="mr-3 rounded-circle" width={70} src="/admin/assets/img/users/user-1.png" />
+                                                    
+                                                }
+                                                <div className="media-body">
+                                                    {
+                                                        data.user != null ? 
+                                                            <div className="media-title mb-1">{data.user.first_name} {data.user.last_name}</div>
+                                                        :
+                                                            <div className="media-title mb-1">Admin</div>
+                                                    }
+                                                    <div className="text-time">{data.created_at}</div>
+                                                    <div className="media-description text-muted">
+                                                        {data.description}
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        )
+                                    })
+                                }
+                                
+                            </ul>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="card container content_card_div mt-4 mb-5 pb-5 pt-3">
                    <div className="row col-md-12">
-                        <div class="form-group input_div col-md-7">
+                        <div class="form-group input_div col-md-12">
                             <label className="input_label" for="exampleInputEmail1">Reply</label>
-                            <ReactQuill 
-                              onChange={this.reply.bind(this)}
-                              />
+                            <textarea onChange={this.getDescription.bind(this)} class="form-control"/>
                         </div>
                         
                        
@@ -101,7 +135,7 @@ class Edit extends Component {
                                       <span className="sr-only">Loading...</span>
                                     </div>
                                   </div>
-                                  :<>Update</>
+                                  :<>Send</>
                                 }
                     </button>
                    </div>

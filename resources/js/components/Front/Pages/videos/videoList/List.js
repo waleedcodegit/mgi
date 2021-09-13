@@ -13,6 +13,7 @@ class List extends Component {
         const video_id = this.props.match.params.id;
         // Axios.post('/api/get_videos_list').then(res=>{
             const res = await axios.get(`/api/show_videos/${video_id}`);
+            console.log(res.data);
             if(res.data.status === 200)
             {
             console.log(res.data);

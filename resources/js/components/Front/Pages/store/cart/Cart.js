@@ -105,13 +105,14 @@ export default class Cart extends Component {
                         </div>
                         <div className="col-md-12 overflow-scroll">
                         <table className="cart-table">
-                            <tbody><tr>
-                                <th />
-                                <th className="product">Product</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th className="total">Total</th>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <th />
+                                    <th className="product">Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th className="total">Total</th>
+                                </tr>
                             
                             {
                                 this.state.cartData.map((data,index)=>{
@@ -127,7 +128,8 @@ export default class Cart extends Component {
                                 })
                             }
                             
-                            </tbody></table>
+                            </tbody>
+                        </table>
                         </div>
                         <div className="col-md-4 col-sm-6">
                         {/* <div className="coupon">
@@ -136,9 +138,9 @@ export default class Cart extends Component {
                         </div> */}
                         </div>
                         <div className="col-md-8 col-sm-6">
-                        <div className="update-wrap">
-                            <button className="update" onClick={this.updateCart.bind(this)}>update cart</button>
-                        </div>
+                            <div className="update-wrap">
+                                <button className="update" onClick={this.updateCart.bind(this)}>update cart</button>
+                            </div>
                         </div>
                         <div className="col-md-8 col-sm-12">
                         {/* <div className="cart-offer">

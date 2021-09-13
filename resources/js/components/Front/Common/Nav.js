@@ -87,7 +87,7 @@ class Nav extends Component {
                             <a href="/tournament"><span>Tournaments</span></a>
                           </li>
                           <li><a href="/store"><span>Store</span></a></li>
-                          <li><a href="/"><span>Support</span></a></li>
+                          <li><a href="/support"><span>Support</span></a></li>
                           <li className="cart full">
                             <a href="/cart">
                               <span><i className="fa fa-shopping-cart" aria-hidden="true" /></span>

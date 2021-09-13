@@ -55,6 +55,10 @@ Route::post('add_product_in_cart','Admin\StoreController@add_product_in_cart');
 Route::post('delete_variations','Admin\StoreController@delete_variations');
 Route::post('get_cookie_session_cart','Admin\StoreController@get_cookie_session_cart');
 
+Route::post('get_product_reviews','Admin\StoreController@get_product_reviews');
+Route::post('add_product_review','Admin\StoreController@add_product_review');
+
+
 Route::post('/remove_product_from_cart', 'Admin\StoreController@remove_product_from_cart');
 Route::post('/update_cart', 'Admin\StoreController@update_cart');
 Route::post('/check_customer_auth', 'Admin\StoreController@check_customer_auth');
@@ -69,6 +73,18 @@ Route::post('get-videos','Admin\VideoController@get_videos');
 Route::post('get_videos_list','Admin\VideoController@get_videos_list');
 
 
+//Support 
+Route::post('get_user_ticket','Front\SupportController@get_user_ticket');
+Route::post('create_ticket','Front\SupportController@create_ticket');
+Route::post('get_support_comment','Front\SupportController@get_support_comment');
+Route::post('create_comment_in_detail','Front\SupportController@create_comment_in_detail');
+Route::get('get_open_tickets','Front\SupportController@get_open_tickets');
+Route::post('create_comment_admin','Front\SupportController@create_comment_admin');
+
+
+
+
+
 //Banner Routes
 Route::post('create_banner','Admin\BannerController@add_banner');
 Route::get('get_all_banners','Admin\BannerController@get_all_banner');
@@ -76,11 +92,11 @@ Route::post('update_banner','Admin\BannerController@update_banner');
 Route::post('delete_banner','Admin\BannerController@delete_banner');
 Route::post('get_banner_by_id','Admin\BannerController@get_banner_by_id');
 
-//tickets Routes
-Route::get('get_open_tickets','Admin\TicketController@get_open_tickets');
-Route::get('get_closed_tickets','Admin\TicketController@get_closed_tickets');
-Route::post('get_ticket_by_id','Admin\TicketController@get_ticket_by_id');
-Route::post('update_ticket','Admin\TicketController@update_ticket');
+// //tickets Routes
+// Route::get('get_open_tickets','Admin\TicketController@get_open_tickets');
+// Route::get('get_closed_tickets','Admin\TicketController@get_closed_tickets');
+// Route::post('get_ticket_by_id','Admin\TicketController@get_ticket_by_id');
+// Route::post('update_ticket','Admin\TicketController@update_ticket');
 
 //Game Routes
 Route::get('get_games','Admin\GameController@get_games');
@@ -112,9 +128,6 @@ Route::post('get_user_enroll_tournament','Front\TournamentController@get_user_en
 Route::post('get_tournament_with_game_id','Admin\TournamentController@get_tournament_with_game_id');
 
 
-
-
-
 Route::post('create_team','Front\TeamController@create_team');
 Route::get('all_teams','Front\TeamController@get_all_teams');
 Route::post('get_user_team','Front\TeamController@get_user_team');
@@ -124,9 +137,7 @@ Route::post('/join-team-request', 'Front\TeamController@join_team_request');
 Route::post('/team_add_request', 'Front\TeamController@team_add_request');
 Route::post('/approve_team_request', 'Front\TeamController@approve_team_request');
 
-
 Route::post('get_user_enroll_tournament','Front\TournamentController@get_user_enroll_tournament');
-
 
 Route::post('enrollment_check','User\EnrollmentController@enrollment_check');
 Route::post('create_enrollment','User\EnrollmentController@create_enrollment');

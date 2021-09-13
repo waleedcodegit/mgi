@@ -60,8 +60,8 @@ class List extends Component {
                                     })
                                 }
                                 {
-                                            this.state.sliderImages.length == 0 ? 
-                                            <tr><td colSpan="3">No records founded</td></tr>:null
+                                    this.state.sliderImages.length == 0 ? 
+                                    <tr><td colSpan="3">No records founded</td></tr>:null
                                 }
                             </tbody>
                         </table>

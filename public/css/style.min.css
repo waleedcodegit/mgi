@@ -18863,7 +18863,7 @@ ul.team-legend {
 .broadcast-wrap {
     padding-top: 45px;
     padding-bottom: 75px;
-    background: url(../images/soccer/broadcast-bg.jpg) 50% 100% no-repeat;
+    /* background: url(../images/soccer/broadcast-bg.jpg) 50% 100% no-repeat; */
     background-size: contain
 }
 
@@ -39874,3 +39874,132 @@ display: block;
     color: #666;
     line-height: normal;
 }
+
+/***** loader *****/
+
+ .loader {
+    border: 7px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 7px solid #ed2024;
+    width: 80px;
+    height: 80px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    margin-left: 40%;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.broadcast-item .marker {
+    padding: 0 14px;
+    border-radius: 9px;
+    font-size: 12px;
+    text-transform: uppercase;
+    background: #4caf50;
+    line-height: 30px;
+    color: #fff;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%)
+}
+.broadcast-item .process {
+    padding: 0 14px;
+    border-radius: 9px;
+    font-size: 12px;
+    text-transform: uppercase;
+    background: #ed2024;
+    line-height: 30px;
+    color: #fff;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%)
+}
+
+.broadcast-item .done {
+    padding: 0 14px;
+    border-radius: 9px;
+    font-size: 12px;
+    text-transform: uppercase;
+    background: #4caf50;
+    line-height: 30px;
+    color: #fff;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%)
+}
+.broadcast-item .status {
+
+    padding: 0 14px;
+    border-radius: 9px;
+    font-size: 20px;
+    text-transform: uppercase;
+    /* background: #4caf50; */
+    line-height: 30px;
+    color: #fff;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 11%;
+    transform: translateY(-50%);
+}
+.broadcast-wrap {
+    padding-top: 0px;
+    padding-bottom: 75px;
+ 
+    background-size: contain
+}
+.broadcast-item {
+    background: #141414;
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 10
+}
+.leave-comment-wrap .close-tik {
+    padding: 18px 30px 16px 30px;
+    border-radius: 9px;
+    background: #666;
+    border: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    line-height: normal;
+    transition: all .4s;
+}
+.cmt-text{
+	    background: #fcfcfc24;
+    color: #fff;
+}
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #000;
+}
+@media (min-width: 768px){
+.modal-dialog {
+    width: 600px;
+    margin: 30px auto;
+    top: 40%;
+}
+	.modal-content {
+    -webkit-box-shadow: 0 5px 15px rgb(0 0 0 / 50%);
+    box-shadow: 0 5px 15px rgb(0 0 0 / 0%);
+    border: none;
+		background: #000;
+}
+	}

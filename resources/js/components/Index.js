@@ -37,7 +37,10 @@ class Index extends Component {
                 '/video-detail/:id',
                 '/product-detail/:id',
                 '/cart',
-                '/check-out'
+                '/check-out',
+                '/support',
+                '/create-ticket',
+                '/ticket-detail/:id'
             ]
         }
     }
@@ -68,6 +71,9 @@ class Index extends Component {
                         <Route  path='/product-detail/:id' component={FrontIndex}></Route>
                         <Route  path='/cart' component={FrontIndex}></Route>
                         <Route  path='/check-out' component={FrontIndex}></Route>
+                        <Route  path='/support' component={FrontIndex}></Route>
+                        <Route  path='/create-ticket' component={FrontIndex}></Route>
+                        <Route  path='/ticket-detail/:id' component={FrontIndex}></Route>
                         
                         {/* {
                             this.state.paths.map((data, index)=>{

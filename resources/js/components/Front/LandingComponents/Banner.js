@@ -23,27 +23,19 @@ class Banner extends Component {
     render() {
         return (
             <div>
-              <Carousel
-              indicators={false} interval={4000} animation={"slide"} stopAutoPlayOnHover={false}
-              >
-              {
-                    this.state.sliderImages.map((data,index)=>{
-                        return(
-                            <div>
-                                <img src={img_base+data.image} />
-                            </div>
-                        )
-                    })
-                }
-                
-                {/* <div>
-                    <img src="images/common/esport-team-landing-main-slider-slide-2.jpg" />
-                </div>
-                <div>
-                    <img src="images/common/esport-team-landing-main-slider-slide-3.jpg" />
-                </div> */}
-            </Carousel>
-               
+                <Carousel
+                indicators={false} interval={4000} animation={"slide"} stopAutoPlayOnHover={false}
+                >
+                {
+                        this.state.sliderImages.map((data,index)=>{
+                            return(
+                                <div>
+                                    <img src={img_base+data.image} />
+                                </div>
+                            )
+                        })
+                    }
+                </Carousel>
             </div>
         );
     }

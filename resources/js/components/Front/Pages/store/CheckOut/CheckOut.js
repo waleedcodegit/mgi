@@ -10,10 +10,17 @@ export default class CheckOut extends Component {
             last_name: "",
             userName: "",
             email: "",
-            address1: "",
+            address: "",
             address2: "",
-            country: "United States",
+            country: "",
             phone:"",
+            postcode: "",
+            city: "",
+            cart_totals: 0,
+            totals: 0,
+            sub_cart_totals: 0,
+            master_totals: 0,
+
             loading: true
         }
     }
@@ -29,6 +36,11 @@ export default class CheckOut extends Component {
                     first_name:res.data.cus.user.first_name,
                     last_name:res.data.cus.user.last_name,
                     email:res.data.cus.user.email,
+                    address: res.data.cus.user.address,
+                    phone: res.data.cus.user.phone,
+                    postcode: res.data.cus.user.postcode,
+                    city: res.data.cus.user.city,
+                    country: res.data.cus.user.country,
                     loading:false,
                },function(){
                 this.setState({
@@ -47,18 +59,84 @@ export default class CheckOut extends Component {
             }
             
           })
+
+
+
+
+        let senderdata = {
+            cart_cookie_id : window.localStorage.getItem('cart_cookie_id')
+        }
+        Axios.post('/api/get_cookie_session_cart', senderdata).then(res => {
+            console.log(res);
+          
+            if(res.data.cart){
+                if(res.data.cart.length > 0){
+                    this.setState({
+                        cart_totals: res.data.cart[0].cart_totals,    
+                        totals: res.data.cart[0].cart_totals,
+                        master_totals:res.data.cart[0].cart_totals,      
+                        sub_cart_totals:res.data.cart[0].sub_cart_totals
+                    })
+                }else{
+                    this.setState({
+                        loading:false
+                    })
+                }
+            }else{
+                this.setState({
+                    loading:false,
+                    cart:[]
+                })
+            }
+        })
     }
 
     getFirstName(e) {
         this.setState({
             first_name: e.target.value,
         });
-    };
+    }
     getLastName(e) {
         this.setState({
             last_name: e.target.value,
         });
+    }
+    getUserName(e) {
+        this.setState({
+            userName: e.target.value,
+        });
+    }
+    getEmail(e) {
+        this.setState({
+            email: e.target.value,
+        });
+    }
+    getphone(e) {
+        this.setState({
+            phone: e.target.value,
+        });
     };
+    getAddress(e) {
+        this.setState({
+            address: e.target.value,
+        });
+    }
+    getPostcode (e) {
+        this.setState({
+            postcode: e.target.value,
+        });
+    }
+    getCity(e) {
+        this.setState({
+            city: e.target.value,
+        });
+    }
+    getCountry(e) {
+        this.setState({
+            country: e.target.value,
+        });
+    }
+
 
     
     render() {
@@ -78,7 +156,7 @@ export default class CheckOut extends Component {
                                         <div className="item">
                                             <label>
                                             <span>First Name <i>*</i></span>
-                                            <input type="text" name="first name" className="inform-input" value={this.state.first_name} />
+                                            <input type="text" name="first name" className="inform-input" value={this.state.first_name} onChange={this.getFirstName.bind(this)} />
                                             </label>
                                         </div>
                                     </div>
@@ -86,7 +164,7 @@ export default class CheckOut extends Component {
                                         <div className="item">
                                             <label>
                                             <span>Last Name <i>*</i></span>
-                                            <input type="text" name="last name" className="inform-input" value={this.state.last_name} />
+                                            <input type="text" name="last name" className="inform-input" value={this.state.last_name} onChange={this.getLastName.bind(this)} />
                                             </label>
                                         </div>
                                     </div>
@@ -95,7 +173,7 @@ export default class CheckOut extends Component {
                                         <div className="item">
                                             <label>
                                             <span>Email Address <i>*</i></span>
-                                            <input type="text" name="email" className="inform-input" value={this.state.email} />
+                                            <input type="text" name="email" className="inform-input" value={this.state.email} onChange={this.getEmail.bind(this)} />
                                             </label>
                                         </div>
                                     </div>
@@ -103,7 +181,7 @@ export default class CheckOut extends Component {
                                         <div className="item">
                                             <label>
                                             <span>Phone <i>*</i></span>
-                                            <input type="text" name="phone" className="inform-input" />
+                                            <input type="text" name="phone" className="inform-input" value={this.state.phone} onChange={this.getphone.bind(this)} />
                                             </label>
                                         </div>
                                     </div>
@@ -112,7 +190,7 @@ export default class CheckOut extends Component {
                                         <div className="item">
                                             <label>
                                                 <span>Address</span>
-                                                <input type="text" name="address" className="inform-input" />
+                                                <input type="text" name="address" className="inform-input" value={this.state.address} onChange={this.getAddress.bind(this)} />
                                             </label>
                                         </div>
                                     </div>
@@ -120,7 +198,7 @@ export default class CheckOut extends Component {
                                         <div className="item">
                                             <label>
                                                 <span>City <i>*</i></span>
-                                                <input type="text" name="town" className="inform-input" />
+                                                <input type="text" name="town" className="inform-input" value={this.state.city} onChange={this.getCity.bind(this)} />
                                             </label>
                                         </div>
                                     </div>
@@ -129,7 +207,7 @@ export default class CheckOut extends Component {
                                             <div className="item">
                                                 <label>
                                                     <span>Country <i>*</i></span>
-                                                    <input type="text" name="country" className="inform-input" />
+                                                    <input type="text" name="country" className="inform-input" value={this.state.country} onChange={this.getCountry.bind(this)} />
                                                 </label>
                                             </div>
                                         </div>
@@ -138,7 +216,7 @@ export default class CheckOut extends Component {
                                         <div className="item">
                                             <label>
                                                 <span>Postcode <i>*</i></span>
-                                                <input className="error inform-input" type="text" name="postcode" />
+                                                <input className="inform-input" type="text" name="postcode" value={this.state.postcode} onChange={this.getPostcode.bind(this)} />
                                             </label>
                                         </div>
                                     </div>
@@ -159,11 +237,11 @@ export default class CheckOut extends Component {
                                 
                                     <tr>
                                         <td>Subtotal</td>
-                                        <td className="total">$ 120</td>
+                                        <td className="total">$ {this.state.cart_totals}</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Total</strong></td>
-                                        <td className="total">$ 122</td>
+                                        <td className="total">$ {this.state.cart_totals}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -174,10 +252,6 @@ export default class CheckOut extends Component {
                                             <span className="name">PayPal <a href="https://www.paypal.com/be/smarthelp/article/what-is-paypal-and-how-does-it-work-faq1655" target="_blank">What is PayPal?</a></span>
                                             <span className="price"><img src="images/common/card-img.jpg" alt="card" /></span>	
                                         </label>
-                                        {/* <label className="item">
-                                            <input name="del-check" type="radio" />
-                                            <span className="name">Cash on Delivery</span>	
-                                        </label> */}
                                         <button className="proceed">Place order<i className="fa fa-check" aria-hidden="true" /></button>
                                     </div>
                                 </div>

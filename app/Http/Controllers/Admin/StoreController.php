@@ -10,6 +10,7 @@ use App\ProductVariation;
 use App\Product;
 USE App\Cart;
 use DB;
+use App\ProductComment;
 
 class StoreController extends Controller
 {
@@ -264,5 +265,28 @@ class StoreController extends Controller
             $response = ['status' => 401 , 'msg' => 'Error- Authentication failed'];
             return $response;
         }
+    }
+
+    public function get_product_reviews(Request $request) {
+        $comments = ProductComment::where('product_id', $request->id)->with('user')->get();
+        $response = [
+            'status' => 200,
+            'msg' => 'Product Reviews',
+            'data' => $comments
+        ];
+        return $response;
+    }
+
+    public function add_product_review(Request $request) {
+        $comment = new ProductComment();
+        $comment->user_id = $request->user_id;
+        $comment->product_id = $request->product_id;
+        $comment->comment = $request->comment;
+        $comment->save();
+        $response = [
+            'status' => 200,
+            'msg' => 'Comment Added',
+        ];
+        return $response;
     }
 }

@@ -42,7 +42,7 @@ class News extends Component {
           <div className="col-md-5">
           {
             this.state.posts[0] ?
-            <a href="#" className="news-wprapper">
+            <a href={`/artical-detail/${this.state.posts[0].id}`} className="news-wprapper">
               <img src={img_base+this.state.posts[0].image} alt="news-img" style={{width: "800", height: "981"}}  />
               <div className="news-border">
                 <div className="left-news">
@@ -62,7 +62,7 @@ class News extends Component {
             this.state.posts[1] ?
             <div className="row no-gutters row-eq-height">
               <div className="col-md-12">
-                <a href="#" className="news-wprapper">
+                <a href={`/artical-detail/${this.state.posts[1].id}`} className="news-wprapper">
                   <img src="images/common/esport-team-landing-news-1.jpg" alt="news-img" />
                   <div className="news-border">
                     <div className="left-news">
@@ -82,7 +82,7 @@ class News extends Component {
               this.state.posts[2] ?
             <div className="row no-gutters row-eq-height">
               <div className="col-md-12">
-                <a href="#" className="news-wprapper">
+                <a href={`/artical-detail/${this.state.posts[2].id}`} className="news-wprapper">
                   <img src="images/common/esport-team-landing-news-2.jpg" alt="news-img" />
                   <div className="news-border">
                     <div className="left-news">
