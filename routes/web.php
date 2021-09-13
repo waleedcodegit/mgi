@@ -63,8 +63,11 @@ Route::view('/adminpanel/admins','admin');
 Route::view('/adminpanel/change-ads-banner','admin');
 
 
+
 //Tournament Routes
 Route::view('/adminpanel/tournament-create', 'admin');
+Route::view('/adminpanel/edit-tournament', 'admin');
+Route::view('/adminpanel/edit-tournament/{id}', 'admin');
 // Route::view('/adminpanel/tournament-basic-details', 'admin');
 // Route::view('/adminpanel/tournament-info', 'admin');
 Route::view('/adminpanel/tournament-list', 'admin');

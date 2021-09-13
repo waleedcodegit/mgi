@@ -171,6 +171,13 @@ Route::post('update_user_info','User\UserController@update_user_info');
 Route::post('create_team','Front\TeamController@create_team');
 Route::post('get_user_team','Front\TeamController@get_user_team');
 
+Route::get('edit_tournament/{id}','Admin\TournamentController@edit_tournament');
+Route::post('update_tournament','Admin\TournamentController@update_tournament');
+Route::get('edit_feilds/{id}','Admin\TournamentController@edit_feilds');
+
+Route::post('update_user_social_links','User\UserController@update_user_social_links');
+Route::get('get_user_social_links/{id}','User\UserController@get_user_social_links');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
