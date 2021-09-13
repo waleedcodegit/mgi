@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import Swal from 'sweetalert2';
 import {  img_base } from '../../../Configs/baseUrls';
 class Setting extends Component {
-    constructor(props) {
+    constructor(props) 
+    {
         super(props);
         this.state={
          
@@ -23,20 +24,27 @@ class Setting extends Component {
             binary_img:'',
             email : '',
             password: '',
+            google: '',
+            facebook: '',
+            twitter: '',
+            apple: '',
+            battle: '',
+            vk: '',
+            discord: '',
             id:this.props.user.data.id,
             loading:false
         }
     }
 
-    componentDidMount(){
-
-        this.setState({
-            email: this.props.user.data.email,
+    async componentDidMount(){
+   
+             this.setState({
+           
+               email: this.props.user.data.email,
                first_name: this.props.user.data.first_name,
                last_name: this.props.user.data.last_name,
                primary_game: this.props.user.data.primary_game,
-               game_id: this.props.user.data.game_id,
-               
+               game_id: this.props.user.data.game_id,  
                dob: this.props.user.data.dob,
                phone: this.props.user.data.phone,
                country: this.props.user.data.country,
@@ -45,90 +53,134 @@ class Setting extends Component {
                address: this.props.user.data.address,
                postcode: this.props.user.data.postcode,
                image: this.props.user.data.image
-
                 
-        });
+            });
+
+            const social_links_id = this.props.user.data.id;
+            // console.log(social_links_id);
+            const res = await Axios.get(`/api/get_user_social_links/ ${social_links_id}`);               
+            {                             
+                 if(res.data.status === 200)   
+                //  console.log(res.data.data.twitter);                  
+               {
+                         this.setState(                          
+                    {  
+                        google: res.data.data.google,
+                        facebook: res.data.data.facebook,
+                        twitter: res.data.data.twitter,
+                        apple:res.data.data.apple,
+                        battle:res.data.data.battle,
+                        vk: res.data.data.vk,
+                        discord: res.data.data.discord,
+                   } );
+                }
+            }
+
     }
-    firstName(e){
-        this.setState({
+  
+
+
+    
+
+    firstName(e)
+    {
+        this.setState
+        ({
             first_name:e.target.value
         })
     }
-    lastName(e){
+    lastName(e)
+    {
         
-        this.setState({
+        this.setState
+        ({
             last_name:e.target.value
         })
     }
-    primaryGame(e){
-        
-        this.setState({
+    primaryGame(e)
+    {       
+        this.setState
+        ({
             primary_game:e.target.value
         })
     }
-    game_Id(e){
-        
-        this.setState({
+    Game_Id(e)
+    {
+        this.setState
+        ({
             game_id:e.target.value
         })
     }
-    Dob(e){
-        
-        this.setState({
+    Dob(e)
+    {       
+        this.setState
+        ({
             dob:e.target.value
         })
     }
-    Phone(e){
-        
-        this.setState({
+    Phone(e)
+    {       
+     this.setState
+        ({
             phone:e.target.value
         })
     }
-    Country(e){
-        
-        this.setState({
+    Country(e)
+    {       
+        this.setState
+        ({
             country:e.target.value
         })
     }
-    Gender(e){
-        
-        this.setState({
+    Gender(e)
+    {       
+        this.setState
+        ({
             gender:e.target.value
         })
     }
-    City(e){
-        
-        this.setState({
+    City(e)
+    {   
+        this.setState
+        ({
             city:e.target.value
         })
     }
-    Address(e){
-        
-        this.setState({
+    Address(e)
+    {        
+        this.setState
+        ({
             address:e.target.value
         })
     }
-    Postcode(e){
-        
-        this.setState({
+    Postcode(e)
+    {
+        this.setState
+        ({
             postcode:e.target.value
         })
     }
-    Email(e){
-        
-        this.setState({
+    Email(e)
+    {    
+        this.setState
+        ({
             email:e.target.value
         })
     }
 
-    Image(e){
-        if (e.target.files) {
+    Image(e)
+    {
+        if (e.target.files)
+         {
             const files = Array.from(e.target.files);
 
-            const promises = files.map(file => {
-                return (new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.addEventListener('load', (ev) => {
+            const promises = files.map(file => 
+                {
+                return (new Promise((resolve, reject) => 
+                {
+                  const reader = new FileReader();
+                   reader.addEventListener('load', (ev) =>
+                    {
                         resolve(ev.target.result);
                     });
                     reader.addEventListener('error', reject);
@@ -136,46 +188,146 @@ class Setting extends Component {
                 }))
             });
            
-            Promise.all(promises).then(images => {
-                this.setState({
+            Promise.all(promises).then(images => 
+                {
+                this.setState
+                ({
                     image: images[0],
                     binary_img: images
                 })
-            }, error => { console.error(error); });
-           
+            }, 
+            error =>
+             {
+                  console.error(error); 
+                });          
         }
     }
+    Google(e)
+    {        
+        this.setState
+        ({
+            google:e.target.value
+        })
+    }
+    Facebook(e)
+    {        
+        this.setState
+        ({
+            facebook:e.target.value
+        })
+    }
+    Twitter(e)
+    {        
+        this.setState
+        ({
+                twitter:e.target.value
+        })
+    }
+    Apple(e)
+    {     
+        this.setState
+        ({
+            apple:e.target.value
+        })
+    }
+    Battle(e)
+    {        
+        this.setState
+        ({
+            battle:e.target.value
+        })
+    }
+    Vk(e)
+    {        
+        this.setState
+        ({
+            vk:e.target.value
+        })
+    }
+    Discord(e)
+    {        
+        this.setState
+        ({
+            discord:e.target.value
+        })
+    }
   
-    update(e){
+    update(e)
+    {
         e.preventDefault();
-        this.setState({
+        this.setState
+        ({
             loading:true
         })
-        Axios.post('/api/update_user_info',this.state).then(res=>{
-            this.setState({
-                loading:false
-            })
-            if(res.data.status == 200){
-                Swal.fire({
-                    icon: 'success',
-                    title: res.data.msg,
-                    showConfirmButton: false,
-                    timer: 1500
+          Axios.post('/api/update_user_info',this.state).then(res=>
+            {
+               this.setState
+               ({
+                  loading:false
+                })
+                if(res.data.status == 200)
+                {
+                  Swal.fire
+                  ({
+                      icon: 'success',
+                      title: res.data.msg,
+                      showConfirmButton: false,
+                      timer: 1500
                     })
-                    // this.props.history.push('/adminpanel/banners-list');
-            }else{
-                Swal.fire({
+                    
+            }
+            else
+            {
+                Swal.fire
+                ({
                     icon: 'warning',
                     title: res.data.msg,
                     showConfirmButton: false,
                     timer: 1500
+                })
+            }
+        })
+    }
+    Update(e)
+    {
+        e.preventDefault();
+        this.setState
+        ({
+            loading:true
+        })
+          Axios.post('/api/update_user_social_links',this.state).then(res=>
+            {
+               this.setState
+               ({
+                  loading:false
+                })
+                if(res.data.status == 200)
+                {
+                  Swal.fire
+                  ({
+                      icon: 'success',
+                      title: res.data.msg,
+                      showConfirmButton: false,
+                      timer: 1500
                     })
+                    
+            }
+            else
+            {
+                Swal.fire
+                ({
+                    icon: 'warning',
+                    title: res.data.msg,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         })
     }
    
-    render() {
-        return (
+    render() 
+    {
+        return(
             <div>
                 <section className="image-header">
                 </section>
@@ -239,7 +391,7 @@ class Setting extends Component {
                                         </div>
                                         <div className="css-g0mr224 css-1ex6nkr">
                                             <label className="css-g0mr223 css-wjd590">Game Id</label>
-                                            <input type=""name="updatedgame_id" className="css-1l4244b0 css-13owws" value={this.state.game_id} onChange={this.game_Id.bind(this)}></input>
+                                            <input type=""name="updatedgame_id" className="css-1l4244b0 css-13owws" value={this.state.game_id} onChange={this.Game_Id.bind(this)}></input>
                                         </div>
                                         <div className="css-g0mr224 css-1ex6nkr">
                                             <label className="css-g0mr223 css-wjd590">Date of Birth</label>
@@ -277,11 +429,7 @@ class Setting extends Component {
                                             
                                         </div>
                                         
-                                        <div className="css-g0mr224 css-1ex6nkr">
-                                            <p className="css-g0mr223 css-wjd590">Mailing Preferences</p><label>
-                                            <input name="emailConsented" type="checkbox" />
-                                            <span className="css-g0mr227 css-ay9r4x">I want to receive news about cool tournaments and promotional emails.</span></label>
-                                        </div>
+                                        
                                         <button  onClick={this.update.bind(this)} className="css-1khann70 css-1khann71 css-g0mr225 css-zj48px">Save Changes</button>
                                         </section>
                                     </div>
@@ -296,9 +444,8 @@ class Setting extends Component {
                                             </div>
                                             <div className="css-mly58i2 css-f3hwkt">
                                             <div className="css-mly58i3 css-1tdyzku">
-                                                <span className="css-mly58i4 css-s569wz">Google</span>
-                                                <span className="css-mly58i5 css-w5ncqx">Shehroz Butt</span></div>
-                                            <div className="css-mly58i8 css-1q3t6wo"><a className="css-xhcgag0 css-xhcgag2 css-1vxf80s">Disconnect Google</a>
+                                            <input type="text" className="css-1l4244b0 css-13owws" style={{width:'600px'}} name="google" value={this.state.google} onChange={this.Google.bind(this)}></input>
+                                            
                                             </div>
                                             </div>
                                         </div>
@@ -309,10 +456,9 @@ class Setting extends Component {
                                             </div>
                                             <div className="css-mly58i2 css-f3hwkt">
                                             <div className="css-mly58i3 css-1tdyzku">
-                                                <span className="css-mly58i4 css-s569wz">Facebook</span>
-                                                <span className="css-mly58i6 css-1odskt7">Not Connected</span>
-                                            </div><div className="css-mly58i8 css-1q3t6wo">
-                                                <a className="css-xhcgag0 css-xhcgag3 css-8l95nn">Connect Facebook</a></div>
+                                            <input type="text" className="css-1l4244b0 css-13owws" style={{width:'600px'}} name="facebook" value={this.state.facebook} onChange={this.Facebook.bind(this)}></input>
+                                            </div>
+                                                
                                             </div>
                                         </div>
                                         <div className="css-mly58i0 css-hkffm5">
@@ -321,11 +467,9 @@ class Setting extends Component {
                                             </div>
                                             <div className="css-mly58i2 css-f3hwkt">
                                             <div className="css-mly58i3 css-1tdyzku">
-                                                <span className="css-mly58i4 css-s569wz">Twitter</span><span className="css-mly58i6 css-1odskt7">Not Connected</span>
+                                            <input type="text" className="css-1l4244b0 css-13owws" style={{width:'600px'}} name="twitter" value={this.state.twitter} onChange={this.Twitter.bind(this)}></input>
                                             </div>
-                                            <div className="css-mly58i8 css-1q3t6wo">
-                                                <a className="css-xhcgag0 css-xhcgag3 css-y884u">Connect Twitter</a>
-                                            </div>
+                                            
                                             </div>
                                         </div>
                                         <div className="css-mly58i0 css-hkffm5">
@@ -333,11 +477,10 @@ class Setting extends Component {
                                             <img src="/images/common/apple-icon.png" />
                                             </div>
                                             <div className="css-mly58i2 css-f3hwkt">
-                                            <div className="css-mly58i3 css-1tdyzku"><span className="css-mly58i4 css-s569wz">Apple</span><span className="css-mly58i6 css-1odskt7">Not Connected</span>
+                                            <div className="css-mly58i3 css-1tdyzku">
+                                                <input type="text" className="css-1l4244b0 css-13owws" style={{width:'600px'}} name="apple" value={this.state.apple} onChange={this.Apple.bind(this)}></input>
                                             </div>
-                                            <div className="css-mly58i8 css-1q3t6wo">
-                                                <a className="css-xhcgag0 css-xhcgag3 css-1jdpnbn">Connect Apple</a>
-                                            </div>
+                                            
                                             </div>
                                         </div>
                                         <div className="css-mly58i0 css-hkffm5">
@@ -346,11 +489,9 @@ class Setting extends Component {
                                             </div>
                                             <div className="css-mly58i2 css-f3hwkt">
                                             <div className="css-mly58i3 css-1tdyzku">
-                                                <span className="css-mly58i4 css-s569wz">Battle.net</span><span className="css-mly58i6 css-1odskt7">Not Connected</span>
+                                            <input type="text" className="css-1l4244b0 css-13owws" style={{width:'600px'}} name="battle" value={this.state.battle} onChange={this.Battle.bind(this)}></input>
                                             </div>
-                                            <div className="css-mly58i8 css-1q3t6wo">
-                                                <a className="css-xhcgag0 css-xhcgag3 css-e3qwiw">Connect Battle.net</a>
-                                            </div>
+                                            
                                             </div></div>
                                         <div className="css-mly58i0 css-hkffm5">
                                             <div className="css-mly58i1 css-social">
@@ -358,11 +499,9 @@ class Setting extends Component {
                                             </div>
                                             <div className="css-mly58i2 css-f3hwkt">
                                             <div className="css-mly58i3 css-1tdyzku">
-                                                <span className="css-mly58i4 css-s569wz">VK</span><span className="css-mly58i6 css-1odskt7">Not Connected</span>
+                                            <input type="text" className="css-1l4244b0 css-13owws" style={{width:'600px'}} name="vk" value={this.state.vk} onChange={this.Vk.bind(this)}></input>
                                             </div>
-                                            <div className="css-mly58i8 css-1q3t6wo">
-                                                <a className="css-xhcgag0 css-xhcgag3 css-9t5cfw">Connect VK</a>
-                                            </div>
+                                            
                                             </div>
                                         </div>
                                         <div className="css-mly58i0 css-hkffm5">
@@ -371,13 +510,12 @@ class Setting extends Component {
                                             </div>
                                             <div className="css-mly58i2 css-f3hwkt">
                                             <div className="css-mly58i3 css-1tdyzku">
-                                                <span className="css-mly58i4 css-s569wz">Discord</span><span className="css-mly58i6 css-1odskt7">Not Connected</span>
+                                            <input type="text" className="css-1l4244b0 css-13owws" style={{width:'600px'}} name="discord" value={this.state.discord} onChange={this.Discord.bind(this)}></input>
                                             </div>
-                                            <div className="css-mly58i8 css-1q3t6wo">
-                                                <a className="css-xhcgag0 css-xhcgag3 css-gjgw3o">Connect Discord</a>
-                                            </div>
+                                            
                                             </div>
                                         </div>
+                                        <button  onClick={this.Update.bind(this)} className="css-1khann70 css-1khann71 css-g0mr225 css-zj48px">Save Changes</button>
                                         </div>
                                     </div>
                                     </div>
@@ -421,7 +559,7 @@ class Setting extends Component {
             </div>
 
         )
-    }
+                                    }
 }
 
 const mapStateToProps=(state)=>{

@@ -134,7 +134,6 @@ class TournamentController extends Controller
             'mode' => 'required',
             'fee' => 'required',
             'registration_limit' => 'required',
-            'registration_status' => 'required',
             'country' => 'required',
             'region' => 'required',
             'platforms' => 'required'
@@ -148,9 +147,8 @@ class TournamentController extends Controller
                 $tournament->mode= $request->mode;
                 $tournament->fee= $request->fee;
                 $tournament->registration_limit= $request->registration_limit;
-                $tournament->registration_status= $request->registrations_status;
                 $tournament->country= $request->country;
-                $tournament->region = $request->regions;
+                $tournament->region = $request->region;
                 $tournament->platforms = $request->platforms;
                 $tournament->save();
                 $response =  ['status'=> '200', 'msg'=> 'Tournament Modes Saved' , 'tournament_id' => $tournament->id];
@@ -204,4 +202,90 @@ class TournamentController extends Controller
             ];
         return $response;   
     }
+   
+    public function update_tournament(Request $request )
+    
+     {
+
+                $user =Tournament::find($request->id);
+                $user->title  = $request->title;
+                $user->description = $request->description;
+                $user->start_date = $request->start_date;
+                $user-> end_date = $request-> end_date;
+                $user->start_time = $request->start_time;
+                $user->contact_details = $request->contact_details;
+                $user->rules = $request->rules;
+                $user->critical_rules = $request->critical_rules;
+                $user->prizez = $request->prizez;
+                $user->mode = $request->mode;
+                $user->status = $request->status;
+                $user->registration_limit = $request->registration_limit;
+                $user->region = $request->region;
+                $user->platforms = $request->platforms;
+                if ($request->header_image == $user->header_image) {
+                
+                }else{
+                    $users = time() . '.' . explode('/', explode(':', substr($request->header_image, 0, strpos($request->header_image, ';')))[1])[1];
+                    \Image::make($request->header_image)->save(public_path('images/').  $users);
+                    $user->header_image = $users;
+                }
+                $user-> country = $request-> country;
+             
+                $user->save();
+                $fields = $request->fields;
+              TournamentField::where('tournament_id', $request->id)->delete();
+             
+                foreach($fields as $value){
+                $tournament_field = new TournamentField();
+                foreach($value as $key=>$val){  
+                    if($key=="name" || $key=="type"){
+                        $tournament_field->$key = $val;
+                    }        
+                }
+                $tournament_field->tournament_id = $request->id;
+                $tournament_field->save();
+                
+            }
+               
+                $response = [ 
+                        'msg'=>'Tournament Updated',
+                        'status'=>'200'
+                    ];
+                    return $response;
+    
+        
+        //  $tournament_fields =TournamentField::find($request->id);
+        //  $tournament_fields-> name = $request-> name;
+        //  $tournament_fields-> type = $request-> type;
+        //  $ftournament_fields->save();
+        //  $response = [ 
+        //     'msg'=>'Tournament Updated',
+        //     'status'=>'200'
+        // ];
+        // return $response;
+    
+     }
+    
+     
+    // public function edit_feilds($id) 
+    // {
+    //     $data = TournamentField::find($id);
+    //     return response ()->json([
+    //             'status' => 200,
+    //             'msg' => 'Feilds detail', 
+    //             'data' => $data
+    //     ]);
+            
+    
+    public function edit_tournament(Request $request) 
+    {
+        $data = Tournament::where('id',$request->id)->with('tournament_field')->first();
+        return response ()->json([
+                'status' => 200,
+                'msg' => 'Tournament detail', 
+                'data' => $data
+        ]);
+            
+    }
+
 }

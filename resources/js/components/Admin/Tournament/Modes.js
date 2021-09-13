@@ -12,7 +12,7 @@ class Modes extends Component {
         this.state={
             mode:'',
             registration_limit:'',
-            registration_status: "open",
+            
             region:'',
             country: [],
             platforms:'',
@@ -145,7 +145,7 @@ class Modes extends Component {
                <div className="row col-md-12">
                     <div class="form-group input_div col-md-12">
                         <label className="input_label" for="exampleInputEmail1">Tournament Fee</label>
-                        <input  onChange={this.tournament_fee.bind(this)} type="number" className="form-control" />
+                        <input  onChange={this.tournament_fee.bind(this)} type="number" className="form-control"/>
                     </div>
                    
                    
@@ -170,7 +170,7 @@ class Modes extends Component {
                         <label className="input_label" for="exampleInputEmail1">Platforms</label>
                         <select  className="form-control " onChange={this.platforms.bind(this)}>
                         <option value="">Select One</option>
-                            <option value="">Xbox One</option>  
+                            <option value="Xbox One">Xbox One</option>  
                             <option value="PlayStation 4">PlayStation 4</option>
                             <option value="PC">PC</option>  
                             <option value="Nitento Switch">Nitento Switch</option> 
@@ -184,13 +184,13 @@ class Modes extends Component {
                     <div class="form-group input_div col-md-12">
                         <label className="input_label" for="exampleInputEmail1">Regions</label>
                         <select  className="form-control " onChange={this.regions.bind(this)}>
-                        <option value="">Select One</option>    
+                            <option value="">Select One</option>    
                             <option value="Asia">Asia</option>  
                             <option value="Europe">Europe</option>
                             <option value="Latin America">Latin America</option> 
                             <option value="North America">North America</option> 
                             <option value="Oceania">Oceania</option> 
-                            <option value="Middle East">Middle East</option> .
+                            <option value="Middle East">Middle East</option> 
                             <option value="Africa">Africa</option>
 
                         </select>
@@ -198,10 +198,10 @@ class Modes extends Component {
                             country={country}
                             value={region}
                             onChange={(val) => this.selectRegion(val)} /> */}
-                    </div>
+                     </div>
                    
                    
-               </div>  
+               </div> 
                <div className="row col-md-12">
                     <div class="form-group input_div col-md-12">
                         <label className="input_label" for="exampleInputEmail1">Country</label>

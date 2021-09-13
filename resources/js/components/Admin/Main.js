@@ -37,6 +37,8 @@ import Games from '../Admin/Tournament/Game';
 import BasicInfo from '../Admin/Tournament/BasicDetails';
 import TournamentInfo from './Tournament/Index';
 import TournamentList from './Tournament/List';
+import EditTournament from './Tournament/EditTournament';
+import EditFeilds from './Tournament/EditTournament';
 
 import CreateBanner from '../Admin/Banner/create';
 import BannersList from '../Admin/Banner/list';
@@ -113,6 +115,8 @@ class Main extends Component {
                         <Route path="/adminpanel/admin-rights/:id" component = {AdminRights}></Route>
                         <Route path="/adminpanel/tournament-create" component={TournamentInfo}></Route>
                         <Route path="/adminpanel/tournament-list" component={TournamentList}></Route>
+                        <Route path="/adminpanel/edit-tournament/:id" component={EditTournament}></Route>
+                        <Route path="/adminpanel/edit-fields/:id" component={EditFeilds}></Route>
                         <Route path="/adminpanel/add-banner" component={CreateBanner}></Route>
                         <Route path="/adminpanel/banners-list" component={BannersList}></Route>
                         <Route path="/adminpanel/edit-banner/:id" component={EditBanner}></Route>

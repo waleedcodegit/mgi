@@ -132,11 +132,13 @@ class App extends Component {
                       <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="watch" /><span>Manage Tournamets</span></a>
                       <ul className="dropdown-menu">
                         <li><Link to="/adminpanel/tournament-create">Create</Link></li>
+                        {/* <li><Link to="/adminpanel/edit-tournament">Edit</Link></li> */}
                         <li><Link to="/adminpanel/tournament-list">List</Link></li>
                       </ul>
                     </li>
                     : '' 
                     }
+                    
                    
                    {this.state.is_newsnarticles?
                     <li className={this.props.history.location.pathname == "/adminpanel/create-news-articles" || this.props.history.location.pathname == "/adminpanel/news-list" ? "dropdown active": "dropdown"}>

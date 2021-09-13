@@ -18,16 +18,16 @@ class VideoDetail extends Component {
         const video_id = this.props.match.params.id;
         // console.log(term_and_condition_id);
       const res = await axios.get(`/api/show_videos/${video_id}`);
-    //   console.log(res.data.video.title);
-      if(res.data.status === 200)
-      {
-          this.setState({
-            title:res.data.video.title,
-            video_youtube_id:res.data.video.video_youtube_id,
-            description:res.data.video.description,
-          });
-      }
-    }
+    //    console.log(res.data.video.title);
+       if(res.data.status === 200)
+    
+       {
+     this.setState({
+      video_youtube_id:res.data.video.video_youtube_id,
+        description:res.data.video.description,
+      });
+       }
+     }
     title(value){
         
         this.setState({

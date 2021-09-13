@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\UserAuthMeta;
 use App\User;
+use App\user_social_link;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
@@ -198,6 +199,36 @@ class UserController extends Controller
                 $user->save();
         $response = [ 
             'msg'=>'User info Updated',
+            'status'=>'200'
+        ];
+        return $response;
+    }
+    public function get_user_social_links($id) 
+    {
+        $data = user_social_link::find($id);
+        return response ()->json([
+                'status' => 200,
+                'msg' => 'User social links', 
+                'data' => $data
+        ]);
+            
+    }
+    public function update_user_social_links(Request $request){
+
+
+        $user = user_social_link::find($request->id);
+        
+                
+                $user->google  = $request->google;
+                $user->facebook = $request->facebook;
+                $user->twitter = $request->twitter;
+                $user->apple = $request->apple;
+                $user->battle = $request->battle;
+                $user->vk = $request->vk;
+                $user->discord = $request->discord;
+                $user->save();
+              $response = [ 
+            'msg'=>'User Socail Links Updated',
             'status'=>'200'
         ];
         return $response;

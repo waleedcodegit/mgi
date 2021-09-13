@@ -7,7 +7,7 @@ class List extends Component {
         super(props);
         this.state={
             tournaments:[],
-            is_display: false
+            is_display: true,
         }
     }
     componentDidMount(){
@@ -53,8 +53,8 @@ class List extends Component {
                                         <td>{data.start_date}</td>
                                         <td>{data.end_date}</td>
                                         <td>{data.status}</td>
-                                        {/* <td><Link to={`/adminpanel/edit-game/${data.id}`}><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link></td> */}
-                                        <td><button className="btn btn-success"> Manage Tournament</button></td>
+                                        {/* <td><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link></td> */}
+                                        <td><Link to={`/adminpanel/edit-tournament/${data.id}`}><button  className="btn btn-success"> Manage Tournament</button></Link></td>
                                         {/* <td><button className="btn btn-light" onClick={this.DeleteVideo.bind(this,data.id,index)}> <i  style={{color:'red'}}  className="fas fa-trash-alt"></i>
                                                         </button></td> */}
                                     </tr>

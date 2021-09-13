@@ -13,6 +13,7 @@ class List extends Component {
     
     componentDidMount(){
         Axios.get('/api/subscription_list').then(res=>{
+            
             this.setState({
                 is_display:true,
                 subscription:res.data.subscription
