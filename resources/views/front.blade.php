@@ -19,7 +19,7 @@
     {{-- <link rel="stylesheet" href="{{asset('carousel.css')}}"/> --}}
         <!-- Styles -->
     </head>
-    <body>
+    <body class="esport-black modal-open">
        <div id="root">
        </div>
     </body>
