@@ -55,13 +55,13 @@ class EditTounament extends Component {
         {                             
             if(res.data.status === 200)   
             // console.log(JSON.parse(res.data.data.country));
-            console.log(res.data.data.status);                    
+            // console.log(res.data.data.status);                    
           {
             
                     this.setState(                          
                {  
                 
-                  title: res.data.data.title,
+                   title: res.data.data.title,
                    description: res.data.data.description,
                    start_date: res.data.data.start_date,
                    end_date:res.data.data.end_date,
@@ -72,7 +72,6 @@ class EditTounament extends Component {
                    prizez: res.data.data.prizez,
                    mode: res.data.data.mode,
                    registration_limit: res.data.data.registration_limit,
-                //    registration_status: res.data.data.registration_status,
                    header_image: res.data.data.header_image,
                    region: res.data.data.region,
                    platforms: res.data.data.platforms,

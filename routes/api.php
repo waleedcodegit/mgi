@@ -122,6 +122,8 @@ Route::post('update-tournament-info','Admin\TournamentController@update_tourname
 Route::post('update-tournament-modes','Admin\TournamentController@update_tournament_modes');
 Route::post('get-tournament-by-id','Admin\TournamentController@get_tournament_by_id');
 Route::post('update-tournament-status','Admin\TournamentController@update_tournament_status');
+Route::post('delete_tournament','Admin\TournamentController@delete_tournament');
+// Route::post('get_tournaments_by_id','Admin\TournamentController@get_tournaments_by_id');
 
 
 Route::post('get_user_enroll_tournament','Front\TournamentController@get_user_enroll_tournament');
@@ -146,6 +148,7 @@ Route::post('create_enrollment','User\EnrollmentController@create_enrollment');
 // Subscription Api
 Route::post('add_subscription','SubscriptionController@add_subscription');
 Route::get('subscription_list','SubscriptionController@subscription_list');
+Route::post('delete_subscription','SubscriptionController@delete_subscription');
 //privacy_and_policy
 
 Route::get('edit_privacy_and_policy','PrivacyAndPolicyController@get_privacy_policy');
@@ -177,6 +180,27 @@ Route::get('edit_feilds/{id}','Admin\TournamentController@edit_feilds');
 
 Route::post('update_user_social_links','User\UserController@update_user_social_links');
 Route::get('get_user_social_links/{id}','User\UserController@get_user_social_links');
+
+Route::post('create_brackets','BracketsController@create_brackets');
+Route::post('get_brackets','BracketsController@get_brackets');
+Route::post('get_brackets_by_id','BracketsController@get_brackets_by_id');
+Route::post('update_brackets','BracketsController@update_brackets');
+Route::post('delete_brackets','BracketsController@delete_brackets');
+// Route::post('get_bracket_by_id','BracketsController@get_bracket_by_id');
+
+Route::post('create_announcement','AnnouncementsController@create_announcement');
+Route::post('get_announcement','AnnouncementsController@get_announcement');
+Route::post('get_announcements','AnnouncementsController@get_announcements');
+Route::post('get_announcement_by_id','AnnouncementsController@get_announcement_by_id');
+Route::post('update_announcement','AnnouncementsController@update_announcement');
+Route::post('delete_announcement','AnnouncementsController@delete_announcement');
+
+Route::post('create_watchstream','WatchStreamController@create_watchstream');
+Route::post('get_watchstream','WatchStreamController@get_watchstream');
+Route::post('get_watchstream_by_id','WatchStreamController@get_watchstream_by_id');
+Route::post('delete_watchstream','WatchStreamController@delete_watchstream');
+
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

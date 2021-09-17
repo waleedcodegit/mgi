@@ -21,6 +21,7 @@ class Edit extends Component {
     }
     componentDidMount(){
         Axios.post('/api/get_game_by_id',{id:this.props.match.params.id}).then(res=>{
+           
             this.setState({
                 title:res.data.game.title,
                 description:res.data.game.description,

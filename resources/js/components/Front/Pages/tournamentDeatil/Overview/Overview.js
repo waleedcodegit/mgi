@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import Details from './Details/Details';
+import Rules from './Rules/Rules';
+import Prizes from './Prizes/Prizes';
+import Contact from './Contact/Contact';
+import { connect } from 'react-redux';
 
 class Overview extends Component {
     constructor(props) {
@@ -19,7 +24,7 @@ class Overview extends Component {
 
     componentDidMount(){
         Axios.post('/api/get-tournament-by-id',{id:this.props.match.params.id}).then(res=>{
-            console.log(res.data.tournament);
+            // console.log(res.data.tournament);
             this.setState({
                 game_name: res.data.tournament.game.title,
                 regions: res.data.tournament.region,
@@ -102,14 +107,37 @@ class Overview extends Component {
                             </div>
                             <div className="col-md-12">
                                 <div className="champ-navigation">
-                                <ul className="champ-nav-list">
-                                    <li className="active"><a href="#details">DETAILS</a></li>
-                                    <li><a href="#rules">RULES</a></li>
-                                    <li><a href="#prizes"> PRIZES</a></li>
-                                    {/* <li><a href="#schedule">SCHEDULE</a></li> */}
-                                    <li><a href="#contact">CONTACT</a></li>
+                                <ul className="champ-nav-list" role="tablist">
+                                    <li className="active"><a href="#details" role="tab" data-toggle="tab">DETAILS</a></li>
+                                    <li><a href="#rules" role="tab" data-toggle="tab">RULES</a></li>
+                                    <li><a href="#prizes" role="tab" data-toggle="tab"> PRIZES</a></li>
+                                    
+                                    <li><a href="#contact" role="tab" data-toggle="tab">CONTACT</a></li>
                                 </ul>		
                                 </div>
+                                <div className="tab-content">
+                                <div className="tab-pane active" id="details" role="tabpanel">
+
+                                    <Details {...this.props}></Details>
+
+                                </div>
+                                <div className="tab-pane" id="rules" role="tabpanel">
+
+                                    <Rules {...this.props}></Rules>
+
+                                </div>
+                                <div className="tab-pane" id="prizes" role="tabpanel">
+                                    
+                                    <Prizes {...this.props}></Prizes>
+
+                                </div>
+                               
+                                <div className="tab-pane" id="contact" role="tabpanel">
+                                    
+                                    <Contact {...this.props}></Contact>
+                                    
+                                </div>
+                            </div><br></br>
                                 <div className="champ-tab-wrap tab-content">
                                 <div className="tab-item part-wrap tab-pane active" id="details">
                                     <div className="part-list">
@@ -134,59 +162,11 @@ class Overview extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="tab-item match-wrap tab-pane" id="rules">
-                                    <div className="container">
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <div className="prt-list-sec">
-                                                <h3>Rules</h3>
-                                                <p dangerouslySetInnerHTML={{__html:this.state.rules}}></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div className="tab-item tournament-tab tab-pane" id="prizes">
-                                    <div className="container">
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                        <div className="prt-list-sec">
-                                            <h3>Prizes</h3>
-                                            <p dangerouslySetInnerHTML={{__html:this.state.prizez}}></p>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                {/* <div className="tab-item news-tab tab-pane" id="schedule">
-                                    <div className="news-list">
-                                    <div className="container">
-                                        <div className="row">
-                                        <div className="col-md-12">
-                                            <div className="prt-list-sec">
-                                            <h3>Schedule</h3>
-                                            <p>
-                                                12: 00H Brasília time 04/27/2021<br />
-                                                TRANSMISSION - TWITCH.TV/KERB</p>
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>	
-                                </div> */}
-                                <div className="tab-item news-tab tab-pane" id="contact">
-                                    <div className="news-list">
-                                    <div className="container">
-                                        <div className="row">
-                                        <div className="col-md-12">
-                                            <div className="prt-list-sec">
-                                            <p dangerouslySetInnerHTML={{__html:this.state.contact_details}}></p>
-                                            </div>
-                                        </div> 
-                                        </div>
-                                    </div>
-                                    </div>	
-                                </div>
+                              
+                               
+                               
+                                
+                                
                                 </div>
                             </div>
                             </div>

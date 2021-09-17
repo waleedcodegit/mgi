@@ -20,11 +20,11 @@ class List extends Component {
             })
         })
     }
-    deleteBanner(id){
+    deleteSubscription(id){
         let senderdata={
           id:id
         }
-        Axios.post('/api/subscription_list',senderdata).then(res=>{
+        Axios.post('/api/delete_subscription',senderdata).then(res=>{
            this.componentDidMount();
         });
        }
@@ -58,7 +58,8 @@ class List extends Component {
                                                 <td>{data.days}</td>
                                                 <td>{data.price}</td>
                                                 <td>{data.description}</td>
-                                                <td><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></td>
+                                                <td><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button>
+                                                <button className="btn btn-light" onClick={this.deleteSubscription.bind(this,data.id,index)}> <i  style={{color:'red'}}  className="fas fa-trash-alt"></i></button></td>
                                                
                                             </tr>
                                         )

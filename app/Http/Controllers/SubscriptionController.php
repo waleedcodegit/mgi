@@ -37,8 +37,32 @@ class SubscriptionController extends Controller
         }
     }
     public function subscription_list(Request $request){
-        $subscriptions = Subscription::all();
+        $subscriptions = Subscription::where('delete_status',0)->get();
         $response = [ 'msg'=>'Subscription', 'status'=>'200', 'subscription'=> $subscriptions];
         return $response;
     }
+    // public function subscription_list()
+    // {
+    //     $subscriptions = Subscription::where('is_delete',0)->get();
+    //     $response = ['status' => 200 ,
+    //             'subscriptions' =>  $subscriptions];
+    //     return $response;
+    // }
+    // public function delete_subscription(Request $request){
+    //     $subscriptions = Subscription::where('id',$request->id)->delete();
+    //     $response = [ 'msg'=>'Subscription Deleted', 'status'=>'200'];
+    //     return $response;
+    // }
+          public function delete_subscription(Request $request) {
+        
+            $subscriptions = Subscription::where('id', $request->id)->update([
+                'delete_status' => true,
+               
+            ]);
+            $response = [
+                'status' => 200,
+                'msg' => 'Successfully Deleted'
+            ];
+            return $response;
+        }
 }

@@ -25,6 +25,9 @@ class App extends Component {
         is_header_footer_banner: true,
         is_subadmins: true,
         is_PrivacyAndPolicy:true,
+        is_brackets:true,
+        is_announcements:true,
+        is_watchstream:true,
         is_subscription: true
         // is_display: false
     }
@@ -138,7 +141,38 @@ class App extends Component {
                     </li>
                     : '' 
                     }
+                    {this.state.is_watchstream ?
+                    <li className={this.props.history.location.pathname == "/adminpanel/tournament-create" || this.props.history.location.pathname == "/adminpanel/watchstream-list" ? "dropdown active": "dropdown"}>
+                      <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="watch" /><span>Watch Stream</span></a>
+                      <ul className="dropdown-menu">
+                        <li><Link to="/adminpanel/create-watchstream">Create</Link></li>
+                        {/* <li><Link to="/adminpanel/edit-tournament">Edit</Link></li> */}
+                        <li><Link to="/adminpanel/watchstream-list">List</Link></li>
+                      </ul>
+                    </li>
+                    : '' 
+                    }
+                    {this.state.is_brackets ?
+                    <li className={this.props.history.location.pathname == "/adminpanel/tournament-create" || this.props.history.location.pathname == "/adminpanel/brackets-list" ? "dropdown active": "dropdown"}>
+                      <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="watch" /><span>Brackets</span></a>
+                      <ul className="dropdown-menu">
+                        <li><Link to="/adminpanel/create-brackets">Create</Link></li>
+                        <li><Link to="/adminpanel/brackets-list">List</Link></li>
+                      </ul>
+                    </li>
+                    : '' 
                     
+                    }
+                    {this.state.is_announcements ?
+                    <li className={this.props.history.location.pathname == "/adminpanel/announcements-create" || this.props.history.location.pathname == "/adminpanel/announcements-list" ? "dropdown active": "dropdown"}>
+                      <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="watch" /><span>Announcements</span></a>
+                      <ul className="dropdown-menu">
+                        <li><Link to="/adminpanel/create-announcements">Create</Link></li>
+                        <li><Link to="/adminpanel/announcements-list">List</Link></li>
+                      </ul>
+                    </li>
+                    : '' 
+                    }
                    
                    {this.state.is_newsnarticles?
                     <li className={this.props.history.location.pathname == "/adminpanel/create-news-articles" || this.props.history.location.pathname == "/adminpanel/news-list" ? "dropdown active": "dropdown"}>

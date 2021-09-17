@@ -94,7 +94,7 @@ class Index extends Component {
                                 </div>
                                 <div className="tab-pane" id="brackets" role="tabpanel">
                                     
-                                    <Brackets></Brackets>
+                                    <Brackets {...this.props}></Brackets>
 
                                 </div>
                                 {/* <div className="tab-pane" id="media" role="tabpanel">
@@ -109,7 +109,7 @@ class Index extends Component {
                                 </div>
                                 <div className="tab-pane" id="announcements" role="tabpanel">
 
-                                    <Announcements></Announcements>
+                                    <Announcements {...this.props}></Announcements>
                                     
                                 </div>
                             </div>

@@ -287,5 +287,10 @@ class TournamentController extends Controller
         ]);
             
     }
+    public function delete_tournament(Request $request){
+        $data = Tournament::where('id',$request->id)->delete();
+        $response = [ 'msg'=>'Tournament', 'status'=>'200'];
+        return $response;
+    }
 
 }

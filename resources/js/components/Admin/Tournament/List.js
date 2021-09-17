@@ -19,6 +19,14 @@ class List extends Component {
             })
         })
     }
+    Deletetournament(id){
+        let senderdata={
+          id:id
+        }
+        Axios.post('/api/delete_tournament',senderdata).then(res=>{
+           this.componentDidMount();
+        });
+       }
     render() {
         return (
             <div className="container">
@@ -40,6 +48,7 @@ class List extends Component {
                             <th>End Date</th>
                             <th>Status</th>
                             <th colSpan="2">Actions</th>
+                            {/* <th colSpan="2">Delete</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -55,7 +64,7 @@ class List extends Component {
                                         <td>{data.status}</td>
                                         {/* <td><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link></td> */}
                                         <td><Link to={`/adminpanel/edit-tournament/${data.id}`}><button  className="btn btn-success"> Manage Tournament</button></Link></td>
-                                        {/* <td><button className="btn btn-light" onClick={this.DeleteVideo.bind(this,data.id,index)}> <i  style={{color:'red'}}  className="fas fa-trash-alt"></i>
+                                        {/* <td><button className="btn btn-light" onClick={this.Deletetournament.bind(this,data.id,index)}> <i  style={{color:'red'}}  className="fas fa-trash-alt"></i>
                                                         </button></td> */}
                                     </tr>
                                 )

@@ -81,6 +81,19 @@ Route::view('/team-detail/{id}', 'front');
 Route::view('/product-detail/{id}', 'front');
 Route::view('/ticket-detail/{id}', 'front');
 
+
+Route::view('/adminpanel/create-brackets','admin');
+Route::view('/adminpanel/brackets-list','admin');
+Route::view('/adminpanel/edit-brackets/{id}','admin');
+
+Route::view('/adminpanel/create-announcements','admin');
+Route::view('/adminpanel/announcements-list','admin');
+Route::view('/adminpanel/edit-announcement/{id}','admin');
+
+Route::view('/adminpanel/create-watchstream','admin');
+Route::view('/adminpanel/watchstream-list','admin');
+Route::view('/adminpanel/edit-watchstream/{id}','admin');
+
 Route::get('/{path?}', function () {
     return view('front');
 });

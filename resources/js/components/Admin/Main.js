@@ -53,6 +53,18 @@ import TermAndConditionList from '../Admin/TermAndCondition/list';
 
 import ChangeAdsBanner from '../Admin/ManageHeaderFooterBanner/Change';
 
+import CreateBrackets from '../Admin/Brackets/create';
+import BracketsList from '../Admin/Brackets/list';
+import EditBrackets from '../Admin/Brackets/edit';
+
+import CreateAnnouncements from '../Admin/Announcements/create';
+import AnnouncementsList from '../Admin/Announcements/list';
+import EditAnnouncement from '../Admin/Announcements/edit';
+
+import CreateWatchstream from '../Admin/Watchstream/create';
+import WatchstreamList from '../Admin/Watchstream/list';
+import EditWatchstream from '../Admin/Watchstream/edit';
+
 
 import props from 'prop-types';
 
@@ -130,6 +142,19 @@ class Main extends Component {
                         
                         <Route path="/adminpanel/term-and-condition-list" component={TermAndConditionList}></Route>
                         <Route path="/adminpanel/edit-term_and_condition/:id" component={EditTermAndCondition}></Route>
+
+                        <Route path="/adminpanel/create-brackets" component={CreateBrackets}></Route>
+                        <Route path="/adminpanel/brackets-list" component={BracketsList}></Route>
+                        <Route path="/adminpanel/edit-brackets/:id" component={EditBrackets}></Route>
+
+                        <Route path="/adminpanel/create-announcements" component={CreateAnnouncements}></Route>
+                        <Route path="/adminpanel/announcements-list" component={AnnouncementsList}></Route>
+                        <Route path="/adminpanel/edit-announcement/:id" component={EditAnnouncement}></Route>
+
+                        <Route path="/adminpanel/create-watchstream" component={CreateWatchstream}></Route>
+                        <Route path="/adminpanel/watchstream-list" component={WatchstreamList}></Route>
+                        <Route path="/adminpanel/edit-watchstream/:id" component={EditWatchstream}></Route>
+
 
                         
                         
