@@ -93,4 +93,13 @@ class AdminController extends Controller
         return $response;
         }
     }
+    public function admins(){
+        $admin = Admin::all();
+        $response = [ 
+            'msg'=>'Video Sent',
+            'status'=>'200',
+            'admin'=> $admin
+        ];
+        return $response;
+    }
 }

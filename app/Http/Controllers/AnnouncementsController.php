@@ -30,7 +30,7 @@ class AnnouncementsController extends Controller
         
     }
     public function get_announcements(){
-        $announcement = Announcement::all();
+        $announcement = Announcement::where('delete_status',0)->get();
         $response = ['msg'=> 'announcement Sent', 'status'=> '200' , 'announcement'=>  $announcement];
         return $response;
     }
@@ -51,8 +51,14 @@ class AnnouncementsController extends Controller
     
      }
      public function delete_announcement(Request $request){
-        $announcement = Announcement::where('id',$request->id)->delete();
-        $response = [ 'msg'=>'Brackets Deleted', 'status'=>'200'];
+         $announcement = Announcement::where('id', $request->id)->update([
+            'delete_status' => true,
+           
+        ]);
+        $response = [
+            'status' => 200,
+            'msg' => 'Successfully Deleted'
+        ];
         return $response;
     }
     

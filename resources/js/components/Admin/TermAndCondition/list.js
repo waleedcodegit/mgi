@@ -21,6 +21,14 @@ class List extends Component {
             })
         })
     }
+    deleteTermsandConditions(id){
+        let senderdata={
+          id:id
+        }
+        Axios.post('/api/delete_TermsandConditions',senderdata).then(res=>{
+           this.componentDidMount();
+        });
+       }
     // search(e){
     //     this.setState({
     //         search_string:e.target.value
@@ -76,7 +84,9 @@ class List extends Component {
                                         
                                         <td dangerouslySetInnerHTML={{__html:data.terms_and_conditions}}></td>
                                         
-                                        <td><Link to={`/adminpanel/edit-term_and_condition/${data.id}`}><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link></td>
+                                        <td><Link to={`/adminpanel/edit-term_and_condition/${data.id}`}><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link>
+                                        {/* <button className="btn btn-light" onClick={this.deleteTermsandConditions.bind(this,data.id,index)}> <i  style={{color:'red'}}  className="fas fa-trash-alt"></i></button> */}
+                                        </td>
                                     </tr>
                                 )
                             })

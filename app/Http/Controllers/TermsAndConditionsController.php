@@ -28,11 +28,11 @@ class TermsAndConditionsController extends Controller
         }
     }
     public function term_and_condition_list(){
-        $termandcondition = TermAndCondition::all();
+        $termandcondition = TermAndCondition::where('delete_status',0)->get();
         $response = ['msg'=> 'Games Sent', 'status'=> '200' , 'term_and_condition'=>  $termandcondition];
         return $response;
     }
-    // public function Edit_term_and_condition(Request $request, $id)
+   
     public function Edit_term_and_condition($id){
         
         $termandcondition = TermAndCondition::find($id);
@@ -51,6 +51,18 @@ class TermsAndConditionsController extends Controller
         
         $termandcondition->save();
         $response = [ 'msg'=>' Updated', 'status'=>'200'];
+        return $response;
+    }
+    public function delete_TermsandConditions(Request $request) {
+        
+        $termandcondition = TermAndCondition::where('id', $request->id)->update([
+            'delete_status' => true,
+           
+        ]);
+        $response = [
+            'status' => 200,
+            'msg' => 'Successfully Deleted'
+        ];
         return $response;
     }
 }

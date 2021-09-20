@@ -10,7 +10,7 @@ use App\Banner;
 class BannerController extends Controller
 {
     public function get_all_banner(){
-        $sliderImages  = Banner::orderBy('id', 'DESC')->get();
+        $sliderImages  = Banner::orderBy('id', 'DESC')->where('delete_status',0)->get();
         $response = [ 
             'msg'=>'Video Sent',
             'status'=>'200',
@@ -67,8 +67,14 @@ class BannerController extends Controller
         }
     }
     public function delete_banner(Request $request){
-        $b = Banner::where('id',$request->id)->delete();
-        $response = [ 'msg'=>'Banner Deleted', 'status'=>'200'];
+        $banner = Banner::where('id', $request->id)->update([
+            'delete_status' => true,
+           
+        ]);
+        $response = [
+            'status' => 200,
+            'msg' => 'Successfully Deleted'
+        ];
         return $response;
     }
 }

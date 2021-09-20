@@ -15,7 +15,7 @@ use App\ProductComment;
 class StoreController extends Controller
 {
     public function get_all_products(Request $request){
-        $products = Product::orderBy('id', 'DESC')->get();
+        $products = Product::orderBy('id', 'DESC')->where('delete_status',0)->get();
         foreach($products as $p){
             $images = ProductImage::where('product_id',$p->id)->get();
             $p->images = $images;
@@ -286,6 +286,18 @@ class StoreController extends Controller
         $response = [
             'status' => 200,
             'msg' => 'Comment Added',
+        ];
+        return $response;
+    }
+    public function delete_product(Request $request) {
+        
+        $product = Product::where('id', $request->id)->update([
+            'delete_status' => true,
+           
+        ]);
+        $response = [
+            'status' => 200,
+            'msg' => 'Successfully Deleted'
         ];
         return $response;
     }

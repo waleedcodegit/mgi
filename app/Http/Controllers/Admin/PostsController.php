@@ -54,7 +54,7 @@ class PostsController extends Controller
         }
     }
     public function get_allposts(){
-        $posts = Post::orderBy('id', 'DESC')->get();
+        $posts = Post::where('delete_status',0)->orderBy('id', 'DESC')->get();
         return $posts;
     }
     public function get_posts(){
@@ -112,8 +112,16 @@ class PostsController extends Controller
         }
     }
     public function delete_post(Request $request){
-        $post = Post::find($request->id);
-        $post->delete();
+        $post = Post::where('id', $request->id)->update([
+            'delete_status' => true,
+           
+        ]);
+        $response = [
+            'status' => 200,
+            'msg' => 'Successfully Deleted'
+        ];
+        return $response;
+    
     }
     public function get_post_by_slug(Request $request){
         $post = Post::where('slug',$request->slug)->first();

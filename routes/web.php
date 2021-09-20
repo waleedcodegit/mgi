@@ -13,7 +13,7 @@
 
 // Admin Routes
 
-Route::view('/adminpanel/edit-term_and_condition','admin');
+Route::view('/adminpanel/edit-privacyandpolicy','admin');
 
 
 Route::view('/adminpanel/add-subscription','admin');

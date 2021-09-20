@@ -40,7 +40,7 @@ create(e){
         }
         
         console.log(senddata);
-            Axios.post('/api/create-watchstream',this.state).then(res=>{
+            Axios.post('/api/create_brackets',this.state).then(res=>{
                
                 this.setState({
 
@@ -54,7 +54,7 @@ create(e){
                         showConfirmButton: false,
                         timer: 1500
                         })
-                        this.props.history.push('/adminpanel/watchstream-list');
+                        this.props.history.push('/adminpanel/brackets-list');
                 }else{
                     Swal.fire({
                         icon: 'warning',

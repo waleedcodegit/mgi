@@ -61,7 +61,7 @@ class List extends Component {
                                         <td>{data.name}</td>
                                         <td>{data.description}</td>
                                         <td><Link to={`/adminpanel/edit-announcement/${data.id}`}><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link></td>
-                                        <td><button className="btn btn-success" onClick={this.deleteAnnouncement.bind(this,data.id,index)}> <i style={{color:'white'}} className="fa fa-trash"> </i></button></td>
+                                        <td><button className="btn btn-light" onClick={this.deleteAnnouncement.bind(this,data.id,index)}> <i  style={{color:'red'}}  className="fas fa-trash-alt"></i></button></td>
                                     </tr>
                                 )
                               }) 

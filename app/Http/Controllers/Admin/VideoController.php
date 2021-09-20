@@ -10,7 +10,7 @@ use Validator;
 class VideoController extends Controller
 {
     public function get_all_video(){
-        $videos  = Video::orderBy('id', 'DESC')->get();
+        $videos  = Video::orderBy('id', 'DESC')->where('delete_status',0)->get();
         $response = [ 'msg'=>'Video Sent', 'status'=>'200', 'videos'=> $videos];
         return $response;
     }
@@ -56,19 +56,24 @@ class VideoController extends Controller
         }
     }
     public function delete_video(Request $request){
-        $video = Video::find($request->id);
-        $video->delete();
-        $response = [ 'msg'=>'Video Deleted', 'status'=>'200'];
+        $video = Video::where('id', $request->id)->update([
+            'delete_status' => true,
+           
+        ]);
+        $response = [
+            'status' => 200,
+            'msg' => 'Successfully Deleted'
+        ];
         return $response;
     }
 
     public function get_videos(){
-        $video = Video::limit(3)->get();
+        $video = Video::limit(3)->where('delete_status',0)->get();
         return $video;
     }
 
     public function get_videos_list(){
-        $video = Video::limit(6)->get();
+        $video = Video::limit(6)->where('delete_status',0)->get();
         return $video;
     }
     public function show($id){

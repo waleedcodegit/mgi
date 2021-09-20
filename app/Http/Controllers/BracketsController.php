@@ -50,7 +50,7 @@ class BracketsController extends Controller
         
         
         public function get_brackets(){
-            $bracket = Brackets::with('tournament')->get();
+            $bracket = Brackets::where('delete_status',0)->with('tournament')->get();
             $response = ['msg'=> 'bracket Sent', 'status'=> '200' , 'brackets'=> $bracket];
             return $response;
         }
@@ -91,9 +91,21 @@ class BracketsController extends Controller
                 return $response;
                }
             }
-        public function delete_brackets(Request $request){
-            $b = Brackets::where('id',$request->id)->delete();
-            $response = [ 'msg'=>'Brackets Deleted', 'status'=>'200'];
+        // public function delete_brackets(Request $request){
+        //     $b = Brackets::where('id',$request->id)->delete();
+        //     $response = [ 'msg'=>'Brackets Deleted', 'status'=>'200'];
+        //     return $response;
+        // }
+        public function delete_brackets(Request $request) {
+        
+            $Brackets = Brackets::where('id', $request->id)->update([
+                'delete_status' => true,
+               
+            ]);
+            $response = [
+                'status' => 200,
+                'msg' => 'Successfully Deleted'
+            ];
             return $response;
         }
        

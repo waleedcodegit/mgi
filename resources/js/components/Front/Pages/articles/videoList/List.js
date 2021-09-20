@@ -11,7 +11,7 @@ class List extends Component {
     }
     componentDidMount(){
         Axios.post('/api/get_videos_list').then(res=>{
-            console.log(res.data);
+            // console.log(res.data);
             this.setState({
                 videos:res.data
             })

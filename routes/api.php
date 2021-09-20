@@ -54,6 +54,7 @@ Route::post('get_product_by_slug','Admin\StoreController@get_product_by_slug');
 Route::post('add_product_in_cart','Admin\StoreController@add_product_in_cart');
 Route::post('delete_variations','Admin\StoreController@delete_variations');
 Route::post('get_cookie_session_cart','Admin\StoreController@get_cookie_session_cart');
+Route::post('delete_product','Admin\StoreController@delete_product');
 
 Route::post('get_product_reviews','Admin\StoreController@get_product_reviews');
 Route::post('add_product_review','Admin\StoreController@add_product_review');
@@ -97,12 +98,14 @@ Route::post('get_banner_by_id','Admin\BannerController@get_banner_by_id');
 // Route::get('get_closed_tickets','Admin\TicketController@get_closed_tickets');
 // Route::post('get_ticket_by_id','Admin\TicketController@get_ticket_by_id');
 // Route::post('update_ticket','Admin\TicketController@update_ticket');
+Route::post('delete_deleteTickets','Admin\TicketController@delete_deleteTickets');
 
 //Game Routes
 Route::get('get_games','Admin\GameController@get_games');
 Route::post('get_game_by_id','Admin\GameController@get_game_by_id');
 Route::post('update_game','Admin\GameController@update_game');
 Route::post('create_game','Admin\GameController@create_game');
+Route::post('delete_game','Admin\GameController@delete_game');
 
 //Web Setting Routes
 Route::post('slider_image','Admin\WebsettingController@slider_image');
@@ -158,6 +161,7 @@ Route::post('update_privacy_and_policy','PrivacyAndPolicyController@update_priva
 Route::get('Edit_term_and_condition/{id}','TermsAndConditionsController@Edit_term_and_condition');
 Route::get('term_and_condition_list','TermsAndConditionsController@term_and_condition_list');
 Route::post('Update_term_and_condition','TermsAndConditionsController@Update_term_and_condition');
+Route::post('delete_TermsandConditions','TermsAndConditionsController@delete_TermsandConditions');
 
 Route::get('show_articals/{id}','Admin\PostsController@show');
 Route::get('show_videos/{id}','Admin\VideoController@show');

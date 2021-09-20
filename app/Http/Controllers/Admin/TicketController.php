@@ -10,7 +10,7 @@ use Validator;
 class TicketController extends Controller
 {
     public function get_open_tickets(){
-        $tickets = Ticket::where('status', 'open')->with('user')->get();
+        $tickets = Ticket::where('status', 'open')->where('delete_status',0)->with('user')->get();
         $response = [ 'msg'=> 'Tickets Sent', 'status'=> '200', 'tickets' => $tickets];
         return $response;
     }
@@ -55,5 +55,18 @@ class TicketController extends Controller
             }
            
         }
+    }
+    
+    public function delete_deleteTickets(Request $request) {
+        
+        $ticket = Ticket::where('id', $request->id)->update([
+            'delete_status' => true,
+           
+        ]);
+        $response = [
+            'status' => 200,
+            'msg' => 'Successfully Deleted'
+        ];
+        return $response;
     }
 }

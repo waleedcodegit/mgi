@@ -5,7 +5,7 @@ class List extends Component {
     constructor(props) {
         super(props);
         this.state={
-            admins:[],
+            admin:[],
             msg:'',
             is_display: false
         }
@@ -13,12 +13,21 @@ class List extends Component {
     componentDidMount(){
         Axios.get('/api/admins').then(res=>{
             console.log(res);
+            // console.log(res);
             this.setState({
-                admins:res.data.admins,
+                admin:res.data.admin,
                 is_display: true
             })
         })
     }
+    deleteAdmin(id){
+        let senderdata={
+          id:id
+        }
+        Axios.post('/api/delete_banner',senderdata).then(res=>{
+           this.componentDidMount();
+        });
+       }
     render() {
         return (
             <div className="container">
@@ -40,7 +49,8 @@ class List extends Component {
                 </thead>
                 <tbody>
                     {
-                        this.state.admins.map((data,index)=>{
+                        this.state.admin.map((data,index)=>{
+                            console.log(data);
                             return(
                                 <tr>
                                     <td>{index+1}</td>
@@ -48,6 +58,7 @@ class List extends Component {
                                     <td>{data.email}</td>
                                     <td>{data.address}</td>
                                     <td><Link to={`/adminpanel/edit-admin/${data.id}`}><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link>
+                                    {/* <button className="btn btn-light" onClick={this.deleteAdmin.bind(this,data.id,index)}> <i  style={{color:'red'}}  className="fas fa-trash-alt"></i></button> */}
                                     <Link to={`/adminpanel/admin-rights/${data.id}`}> <button className="btn btn-warning">Manage Rights</button></Link>
                                     </td>
                                 </tr>
@@ -55,7 +66,7 @@ class List extends Component {
                         })
                     }
                     {
-                                this.state.admins.length == 0 ? 
+                                this.state.admin.length == 0 ? 
                                 <tr><td colSpan="9">No records founded</td></tr>:null
                     }
                 </tbody>

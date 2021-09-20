@@ -22,6 +22,14 @@ class List extends Component {
             })
         })
     }
+    deleteBanner(id){
+        let senderdata={
+          id:id
+        }
+        Axios.post('/api/delete_game',senderdata).then(res=>{
+           this.componentDidMount();
+        });
+       }
     // search(e){
     //     this.setState({
     //         search_string:e.target.value
@@ -76,7 +84,9 @@ class List extends Component {
                                         <td>{data.title}</td>
                                         <td dangerouslySetInnerHTML={{__html:data.description}}></td>
                                         <td><img style={{width:'200px'}} src={img_base+data.image}></img></td>
-                                        <td><Link to={`/adminpanel/edit-game/${data.id}`}><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link></td>
+                                        <td><Link to={`/adminpanel/edit-game/${data.id}`}><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link>
+                                        <button className="btn btn-light" onClick={this.deleteBanner.bind(this,data.id,index)}> <i  style={{color:'red'}}  className="fas fa-trash-alt"></i></button></td>
+
                                     </tr>
                                 )
                             })

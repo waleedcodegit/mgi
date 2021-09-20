@@ -273,7 +273,7 @@ Update(e)
                       showConfirmButton: false,
                       timer: 1500
                     })
-                    
+                    this.props.history.push('/adminpanel/tournament-list');
             }
             else
             {

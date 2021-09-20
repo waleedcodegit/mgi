@@ -71,13 +71,25 @@ class GameController extends Controller
         }
     }
     public function get_games(){
-        $games = Game::all();
+        $games = Game::where('delete_status',0)->get();
         $response = ['msg'=> 'Games Sent', 'status'=> '200' , 'games'=> $games];
         return $response;
     }
     public function get_game_by_id(Request $request){
         $game = Game::find($request->id);
         $response = ['msg'=> 'Game Sent', 'status'=> '200' , 'game'=> $game];
+        return $response;
+    }
+    public function delete_game(Request $request) {
+        
+        $game = Game::where('id', $request->id)->update([
+            'delete_status' => true,
+           
+        ]);
+        $response = [
+            'status' => 200,
+            'msg' => 'Successfully Deleted'
+        ];
         return $response;
     }
    

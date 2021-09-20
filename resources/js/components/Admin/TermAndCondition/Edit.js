@@ -23,6 +23,7 @@ class Edit extends Component {
         const term_and_condition_id = this.props.match.params.id;
         // console.log(term_and_condition_id);
       const res = await axios.get(`/api/Edit_term_and_condition/${term_and_condition_id}`);
+    //   console.log()
       if(res.data.status === 200)
       {
           this.setState({

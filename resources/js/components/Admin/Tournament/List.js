@@ -63,7 +63,8 @@ class List extends Component {
                                         <td>{data.end_date}</td>
                                         <td>{data.status}</td>
                                         {/* <td><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link></td> */}
-                                        <td><Link to={`/adminpanel/edit-tournament/${data.id}`}><button  className="btn btn-success"> Manage Tournament</button></Link></td>
+                                        <td><Link to={`/adminpanel/edit-tournament/${data.id}`}><button  className="btn btn-success"> Manage Tournament</button></Link>
+                                        <button className="btn btn-light" onClick={this.Deletetournament.bind(this,data.id,index)}> <i  style={{color:'red'}}  className="fas fa-trash-alt"></i></button></td>
                                         {/* <td><button className="btn btn-light" onClick={this.Deletetournament.bind(this,data.id,index)}> <i  style={{color:'red'}}  className="fas fa-trash-alt"></i>
                                                         </button></td> */}
                                     </tr>

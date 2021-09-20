@@ -13,7 +13,7 @@ use Illuminate\Support\Carbon;
 class TournamentController extends Controller
 {
     public function get_tournaments(){
-        $tournaments = Tournament::orderBy('id', 'DESC')->with('game')->get();
+        $tournaments = Tournament::orderBy('id', 'DESC')->where('delete_status',0)->with('game')->get();
         $response = ['msg'=> 'Tournament Sent', 'status'=> '200' , 'tournaments'=> $tournaments];
         return $response;
     }
@@ -287,9 +287,21 @@ class TournamentController extends Controller
         ]);
             
     }
-    public function delete_tournament(Request $request){
-        $data = Tournament::where('id',$request->id)->delete();
-        $response = [ 'msg'=>'Tournament', 'status'=>'200'];
+    // public function delete_tournament(Request $request){
+    //     $data = Tournament::where('id',$request->id)->delete();
+    //     $response = [ 'msg'=>'Tournament', 'status'=>'200'];
+    //     return $response;
+    // }
+    public function delete_tournament(Request $request) {
+        
+        $data = Tournament::where('id', $request->id)->update([
+            'delete_status' => true,
+           
+        ]);
+        $response = [
+            'status' => 200,
+            'msg' => 'Successfully Deleted'
+        ];
         return $response;
     }
 

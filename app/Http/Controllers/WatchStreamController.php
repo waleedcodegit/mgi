@@ -26,7 +26,7 @@ public function create_watchstream(Request $request ){
          return $response;
         }
     }
-    // $subscriptions = Subscription::where('is_delete',0)->get();
+   
         public function get_watchstream(){
             $watchstream = WatchStream::where('delete_status',0)->with('tournament')->get();
             $response = ['msg'=> 'WatchStream Sent', 'status'=> '200' , 'WatchStream'=>  $watchstream];

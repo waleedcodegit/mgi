@@ -21,6 +21,14 @@ class List extends Component {
             })
         })
     }
+    deleteTickets(id){
+        let senderdata={
+          id:id
+        }
+        Axios.post('/api/delete_deleteTickets',senderdata).then(res=>{
+           this.componentDidMount();
+        });
+       }
     render() {
         return (
             <div className="container">
@@ -36,7 +44,7 @@ class List extends Component {
                             <th>Sr</th>
                             
                             <th>Title</th>
-                            <th>Description</th>
+                            {/* <th>Description</th> */}
                             <th>Email</th>
                             <th colSpan="2">Actions</th>
                         </tr>
@@ -49,8 +57,10 @@ class List extends Component {
                                         <td>{index+1}</td>
                                         <td>{data.title}</td>
                                         <td>{data.user.email}</td>
-                                        <td><Link to={`/adminpanel/edit-ticket/${data.id}`}><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link></td>
-                                    </tr>
+                                        <td><Link to={`/adminpanel/edit-ticket/${data.id}`}><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link>
+                                        {/* <button className="btn btn-light" onClick={this.deleteTickets.bind(this,data.id,index)}> <i  style={{color:'red'}}  className="fas fa-trash-alt"></i></button> */}
+                                         </td>
+                                        </tr>
                                 )
                             })
                         }

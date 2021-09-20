@@ -134,7 +134,7 @@ class Main extends Component {
                         <Route path="/adminpanel/edit-banner/:id" component={EditBanner}></Route>
                         <Route path="/adminpanel/change-ads-banner" component={ChangeAdsBanner}></Route>
 
-                        <Route path="/adminpanel/edit-term_and_condition" component={EditPrivacyAndPolicy}></Route>
+                        <Route path="/adminpanel/edit-privacyandpolicy" component={EditPrivacyAndPolicy}></Route>
 
 
                         <Route path="/adminpanel/add-subscription" component={CreateSubscription}></Route>

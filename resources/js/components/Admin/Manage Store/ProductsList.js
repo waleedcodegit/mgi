@@ -53,6 +53,14 @@ class ProductsList extends Component {
             })
         })
     }
+    DeleteProduct(id){
+        let senderdata={
+          id:id
+        }
+        Axios.post('/api/delete_product',senderdata).then(res=>{
+           this.componentDidMount();
+        });
+       }
     render() {
         return (
             <div>
@@ -110,7 +118,7 @@ class ProductsList extends Component {
                                                 <Link to={`/adminpanel/edit-product/${data.id}`}>
                                                 <button className="btn btn-success"> <i style={{color:'#ffffff'}} className="far fa-edit"> </i></button>
                                                     </Link>
-                                                   
+                                                    {/* <button className="btn btn-light" onClick={this.DeleteProduct.bind(this,data.id,index)}> <i  style={{color:'red'}}  className="fas fa-trash-alt"></i></button> */}
                                                     
                                                 </td>
                                                <td> <Link to={`/adminpanel/product-images/${data.id}`}> <button className="btn btn-warning">Product Images</button></Link></td>

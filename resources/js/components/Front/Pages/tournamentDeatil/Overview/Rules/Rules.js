@@ -23,23 +23,23 @@ class Rules extends Component {
     render() {
         return (
             <div>
-                <div className="col-md-12 col-sm-12 matches-over">
-                <div className="col-md-12 col-sm-12 matches-over">
-                    
-                    <div className="animated bfy-feed-item item-type-tournament-start bfy-feed-item item-type-tournament-start">
-                        <div className="item-body">
-                        <div className="main-container">
-                            <div className="item-container">
-                            <div className="bfy-feed-message initial"> 
-                                <div className="message-content" translate><span dangerouslySetInnerHTML={{__html:this.state.rules}}/></div>
-                            </div>
-                            </div>          
-                        </div>
-                        </div>
-                    </div>
-                                             
-         </div>
-    </div>
+            <div className="champ-tab-wrap tab-content">
+                                <div className="tab-item part-wrap tab-pane active" id="details">
+                                    <div className="part-list">
+                                        <div className="col-md-12">
+                                            <div className="prt-list-sec">
+                                                <h2>Rules</h2>
+                                                <div className="message-content" translate><span dangerouslySetInnerHTML={{__html:this.state.rules}}/></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                               
+                               
+                                
+                                
+                                </div>
  </div>
         )
     }
