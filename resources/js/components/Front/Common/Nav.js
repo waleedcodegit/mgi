@@ -86,7 +86,7 @@ class Nav extends Component {
                           <li>
                             <a href="/tournament"><span>Tournaments</span></a>
                           </li>
-                          <li><a href="/store"><span>Media</span></a></li>
+                          <li><a href="/articles"><span>Media</span></a></li>
                           <li><a href="/store"><span>Store</span></a></li>
                           
                           <li><a href="/support"><span>Support</span></a></li>
