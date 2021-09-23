@@ -97,6 +97,8 @@ Route::get('get_all_banners','Admin\BannerController@get_all_banner');
 Route::post('update_banner','Admin\BannerController@update_banner');
 Route::post('delete_banner','Admin\BannerController@delete_banner');
 Route::post('get_banner_by_id','Admin\BannerController@get_banner_by_id');
+Route::get('get_ad_banners','Admin\BannerController@get_ad_banners');
+// Route::post('change-banners-ads','Admin\BannerController@change_banners_ads');
 
 // //tickets Routes
 // Route::get('get_open_tickets','Admin\TicketController@get_open_tickets');

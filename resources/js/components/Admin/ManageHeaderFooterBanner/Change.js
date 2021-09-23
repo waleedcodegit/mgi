@@ -9,6 +9,7 @@ class Change extends Component {
     constructor(props) {
         super(props);
         this.state={
+          
             header_image:'',
             footer_image:'',
             loading: false,
@@ -16,12 +17,22 @@ class Change extends Component {
             binary_img_footer: ''
         }
     }
+    componentDidMount(){
+        Axios.get('/api/get_ad_banners',{id:this.props.match.params.id}).then(res=>{
+           console.log(res.data.changeAdsImage);
+            this.setState({
+                footer_image:res.data.changeAdsImage.footer_image,
+                header_image: res.data.changeAdsImage.header_image
+                // footer_image:res.data.changeAdsImage.footer_image
+               
+            })
+        })
+    }
     create(e){
         this.setState({
             loading:true
         })
         Axios.post('/api/change-banner-ads',this.state).then(res=>{
-            console.log(res);
             this.setState({
                 loading:false
             })
@@ -31,17 +42,18 @@ class Change extends Component {
                     title: res.data.msg,
                     showConfirmButton: false,
                     timer: 1500
-                })
-            //  window.open('games-list', '_self')
+                    })
+                    window.location.reload();
+                    this.props.history.push('/adminpanel/change-ads-banner');
             }else{
-                    Swal.fire({
-                        icon: 'warning',
-                        title: res.data.msg,
-                        showConfirmButton: false,
-                        timer: 1500
-                        })
-                }
-            })        
+                Swal.fire({
+                    icon: 'warning',
+                    title: res.data.msg,
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+            }
+        })
     }
     headerImage(e){
         if (e.target.files) {
@@ -100,44 +112,35 @@ class Change extends Component {
                     <h2 className="section_title">Create Game</h2>
                 </div>
                 <div className="card container content_card_div mt-4 mb-5 pb-5 pt-3">
-                   <div className="row col-md-12">
-                        <div class="form-group input_div col-md-7">
-                            <label className="input_label" for="exampleInputEmail1">Header Image Ads (1400*232)</label>
-                            <div className="card p-1">
-                                <img className="img_thumb" src={this.state.binary_img_header !=''? this.state.binary_img_header : img_base+this.state.image}></img>
-                                <input onChange={this.headerImage.bind(this)} type="file" className="m-2"></input>
-                            </div>
-                        </div>
-                        <h1 className="col-md-1"></h1>
-
-                   </div>
-                   <div className="row col-md-12">
-                        <div class="form-group input_div col-md-7">
-                            <label className="input_label" for="exampleInputEmail1">Footer Image Ads (1400*232)</label>
-                            <div className="card p-1">
-                            {this.state.binary_img_footer !=''?
-                              <img className="img_thumb" src={this.state.binary_img_footer}></img>
-                             : "Select Image"
-                            }
-                                <input onChange={this.footerImage.bind(this)} type="file" className="m-2"></input>
-                            </div>
-                        </div>
-                        <h1 className="col-md-1"></h1>
-
-                   </div>
+                                            <div className="row col-md-12">
+                                            <div class="form-group input_div col-md-7">
+                                                <label className="input_label" for="exampleInputEmail1">Header Image Ads (1400*232)</label>
+                                                <div className="card p-1">
+                                                    <img className="img_thumb" src={this.state.binary_img_header !=''? this.state.binary_img_header : img_base+this.state.header_image}></img>
+                                                    <input onChange={this.headerImage.bind(this)} type="file" className="m-2"></input>
+                                                </div>
+                                            </div>
+                                            <h1 className="col-md-1"></h1>
+                    
+                                       </div>
+                                       <div className="row col-md-12">
+                                            <div class="form-group input_div col-md-7">
+                                                <label className="input_label" for="exampleInputEmail1">Footer Image Ads (1400*232)</label>
+                                                <div className="card p-1">
+                                                    <img className="img_thumb" src={this.state.binary_img_footer !=''? this.state.binary_img_footer : img_base+this.state.footer_image}></img>
+                                                    <input onChange={this.footerImage.bind(this)} type="file" className="m-2"></input>
+                                                </div>
+                                            </div>
+                                            <h1 className="col-md-1"></h1>
+                    
+                                       </div>
                   
                   
-                   <div className="ml-3">                    
+                  
+                  <div className="ml-3">                    
                     <button onClick={this.create.bind(this)} className="btn btn-success">
-                    {
-                                    this.state.loading ?
-                                    <div id="displayspinner" >
-                                    <div className="spinner-border small_loader  ml-2 spinner_format"  role="status">
-                                      <span className="sr-only">Loading...</span>
-                                    </div>
-                                  </div>
-                                  :<>Create</>
-                                }
+                   <>Update</>
+                                
                     </button>
                    </div>
                   

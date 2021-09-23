@@ -20,7 +20,7 @@ class AnnouncementsController extends Controller
         return $response;
     }
     public function get_announcement(Request $request){
-        $announcement = Announcement::where('tournament_id',$request->id)->get();
+        $announcement = Announcement::where('tournament_id',$request->id)->where('delete_status',0)->get();
         $resopnse  = [
             'msg'=> 'Announcement',
             'status' => '200',
@@ -35,7 +35,7 @@ class AnnouncementsController extends Controller
         return $response;
     }
     public function get_announcement_by_id(Request $request){
-        $announcement = Announcement::find($request->id);
+        $announcement = Announcement::where('delete_status',0)->get();
         $response = [ 'msg'=>'Announcement', 'status'=>'200', 'announcement'=> $announcement ];
         return $response;
     }

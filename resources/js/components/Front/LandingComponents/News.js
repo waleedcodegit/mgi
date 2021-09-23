@@ -63,7 +63,7 @@ class News extends Component {
             <div className="row no-gutters row-eq-height">
               <div className="col-md-12">
                 <a href={`/artical-detail/${this.state.posts[1].id}`} className="news-wprapper">
-                  <img src="images/common/esport-team-landing-news-1.jpg" alt="news-img" />
+                  <img src={img_base+this.state.posts[1].image} alt="news-img" />
                   <div className="news-border">
                     <div className="left-news">
                       <span>News</span>
@@ -83,7 +83,7 @@ class News extends Component {
             <div className="row no-gutters row-eq-height">
               <div className="col-md-12">
                 <a href={`/artical-detail/${this.state.posts[2].id}`} className="news-wprapper">
-                  <img src="images/common/esport-team-landing-news-2.jpg" alt="news-img" />
+                  <img src={img_base+this.state.posts[2].image} alt="news-img" />
                   <div className="news-border">
                     <div className="left-news">
                       <span>News</span>

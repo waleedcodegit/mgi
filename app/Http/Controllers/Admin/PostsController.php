@@ -130,12 +130,13 @@ class PostsController extends Controller
 
 
     public function change_banner_ads(Request $request) {
+
         $ads = ChangeAdsImage::find(1);
         if ($request->header_image == $ads->header_image) {
                 
         }else{
             $nameheader = time() . '.' . explode('/', explode(':', substr($request->header_image, 0, strpos($request->header_image, ';')))[1])[1];
-            \Image::make($request->header_image)->save(public_path('images/').  $nameheader);
+            \Image::make($request->header_image)->resize(1400, 232)->save(public_path('images/').  $nameheader);
             ChangeAdsImage::where('id', 1)->update([
                 'header_image' => $nameheader,
             ]);
@@ -146,7 +147,7 @@ class PostsController extends Controller
                 
         }else{
             $namefooter = time() . '.' . explode('/', explode(':', substr($request->footer_image, 0, strpos($request->footer_image, ';')))[1])[1];
-            \Image::make($request->footer_image)->save(public_path('images/').  $namefooter);
+            \Image::make($request->footer_image)->resize(1400, 232)->save(public_path('images/').  $namefooter);
             ChangeAdsImage::where('id', 1)->update([
                 'footer_image' => $namefooter,
             ]);

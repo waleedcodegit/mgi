@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use App\Banner;
+use App\ChangeAdsImage;
 
 class BannerController extends Controller
 {
@@ -77,4 +78,45 @@ class BannerController extends Controller
         ];
         return $response;
     }
+    public function get_ad_banners(){
+        $changeAdsImage  = ChangeAdsImage::first();
+        $response = [ 
+            'msg'=>'Video Sent',
+            'status'=>'200',
+            'changeAdsImage'=>  $changeAdsImage
+        ];
+        return $response;
+    }
+    // public function change_banners_ads(Request $request) {
+    //     $ads = ChangeAdsImage::find($request->id);
+    //     if ($request->header_image == $ads->header_image) {
+                
+    //     }else{
+    //         $nameheader = time() . '.' . explode('/', explode(':', substr($request->header_image, 0, strpos($request->header_image, ';')))[1])[1];
+    //         \Image::make($request->header_image)->save(public_path('images/').  $nameheader);
+    //         ChangeAdsImage::where('id', 1)->update([
+    //             'header_image' => $nameheader,
+    //         ]);
+            
+    //     }
+
+    //     if ($request->footer_image == $ads->footer_image) {
+                
+    //     }else{
+    //         $namefooter = time() . '.' . explode('/', explode(':', substr($request->footer_image, 0, strpos($request->footer_image, ';')))[1])[1];
+    //         \Image::make($request->footer_image)->save(public_path('images/').  $namefooter);
+    //         ChangeAdsImage::where('id', 1)->update([
+    //             'footer_image' => $namefooter,
+    //         ]);
+    //     }
+
+    //     $data = ChangeAdsImage::first();
+    //     $response = [
+    //         'msg'=> 'Image Change',
+    //          'status'=> '200',
+    //          'data' => $data
+    //         ];
+    //     return $response;
+
+    // }
 }
