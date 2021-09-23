@@ -63,7 +63,7 @@ class List extends Component {
                                                      data.tournament != null ? 
                                                         <td>{data.tournament.title}</td>
                                                         :
-                                                        <td>no tournament</td>
+                                                        <td>No Tournament</td>
                                                      
                                          }
                                          <td>{data.videolink}</td>

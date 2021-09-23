@@ -35,11 +35,12 @@ class List extends Component {
                         </div>
                         <div className="row">
                             
-                            {
+                        {
                                 this.state.videos.map((data,index)=>{
                                         return(
-                                            <>
-                                          
+                                            
+                                            <div className="row">
+                                            <a href={`/video-detail/${data.id}`} className="article-wprapper">
                                             <div className="col-md-4">
                                                 <div className="lt-video">
                                                     <div className="ifram-video">
@@ -59,8 +60,8 @@ class List extends Component {
                                                                 </div>                                                                 */}
                                                                 </div>
                                             </div>
-                                            
-                                            </>
+                                            </a>
+                                            </div>
                                         )
                                 })
                             }
@@ -69,8 +70,9 @@ class List extends Component {
 
                         </div>  
                         </div>
-                    </div>
-                </div>
+                        </div>
+                        </div>
+               
 
             </div>
         )

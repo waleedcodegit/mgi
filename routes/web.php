@@ -14,12 +14,17 @@
 // Admin Routes
 
 Route::view('/adminpanel/edit-privacyandpolicy','admin');
+Route::view('/adminpanel/create-privacyandpolicy','admin');
+Route::view('/adminpanel/privacyandpolicy-list','admin');
+Route::view('/adminpanel/edit-privacyandpolicy/{id}','admin');
 
 
 Route::view('/adminpanel/add-subscription','admin');
 Route::view('/adminpanel/subscriptions-list','admin');
+Route::view('/adminpanel/edit-subscriptions/{id}','admin');
 
 Route::view('/adminpanel/term-and-condition-list','admin');
+Route::view('/adminpanel/create-term_and_condition','admin');
 Route::view('/adminpanel/edit-term_and_condition/{id}','admin');
 
 Route::view('/adminpanel','admin');

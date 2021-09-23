@@ -101,8 +101,13 @@ class Edit extends Component {
                                                     }
                                                     <div className="text-time">{data.created_at}</div>
                                                     <div className="media-description text-muted">
-                                                        {data.description}
+                                                        {data.description}                                              
                                                     </div>
+                                                    {
+                                                                    data.image ? 
+                                                                    <img src={img_base+data.image} />
+                                                                    : null
+                                                                }
                                                 </div>
                                             </li>
                                         )

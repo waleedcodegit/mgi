@@ -58,7 +58,7 @@ class List extends Component {
                                                 <td>{data.days}</td>
                                                 <td>{data.price}</td>
                                                 <td>{data.description}</td>
-                                                <td><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button>
+                                                <td><Link to={`/adminpanel/edit-subscriptions/${data.id}`}><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link>
                                                 <button className="btn btn-light" onClick={this.deleteSubscription.bind(this,data.id,index)}> <i  style={{color:'red'}}  className="fas fa-trash-alt"></i></button></td>
                                                
                                             </tr>

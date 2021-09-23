@@ -6,9 +6,9 @@ class Edit extends Component {
         super(props);
         this.state={
             first_name:'',
-            surname:'',
+            last_name:'',
             email:'',
-            address:'',
+            phone:'',
             error_string:'',
             id:this.props.match.params.id,
             loading:false
@@ -16,11 +16,12 @@ class Edit extends Component {
     }
     componentDidMount(){
         Axios.post('/api/get-admin-by-id',{id:this.props.match.params.id}).then(res=>{
+            console.log(res);
             this.setState({
                 first_name:res.data.admin.first_name,
-                surname:res.data.admin.surname,
+                last_name:res.data.admin.last_name,
                 email:res.data.admin.email,
-                address:res.data.admin.address,
+                phone:res.data.admin.phone,
             })
         })
     }
@@ -29,9 +30,9 @@ class Edit extends Component {
             first_name:e.target.value
         })
     }
-    surname(e){
+    last_name(e){
         this.setState({
-            surname:e.target.value
+            last_name:e.target.value
         })
     }
     email(e){
@@ -39,16 +40,16 @@ class Edit extends Component {
             email:e.target.value
         })
     }
-    address(e){
+    phone(e){
         this.setState({
-            address:e.target.value
+            phone:e.target.value
         })
     }
     create(e){
         this.setState({
             loading:true
         })
-        Axios.post('/api/add-admin',this.state).then(res=>{
+        Axios.post('/api/update-admin',this.state).then(res=>{
             this.setState({
                 loading:false
             })
@@ -86,7 +87,7 @@ class Edit extends Component {
                     <h1 className="col-md-1"></h1>
                     <div class="form-group input_div col-md-5">
                         <label className="input_label" for="exampleInputEmail1"> Surname</label>
-                        <input value={this.state.surname} onChange={this.surname.bind(this)} type="email" class="form-control " aria-describedby="emailHelp" />
+                        <input value={this.state.last_name} onChange={this.last_name.bind(this)} type="email" class="form-control " aria-describedby="emailHelp" />
                     </div>
                    
                </div>
@@ -97,8 +98,8 @@ class Edit extends Component {
                     </div>
                     <h1 className="col-md-1"></h1>
                     <div class="form-group input_div col-md-5">
-                        <label className="input_label" for="exampleInputEmail1"> Address</label>
-                        <input value={this.state.address} onChange={this.address.bind(this)} type="email" class="form-control " aria-describedby="emailHelp" />
+                        <label className="input_label" for="exampleInputEmail1"> Phone#</label>
+                        <input value={this.state.phone} onChange={this.phone.bind(this)} type="email" class="form-control " aria-describedby="emailHelp" />
                     </div>
                     <h1 className="col-md-1"></h1>
                    

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import {connect} from 'react-redux';
+import Swal from 'sweetalert2';
 
 class Support extends Component {
     constructor(props) {
@@ -44,8 +45,11 @@ class Support extends Component {
                             <div className="broadcast-list">
                                 {
                                     this.state.tickets.map((data,index)=>{
+                                        
                                         return (
-                                            <a href={`/ticket-detail/${data.id}`}>
+                                                   
+                                            data.status != 'Close' ? 
+                                            <a href={`/ticket-detail/${data.id}`}>                                                
                                                 <div className="broadcast-item">
                                                     <div className="item-header" id="headingOne">
                                                         <div className="row">
@@ -55,13 +59,39 @@ class Support extends Component {
                                                                     <span className="what">Ticket Title</span>
                                                                     <span className="then">{data.title}</span>
                                                                     </span>
-                                                                    <span className="process">{data.status}</span>
+                                                                    <span className="done">{data.status}</span>
+                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>	
                                                     </div>
                                                 </div>
-                                            </a>
+                                                </a>
+                                                :                                                  
+                                                     <div className="broadcast-item">
+                                                    <div className="item-header" id="headingOne">
+                                                        <div className="row">
+                                                            <div className="col-md-12">
+                                                                <div className="item-head-body">
+                                                                    <span className="info">
+                                                                    <span className="what">Ticket Title</span>
+                                                                    <span className="then">{data.title}</span>
+                                                                    </span>
+                                                                    <span className="process">Ticket is {data.status}</span>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>	
+                                                    </div></div>
+                                                                    
+                                                     
+                                                
+                                                
+                                               
+                                                
+                                        
+                                    
+                                            
                                         )
                                     })
                                 }

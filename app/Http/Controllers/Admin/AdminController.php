@@ -15,8 +15,9 @@ class AdminController extends Controller
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|min:3',
             'last_name' => 'required|min:3',
+            'phone' => 'required|min:3',
             'password' => 'required|min:6',
-            'email' => 'required|email|unique:admins|max:255',
+           'email' => 'required|email|unique:admins|max:255',
         ]);
         if($validator->fails()){
             $response = ['status' => 219 , 'msg' => $validator->errors()->first() , 
@@ -29,7 +30,7 @@ class AdminController extends Controller
             $admin->user_name = $request->first_name . "_". $request->last_name . "-".rand();
             $admin->email = $request->email;
             $admin->password = Hash::make($request->password);
-            $admin->number = $request->number;
+            $admin->phone = $request->phone;
             $admin->save();
             $response = ['status' => 200 , 'msg' => 'admin created successfully.' , 
                          'admin' => $admin];
@@ -100,6 +101,25 @@ class AdminController extends Controller
             'status'=>'200',
             'admin'=> $admin
         ];
+        return $response;
+    }
+    public function get_admin_by_id(Request $request){
+        $admin = Admin::find($request->id);
+        $response = [ 'msg'=>'Admin', 'status'=>'200', 'admin'=> $admin];
+        return $response;
+    }
+    public function update_admin(Request $request){
+
+        $admin = Admin::find($request->id);
+        $admin->first_name = $request->first_name;
+        $admin->last_name  = $request->last_name;
+        $admin->user_name = $request->first_name . "_". $request->last_name . "-".rand();
+        $admin->email = $request->email;
+        // $admin->password = Hash::make($request->password);
+        $admin->phone = $request->phone;
+        
+        $admin->save();
+        $response = [ 'msg'=>' Updated', 'status'=>'200'];
         return $response;
     }
 }

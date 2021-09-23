@@ -50,11 +50,11 @@ class List extends Component {
                 <tbody>
                     {
                         this.state.admin.map((data,index)=>{
-                            console.log(data);
+                            // console.log(data);
                             return(
                                 <tr>
                                     <td>{index+1}</td>
-                                    <td>{data.first_name + ' ' +data.surname}</td>
+                                    <td>{data.first_name + ' ' +data.last_name}</td>
                                     <td>{data.email}</td>
                                     <td>{data.address}</td>
                                     <td><Link to={`/adminpanel/edit-admin/${data.id}`}><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link>

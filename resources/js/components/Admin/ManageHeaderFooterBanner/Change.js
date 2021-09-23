@@ -115,7 +115,10 @@ class Change extends Component {
                         <div class="form-group input_div col-md-7">
                             <label className="input_label" for="exampleInputEmail1">Footer Image Ads (1400*232)</label>
                             <div className="card p-1">
-                                <img className="img_thumb" src={this.state.binary_img_footer !=''? this.state.binary_img_footer : img_base+this.state.image}></img>
+                            {this.state.binary_img_footer !=''?
+                              <img className="img_thumb" src={this.state.binary_img_footer}></img>
+                             : "Select Image"
+                            }
                                 <input onChange={this.footerImage.bind(this)} type="file" className="m-2"></input>
                             </div>
                         </div>

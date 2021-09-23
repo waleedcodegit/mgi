@@ -65,4 +65,23 @@ class SubscriptionController extends Controller
             ];
             return $response;
         }
+        public function get_subscription_by_id(Request $request){
+            $subscription = Subscription::find($request->id);
+            $response = ['msg'=> 'subscription Sent', 'status'=> '200' , 'subscription'=> $subscription];
+            return $response;
+        }
+        public function update_subscription(Request $request)
+    
+        {
+             $subscription = Subscription::find($request->id);
+             $subscription->duration = $request->duration;
+             $subscription->days  = $request->days;
+             $subscription->price = $request->price;
+             $subscription->description = $request->description;
+             $subscription->save();
+             $response = ['msg'=> 'subscription Updated', 'status'=> '200'];
+             return $response;
+   
+    }
+  
 }

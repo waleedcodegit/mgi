@@ -9,29 +9,24 @@ class List extends Component {
             videos: []
         }
     }
-    async  componentDidMount(){
-        const video_id = this.props.match.params.id;
-        // Axios.post('/api/get_videos_list').then(res=>{
-            const res = await axios.get(`/api/show_videos/${video_id}`);
-            console.log(res.data);
-            if(res.data.status === 200)
-            {
+    componentDidMount(){
+        Axios.post('/api/get_videos_list').then(res=>{
             console.log(res.data);
             this.setState({
                 videos:res.data
-            });
-        }
-        }
+            })
+        })
+      }
 
     render() {
         return (
             <div>
                 <div className="ad-banner">
-  <div className="container">
-    <div className="row">
-    </div>
-  </div>
-</div>
+                 <div className="container">
+                    <div className="row">
+                        </div>
+                          </div>
+                            </div>
 
                 <div className="esport-landing-latest-videos-section">
                     {/*SPORT TEAM LANDING LATEST VIDEOS BEGIN*/} 
@@ -44,12 +39,13 @@ class List extends Component {
                             <div className="col-md-7 col-sm-6">
                             </div>
                         </div>
-                        <div className="row">
+                        
                             
                             {
                                 this.state.videos.map((data,index)=>{
                                         return(
-                                            <>
+                                            
+                                            <div className="row">
                                             <a href={`/video-detail/${data.id}`} className="article-wprapper">
                                             <div className="col-md-4">
                                                 <div className="lt-video">
@@ -71,14 +67,14 @@ class List extends Component {
                                                                 </div>
                                             </div>
                                             </a>
-                                            </>
+                                            </div>
                                         )
                                 })
                             }
                             
                             
 
-                        </div>  
+                          
                         </div>
                     </div>
                 </div>
@@ -87,5 +83,6 @@ class List extends Component {
         )
     }
 }
+    
 
-export default List;
+export default List ;

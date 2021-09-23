@@ -75,7 +75,12 @@ class Create extends Component {
                         <div class="form-group input_div col-md-7">
                             <label className="input_label" for="exampleInputEmail1">Banner Image (size 1920*1000)</label>
                             <div className="card p-1">
-                                <img className="img_thumb" src={this.state.binary_img !=''? this.state.binary_img : img_base+this.state.image}></img>
+                            {this.state.binary_img !=''?
+                              <img className="img_thumb" src={this.state.binary_img}></img>
+                             : "Select Image"
+                            }
+
+                               
                                 <input onChange={this.getImage.bind(this)} type="file" className="m-2"></input>
                             </div>
                         </div>

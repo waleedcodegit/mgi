@@ -222,17 +222,19 @@ class App extends Component {
                      : ''
                      }
                    
-                    {this.state.is_websetting?
+                    {
+                    this.state.is_websetting?
                     <li className={this.props.history.location.pathname == "/adminpanel/slider-images" || this.props.history.location.pathname == "/adminpanel/privacy-policy" || this.props.history.location.pathname == "/adminpanel/terms-and-conditions" || this.props.history.location.pathname == "/adminpanel/social-media-links" ? "dropdown active": "dropdown"}>
                       <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="chrome" /><span>Web Settings</span></a>
                       <ul className="dropdown-menu">
                         {/* <li><Link to="/adminpanel/slider-images">Slider Images</Link></li> */}
-                        <li><Link to="/adminpanel/privacy-policy">Privacy & Policy</Link></li>
-                        <li><Link to="/adminpanel/terms-and-conditions">Terms & Conditions</Link></li>
+                        {/* <li><Link to="/adminpanel/privacy-policy">Privacy & Policy</Link></li> */}
+                        {/* <li><Link to="/adminpanel/terms-and-conditions">Terms & Conditions</Link></li> */}
                         <li><Link to="/adminpanel/social-media-links">Social Links</Link></li>
                       </ul>
                     </li>
-                     : ''}
+                      : ''
+                    }
                     {this.state.is_subadmins ?
                     <li className={this.props.history.location.pathname == "/adminpanel/add-admin" || this.props.history.location.pathname == "/adminpanel/admins" ? "dropdown active": "dropdown"}>
                       <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="watch" /><span>Manage Sub Admins</span></a>
@@ -258,7 +260,8 @@ class App extends Component {
                       <li className={this.props.history.location.pathname == "/adminpanel/terms-and-Conditions" || this.props.history.location.pathname == "/adminpanel/terms-and-Conditions-list" ? "dropdown active": "dropdown"}>
                         <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="shopping-bag" /><span>Terms & Conditions</span></a>
                         <ul className="dropdown-menu">
-                          <li><Link to="/adminpanel/edit-term_and_condition/:id">Edit</Link></li>
+                        {/* <li><Link to="/adminpanel/create-term_and_condition">Create</Link></li> */}
+                          {/* <li><Link to="/adminpanel/edit-term_and_condition/:id">Edit</Link></li> */}
                           <li><Link to="/adminpanel/term-and-condition-list">List</Link></li>
                         </ul>
                       </li>
@@ -270,7 +273,9 @@ class App extends Component {
                       <li className={this.props.history.location.pathname == "/adminpanel/privacy_and_policy" || this.props.history.location.pathname == "/adminpanel/privacy-and-policy-list" ? "dropdown active": "dropdown"}>
                         <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="filter" /><span>Privacy & Policy</span></a>
                         <ul className="dropdown-menu">
-                          <li><Link to="/adminpanel/edit-privacyandpolicy">Edit</Link></li>
+                        {/* <li><Link to="/adminpanel/create-privacyandpolicy">Create</Link></li> */}
+                        <li><Link to="/adminpanel/privacyandpolicy-list">List</Link></li>
+                          {/* <li><Link to="/adminpanel/edit-privacyandpolicy">Edit</Link></li> */}
                         </ul>
                       </li>
                      : ''

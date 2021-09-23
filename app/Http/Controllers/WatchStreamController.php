@@ -33,7 +33,7 @@ public function create_watchstream(Request $request ){
             return $response;
         }
         public function get_watchstream_by_id(Request $request){
-            $watchstream = WatchStream::where('tournament_id', $request->id)->first();
+            $watchstream = WatchStream::where('tournament_id', $request->id)->where('delete_status',0)->first();
             $response = [ 'msg'=>'Stream', 'status'=>'200', 'watchstream'=> $watchstream ];
             return $response;
         }     

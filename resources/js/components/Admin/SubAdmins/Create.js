@@ -6,9 +6,9 @@ class Create extends Component {
         super(props);
         this.state={
             first_name:'',
-            surname:'',
+            last_name:'',
             email:'',
-            address:'',
+            phone:'',
             password:'',
             error_string:'',
             loading:false
@@ -19,9 +19,9 @@ class Create extends Component {
             first_name:e.target.value
         })
     }
-    surname(e){
+    last_name(e){
         this.setState({
-            surname:e.target.value
+            last_name:e.target.value
         })
     }
     email(e){
@@ -29,9 +29,9 @@ class Create extends Component {
             email:e.target.value
         })
     }
-    address(e){
+    phone(e){
         this.setState({
-            address:e.target.value
+            phone:e.target.value
         })
     }
     password(e){
@@ -80,8 +80,8 @@ class Create extends Component {
                     </div>
                     <h1 className="col-md-1"></h1>
                     <div class="form-group input_div col-md-5">
-                        <label className="input_label" for="exampleInputEmail1"> Surname</label>
-                        <input  onChange={this.surname.bind(this)} type="email" class="form-control " aria-describedby="emailHelp" />
+                        <label className="input_label" for="exampleInputEmail1"> Last Nname</label>
+                        <input  onChange={this.last_name.bind(this)} type="email" class="form-control " aria-describedby="emailHelp" />
                     </div>
                    
                </div>
@@ -98,8 +98,8 @@ class Create extends Component {
                </div>
                <div className="row col-md-12">
                     <div class="form-group input_div col-md-5">
-                        <label className="input_label" for="exampleInputEmail1"> Address</label>
-                        <input  onChange={this.address.bind(this)} type="email" class="form-control " aria-describedby="emailHelp" />
+                        <label className="input_label" for="exampleInputEmail1"> Phone#</label>
+                        <input  onChange={this.phone.bind(this)} type="text" class="form-control " aria-describedby="emailHelp" />
                     </div>
                     <h1 className="col-md-1"></h1>
                    

@@ -23,7 +23,7 @@ class TermsAndConditionsController extends Controller
             
             $termandcondition->terms_and_conditions = $request->term_and_condition;
             $termandcondition->save();
-            $response = ['msg'=> 'Privacy And Policy Saved', 'status'=> '200'];
+            $response = ['msg'=> 'Term And Condition Saved', 'status'=> '200'];
             return $response;
         }
     }
@@ -65,4 +65,5 @@ class TermsAndConditionsController extends Controller
         ];
         return $response;
     }
+    
 }

@@ -6,7 +6,8 @@ class ArticalDetail extends Component {
     constructor(props){
         super(props);
         this.state = {
-            
+            articals: [],
+            data: [],
             title: '',
             image: '',
             body: '',
@@ -20,7 +21,7 @@ class ArticalDetail extends Component {
         const articals_id = this.props.match.params.id;
         // console.log(term_and_condition_id);
       const res = await axios.get(`/api/show_articals/${articals_id}`);
-      console.log(res.data.posts.title);
+    //   console.log(res.data.posts.title);
       if(res.data.status === 200)
       {
           this.setState({
@@ -29,6 +30,12 @@ class ArticalDetail extends Component {
             body:res.data.posts.body,
           });
       }
+      Axios.post('/api/get_articals_latest').then(res=>{
+        console.log(res);
+        this.setState({
+            articals:res.data
+        })
+    })
     }
 
       title(value){
@@ -66,7 +73,7 @@ class ArticalDetail extends Component {
                             <div className="item">
                                             <div className="row no-gutters row-eq-height">
                                                 <div className="col-md-12">
-                                                <a href={`/artical-detail`} className="article-wprapper">
+                                                <a href="" className="article-wprapper">
                                                     <img src={img_base+this.state.image} value="image"alt="news-img" />
                                                     <div className="news-border">
                                                     <div className="left-news">
@@ -90,22 +97,32 @@ class ArticalDetail extends Component {
                             <section className="sidebar col-xs-6 col-sm-6 col-md-3 sidebar-offcanvas" id="sidebar">
                                 <div className="recent-news">
                                     <h6>More Articles</h6>
-                                    <div className="item">
-                                    <div className="date"><a href="news-single.html">25 Sep 2016</a> in <a href="news-single.html">highlights</a></div>
-                                    <a href="news-single.html" className="name">When somersaulting Sanchez shoulderd Mexico’s 
-                                        <img src="/images/common/esport-team-landing-news-1.jpg" />
-                                    </a>
-                                    </div>
-                                    <div className="item">
-                                    <div className="date"><a href="news-single.html">25 Sep 2016</a> in <a href="news-single.html">highlights</a></div>
-                                    <a href="news-single.html" className="name">When somersaulting Sanchez shoulderd Mexico’s 
-                                        <img src="/images/common/sport-championship-news-1.jpg" /></a>
-                                    </div>
-                                    <div className="item">
-                                    <div className="date"><a href="news-single.html">25 Sep 2016</a> in <a href="news-single.html">highlights</a></div>
-                                    <a href="news-single.html" className="name">When somersaulting Sanchez shoulderd Mexico’s 
-                                        <img src="/images/common/esport-team-landing-news-2.jpg" /></a>
-                                    </div>
+                                    {
+                            this.state.articals.map((data,index)=>{
+                                    return(
+                                        <div className="item">
+                                        <div className="row no-gutters row-eq-height">
+                                            <div className="col-md-12">
+                                            <a href={`/artical-detail/${data.id}`} className="article-wprapper">
+                                            <div className="artcle-text">
+                                                    <span className="name">{data.title}</span>
+                                                   
+                                                </div>
+                                                <img src={img_base+data.image} alt="news-img" />
+                                                <div className="news-border">
+                                                <div className="left-news">
+                                                    <span>{data.type}</span>
+                                                </div>
+                                    
+                                                
+                                                </div>
+                                            </a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    )
+                                })
+                            }
                                 </div>
                             </section>	
                         </div>

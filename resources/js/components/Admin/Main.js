@@ -46,9 +46,13 @@ import EditBanner from '../Admin/Banner/Edit';
 
 import CreateSubscription from '../Admin/Subscription/create';
 import SubscriptionList from '../Admin/Subscription/list';
+import EditSubscription from '../Admin/Subscription/Edit';
 import EditPrivacyAndPolicy from '../Admin/PrivacyAndPolicy/Edit';
+import CreatePrivacyAndPolicy from '../Admin/PrivacyAndPolicy/Create';
+import PrivacyAndPolicyList from '../Admin/PrivacyAndPolicy/List';
 import EditTermAndCondition from '../Admin/TermAndCondition/Edit';
 import TermAndConditionList from '../Admin/TermAndCondition/list';
+import CreateTermAndCondition from '../Admin/TermAndCondition/Create';
 
 
 import ChangeAdsBanner from '../Admin/ManageHeaderFooterBanner/Change';
@@ -134,14 +138,18 @@ class Main extends Component {
                         <Route path="/adminpanel/edit-banner/:id" component={EditBanner}></Route>
                         <Route path="/adminpanel/change-ads-banner" component={ChangeAdsBanner}></Route>
 
-                        <Route path="/adminpanel/edit-privacyandpolicy" component={EditPrivacyAndPolicy}></Route>
+                        <Route path="/adminpanel/edit-privacyandpolicy/:id" component={EditPrivacyAndPolicy}></Route>
+                        <Route path="/adminpanel/create-privacyandpolicy" component={CreatePrivacyAndPolicy}></Route>
+                        <Route path="/adminpanel/privacyandpolicy-list" component={PrivacyAndPolicyList}></Route>
 
 
                         <Route path="/adminpanel/add-subscription" component={CreateSubscription}></Route>
                         <Route path="/adminpanel/subscriptions-list" component={SubscriptionList}></Route>
-                        
+                        <Route path="/adminpanel/edit-subscriptions/:id" component={EditSubscription}></Route>
+
                         <Route path="/adminpanel/term-and-condition-list" component={TermAndConditionList}></Route>
                         <Route path="/adminpanel/edit-term_and_condition/:id" component={EditTermAndCondition}></Route>
+                        <Route path="/adminpanel/create-term_and_condition" component={CreateTermAndCondition}></Route>
 
                         <Route path="/adminpanel/create-brackets" component={CreateBrackets}></Route>
                         <Route path="/adminpanel/brackets-list" component={BracketsList}></Route>

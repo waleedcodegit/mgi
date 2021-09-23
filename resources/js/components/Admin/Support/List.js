@@ -14,7 +14,7 @@ class List extends Component {
     
     componentDidMount(){
         Axios.get('/api/get_open_tickets').then(res=>{
-            console.log(res);
+            // console.log(res);
             this.setState({
                 tickets: res.data.ticket,
                 is_display: true

@@ -58,16 +58,16 @@ class PostsController extends Controller
         return $posts;
     }
     public function get_posts(){
-        $posts = Post::where('status','Public')->orderBy('id', 'DESC')->limit(50)->get();
+        $posts = Post::where('status','Public')->orderBy('id', 'DESC')->where('delete_status',0)->limit(50)->get();
         return $posts;
     }
     public function get_feature_posts(){
-        $posts = Post::where('status','Public')->where('feature',1)->orderBy('id', 'DESC')->limit(3)->get();
+        $posts = Post::where('status','Public')->where('feature',1)->orderBy('id', 'DESC')->where('delete_status',0)->limit(3)->get();
         return $posts;
     }
 
     public function get_articals(){
-        $posts = Post::where('status','Public')->where('feature',1)->orderBy('id', 'DESC')->limit(6)->paginate(15);
+        $posts = Post::where('status','Public')->where('feature',1)->orderBy('id', 'DESC')->where('delete_status',0)->limit(6)->paginate(15);
         return $posts;
     }
 
@@ -124,13 +124,12 @@ class PostsController extends Controller
     
     }
     public function get_post_by_slug(Request $request){
-        $post = Post::where('slug',$request->slug)->first();
+        $post = Post::where('slug',$request->slug)->where('delete_status',0)->first();
         return $post;
     }
 
 
     public function change_banner_ads(Request $request) {
-        // return $request->all();
         $ads = ChangeAdsImage::find(1);
         if ($request->header_image == $ads->header_image) {
                 
@@ -152,8 +151,6 @@ class PostsController extends Controller
                 'footer_image' => $namefooter,
             ]);
         }
-
-        // $ads->save();
 
         $data = ChangeAdsImage::first();
         $response = [
@@ -183,6 +180,10 @@ class PostsController extends Controller
         ]);
        
     }
+    public function get_articals_latest(){
+        $posts = Post::where('delete_status',0)->where('status','Public')->where('feature',1)->orderBy('id', 'DESC')->latest()->limit(3)->get();
+        return $posts;
+    }
     
-    
+  
 }

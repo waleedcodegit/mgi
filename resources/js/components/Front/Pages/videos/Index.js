@@ -7,7 +7,7 @@ class Index extends Component {
         return (
             <div>
                 <VideoList></VideoList>
-                {/* <ArticleList></ArticleList> */}
+                <ArticleList></ArticleList>
                 
             </div>
         )

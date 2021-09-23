@@ -98,7 +98,7 @@ class Create extends Component {
                     showConfirmButton: false,
                     timer: 1500
                     })
-                    window.open('news-list', '_self')
+                    this.props.history.push('/adminpanel/news-list');
             }else{
                 Swal.fire({
                     icon: 'warning',

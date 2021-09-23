@@ -11,23 +11,28 @@ class Edit extends Component {
         constructor(props) {
             super(props);
             this.state = {
+                privacies__and_policies:'',
                 privacy_and_policy:'',
-                id: '',
-                loading: false
+                id:this.props.match.params.id,
+                error_string:'',
+                loading:false
                 
             };
             
         
         }
 
-        componentDidMount(){
-            Axios.get('/api/edit_privacy_and_policy').then(res=>{
-                console.log(res);
-                this.setState({
-                    privacy_and_policy: res.data.privacyandpolicy.privacies__and_policies,
-                    id: res.data.privacyandpolicy.id
-                })
-            })
+        async componentDidMount(){
+            const privacy_and_policy_id = this.props.match.params.id;
+            console.log(privacy_and_policy_id);
+          const res = await Axios.get(`/api/edit_privacy_and_policy/${privacy_and_policy_id}`);
+          console.log(res.data.privacyAndPolicy.privacies__and_policies);
+          if(res.data.status === 200)
+          {
+              this.setState({
+                privacy_and_policy: res.data.privacyAndPolicy.privacies__and_policies,
+              });
+          }
         }
       
       
@@ -66,7 +71,7 @@ class Edit extends Component {
                         showConfirmButton: false,
                         timer: 1500
                         })
-                        window.location.reload();
+                        window.open('/adminpanel/privacyandpolicy-list', '_self');
                 }else{
                     Swal.fire({
                         icon: 'warning',
@@ -92,7 +97,7 @@ class Edit extends Component {
                                
                                 <div className="panel-body">
                                     <label htmlFor="price">Privacy & Policy </label>
-                                        <ReactQuill onChange={this.privacy_and_policy.bind(this)}   value={this.state.privacy_and_policy || ""}/>
+                                        <ReactQuill onChange={this.privacy_and_policy.bind(this)}  id="privacy_and_policy"  value={this.state.privacy_and_policy || ""}/>
                                         <div className="ml-3">                    
                                             <button onClick={this.update.bind(this)} className="btn btn-success">
                                             {

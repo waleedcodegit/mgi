@@ -7,43 +7,33 @@ import Contact from './Contact/Contact';
 import { connect } from 'react-redux';
 
 class Overview extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         game_name: '',
-    //         regions: '',
-    //         start_date: '',
-    //         start_time: '',
-    //         end_date: '',
-    //         rules: '',
-    //         prizez: '',
-    //         contact_details: ''
+    constructor(props) {
+        super(props);
+        this.state = {
+            watchstream:'',
+            videolink:'',
+            contact_details: ''
 
-    //     }
-    // }
+        }
+    }
+    componentDidMount(){
+        Axios.post('/api/get_watchstream_by_id',{id:this.props.match.params.id}).then(res=>{
+            console.log(res);
+            this.setState({
+                is_display:true,
+                videolink:res.data.watchstream.videolink,
+                
 
-    // componentDidMount(){
-    //     Axios.post('/api/get-tournament-by-id',{id:this.props.match.params.id}).then(res=>{
-    //         // console.log(res.data.tournament);
-    //         this.setState({
-    //             game_name: res.data.tournament.game.title,
-    //             regions: res.data.tournament.region,
-    //             start_date: res.data.tournament.start_date,
-    //             start_time: res.data.tournament.start_time,
-    //             end_date: res.data.tournament.end_date,
-    //             rules: res.data.tournament.rules,
-    //             prizez: res.data.tournament.prizez,
-    //             contact_details: res.data.tournament.contact_details,
-    //         })
-    //     })
-    // }
+            })
+        })
+    }
     render() {
         return (
             <div>
                 <div className="col-md-12 col-sm-12">
                             <div className="matches-over">
                                 <img src="/images/common/article-list.jpg" />
-                                <a href className="btn-stream"><i className="fa fa-video-camera" aria-hidden="true" /> Watch Stream </a>
+                                <a href={"https://www.youtube.com/embed/"+this.state.videolink} target="_blank" className="btn-stream"><i className="fa fa-video-camera" aria-hidden="true" /> Watch Stream </a>
                             </div>
                             </div>
                             <div className>

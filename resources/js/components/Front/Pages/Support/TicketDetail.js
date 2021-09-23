@@ -3,6 +3,7 @@ import Axios from 'axios';
 import { img_base } from '../../../Configs/baseUrls';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
+import {Link} from 'react-router-dom'
 
 class TicketDetail extends Component {
     constructor(props) {
@@ -81,6 +82,44 @@ class TicketDetail extends Component {
                 }
         })
     }
+    
+    UpdateTicketStatus(id){
+    let senderdata={
+       id:id
+         }
+      Axios.post('/api/update_ticketstatus',senderdata).then(res=>{
+       this.componentDidMount();
+          });
+           }
+    // UpdateTicketStatus(e){
+    //         this.setState({
+    //             loading:true
+    //         })
+            
+    //             Axios.post('/api/update_ticketstatus',this.state).then(res=>{
+    //                 this.setState({
+    //                     loading:false
+    //                 })
+    //                 if(res.data.status == 200){
+    //                     Swal.fire({
+    //                         icon: 'success',
+    //                         title: res.data.msg,
+    //                         showConfirmButton: false,
+    //                         timer: 1500
+    //                         })
+    //                         // window.open('/adminpanel/games-list', '_self');
+    //                 }else{
+    //                     Swal.fire({
+    //                         icon: 'warning',
+    //                         title: res.data.msg,
+    //                         showConfirmButton: false,
+    //                         timer: 1500
+    //                         })
+    //                 }
+    //             })
+    //         }
+           
+        
 
     render() {
         return (
@@ -157,7 +196,7 @@ class TicketDetail extends Component {
                                                     <button className="comment-submit" onClick={this.create.bind(this)}> Add review</button>
                                                 </div>
                                                 <div className="col-md-3">
-                                                    <button className="close-tik"> Close Ticket</button>
+                                                <Link to={`/support`}> <button onClick={this.UpdateTicketStatus.bind(this,this.props.match.params.id)} className="comment-submit"> Close Ticket</button></Link>
                                                 </div>
                                                 <div className="col-md-6">
                                                 </div>

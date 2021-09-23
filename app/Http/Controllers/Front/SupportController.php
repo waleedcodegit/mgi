@@ -127,5 +127,26 @@ class SupportController extends Controller
                 return $response;
         }
     }
+    public function get_closed_tickets(Request $request) {
+        $tickets = Support::where('status', 'Close')->with('user')->get();
+        $response = [
+            'status' => 200,
+            'msg' => 'All Close Tickets',
+            'ticket' => $tickets
+        ];
+        return $response;
+    }
+    public function update_ticketstatus(Request $request) {
+        
+        $tickets = Support::where('id', $request->id)->update([
+            'status' => 'Close'
+           
+        ]);
+        $response = [
+            'status' => 200,
+            'msg' => 'Ticket Close'
+        ];
+        return $response;
+    }
     
 }

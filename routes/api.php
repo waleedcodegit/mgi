@@ -15,7 +15,8 @@ use Illuminate\Http\Request;
 Route::post('adminLogin','Admin\AdminController@adminLogin');
 Route::post('admin_check_auth','Admin\AdminController@admin_check_auth');
 
-Route::post('add-admin', 'Admin\AdminController@add_admin');
+Route::post('add-admin', 'Admin\AdminController@create_admin');
+Route::post('update-admin', 'Admin\AdminController@update_admin');
 Route::post('get-admin-by-id', 'Admin\AdminController@get_admin_by_id');
 Route::post('delete-admin', 'Admin\AdminController@delete_admin');
 Route::get('admins','Admin\AdminController@admins');
@@ -32,6 +33,7 @@ Route::post('get_posts','Admin\PostsController@get_posts');
 Route::post('get_post_by_slug','Admin\PostsController@get_post_by_slug');
 Route::post('get_feature_posts','Admin\PostsController@get_feature_posts');
 Route::post('get_articals','Admin\PostsController@get_articals');
+Route::post('get_articals_latest','Admin\PostsController@get_articals_latest');
 
 Route::post('change-banner-ads','Admin\PostsController@change_banner_ads');
 Route::post('get-change-banner-ads','Admin\PostsController@get_change_banner_ads');
@@ -72,6 +74,7 @@ Route::post('delete_video','Admin\VideoController@delete_video');
 Route::post('get_video_by_id','Admin\VideoController@get_video_by_id');
 Route::post('get-videos','Admin\VideoController@get_videos');
 Route::post('get_videos_list','Admin\VideoController@get_videos_list');
+Route::post('get_videos_latest','Admin\VideoController@get_videos_latest');
 
 
 //Support 
@@ -81,6 +84,8 @@ Route::post('get_support_comment','Front\SupportController@get_support_comment')
 Route::post('create_comment_in_detail','Front\SupportController@create_comment_in_detail');
 Route::get('get_open_tickets','Front\SupportController@get_open_tickets');
 Route::post('create_comment_admin','Front\SupportController@create_comment_admin');
+Route::get('get_closed_tickets','Front\SupportController@get_closed_tickets');
+Route::post('update_ticketstatus','Front\SupportController@update_ticketstatus');
 
 
 
@@ -152,16 +157,24 @@ Route::post('create_enrollment','User\EnrollmentController@create_enrollment');
 Route::post('add_subscription','SubscriptionController@add_subscription');
 Route::get('subscription_list','SubscriptionController@subscription_list');
 Route::post('delete_subscription','SubscriptionController@delete_subscription');
+Route::post('get_subscription_by_id','SubscriptionController@get_subscription_by_id');
+Route::post('update_subscription','SubscriptionController@update_subscription');
+Route::post('delete_subscription','SubscriptionController@delete_subscription');
+
 //privacy_and_policy
 
-Route::get('edit_privacy_and_policy','PrivacyAndPolicyController@get_privacy_policy');
+Route::post('create_privacy_and_policy','PrivacyAndPolicyController@create_privacy_and_policy');
+Route::get('edit_privacy_and_policy/{id}','PrivacyAndPolicyController@edit_privacy_and_policy');
+Route::get('get_privacy_and_policy','PrivacyAndPolicyController@get_privacy_and_policy');
 Route::post('update_privacy_and_policy','PrivacyAndPolicyController@update_privacy_and_policy');
+Route::post('delete_privacy_and_policy','PrivacyAndPolicyController@delete_privacy_and_policy');
 
 //term_and_condition
 Route::get('Edit_term_and_condition/{id}','TermsAndConditionsController@Edit_term_and_condition');
 Route::get('term_and_condition_list','TermsAndConditionsController@term_and_condition_list');
 Route::post('Update_term_and_condition','TermsAndConditionsController@Update_term_and_condition');
 Route::post('delete_TermsandConditions','TermsAndConditionsController@delete_TermsandConditions');
+Route::post('add_term_and_condition','TermsAndConditionsController@add_term_and_condition');
 
 Route::get('show_articals/{id}','Admin\PostsController@show');
 Route::get('show_videos/{id}','Admin\VideoController@show');
