@@ -274,7 +274,7 @@ class Setting extends Component {
                       showConfirmButton: false,
                       timer: 1500
                     })
-                    
+                    window.location.reload();
             }
             else
             {
@@ -310,7 +310,7 @@ class Setting extends Component {
                       showConfirmButton: false,
                       timer: 1500
                     })
-                    
+                    window.location.reload();
             }
             else
             {

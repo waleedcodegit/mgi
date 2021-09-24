@@ -40,7 +40,7 @@ class List extends Component {
                     this.state.is_display ? 
                     <div>
                          <div className="top_section_title_div">
-                    <h2 className="section_title">Enrolled Users List</h2>
+                    <h2 className="section_title">Enrolled Players List</h2>
                 </div>
                 <div className="card content_card_div mt-4 mb-5">
                    
@@ -52,7 +52,7 @@ class List extends Component {
                             <th>Tournament Name</th>
                             <th>Player Name</th>
                             {/* <th >Edit</th> */}
-                            <th >Delete</th>
+                            <th >Action</th>
                         </tr>
                     </thead>
                     <tbody>

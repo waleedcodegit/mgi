@@ -43,7 +43,7 @@ class List extends Component {
                         <th>Sr</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Address</th>
+                        {/* <th>Address</th> */}
                         <th colSpan="2">Actions</th>
                     </tr>
                 </thead>
