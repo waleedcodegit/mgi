@@ -9,7 +9,6 @@ use App\User;
 use App\user_social_link;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
-use App\user_social_link;
 
 class UserController extends Controller
 {
