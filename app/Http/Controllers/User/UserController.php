@@ -224,7 +224,7 @@ class UserController extends Controller
     public function update_user_social_links(Request $request){
 
 
-        $user = user_social_link::find($request->id);
+        $user = user_social_link::where('user_id', $request->id)->first();
         
                 
                 $user->google  = $request->google;
