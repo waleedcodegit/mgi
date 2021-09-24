@@ -19,6 +19,10 @@ Route::view('/adminpanel/privacyandpolicy-list','admin');
 Route::view('/adminpanel/edit-privacyandpolicy/{id}','admin');
 
 
+
+Route::view('/adminpanel/user_enrolled_list','admin');
+
+
 Route::view('/adminpanel/add-subscription','admin');
 Route::view('/adminpanel/subscriptions-list','admin');
 Route::view('/adminpanel/edit-subscriptions/{id}','admin');

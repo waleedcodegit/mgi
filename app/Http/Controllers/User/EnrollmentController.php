@@ -57,4 +57,20 @@ class EnrollmentController extends Controller
             }
 
     }
+    public function get_enrollments(){
+        $enrollments = Enrollment::where('delete_status',0)->with('tournament','user')->get();
+        $response = ['msg'=> 'enrollment Sent', 'status'=> '200' , 'enrollments'=> $enrollments];
+        return $response;
+    }
+    public function delete_enrollments(Request $request){
+        $enrollments = Enrollment::where('id', $request->id)->update([
+            'delete_status' => true,
+           
+        ]);
+        $response = [
+            'status' => 200,
+            'msg' => 'Successfully Deleted'
+        ];
+        return $response;
+    }
 }

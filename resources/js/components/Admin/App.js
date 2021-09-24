@@ -28,12 +28,13 @@ class App extends Component {
         is_brackets:true,
         is_announcements:true,
         is_watchstream:true,
+        is_userenrolled:true,
         is_subscription: true
         // is_display: false
     }
 }
 //   componentDidMount(){
-    
+  
 // }
     
     logout(){
@@ -245,6 +246,16 @@ class App extends Component {
                     </li>
                     : '' 
                     }
+                     {this.state.is_userenrolled ?
+                    <li className={this.props.history.location.pathname == "/adminpanel/add-admin" || this.props.history.location.pathname == "/adminpanel/admins" ? "dropdown active": "dropdown"}>
+                      <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="watch" /><span>User Enrolled</span></a>
+                      <ul className="dropdown-menu">
+                        <li><Link to="/adminpanel/user_enrolled_list">List</Link></li>
+                      </ul>
+                    </li>
+                    : '' 
+                    }
+
 
                     {this.state.is_header_footer_banner ?
                     <li className={this.props.history.location.pathname == "/adminpanel/change-ads-banner" ? "dropdown active": "dropdown"}>

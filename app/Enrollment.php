@@ -11,4 +11,7 @@ class Enrollment extends Model
     public function tournament(){
         return $this->belongsTo('App\Tournament', 'tournament_id');
     }
+    public function user(){
+        return $this->belongsTo('App\User', 'user_id');
+    }
 }

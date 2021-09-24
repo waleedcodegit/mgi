@@ -54,6 +54,7 @@ import EditTermAndCondition from '../Admin/TermAndCondition/Edit';
 import TermAndConditionList from '../Admin/TermAndCondition/list';
 import CreateTermAndCondition from '../Admin/TermAndCondition/Create';
 
+import UserEnrolledsList from '../Admin/UserEnrolled/List';
 
 import ChangeAdsBanner from '../Admin/ManageHeaderFooterBanner/Change';
 
@@ -154,6 +155,8 @@ class Main extends Component {
                         <Route path="/adminpanel/create-brackets" component={CreateBrackets}></Route>
                         <Route path="/adminpanel/brackets-list" component={BracketsList}></Route>
                         <Route path="/adminpanel/edit-brackets/:id" component={EditBrackets}></Route>
+
+                        <Route path="/adminpanel/user_enrolled_list" component={UserEnrolledsList}></Route>
 
                         <Route path="/adminpanel/create-announcements" component={CreateAnnouncements}></Route>
                         <Route path="/adminpanel/announcements-list" component={AnnouncementsList}></Route>
