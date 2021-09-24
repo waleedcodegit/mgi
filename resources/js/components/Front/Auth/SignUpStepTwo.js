@@ -66,7 +66,7 @@ class SignUpStepTwo extends Component {
                 console.log(res);
                 if(res.data.status == 200){
                     window.localStorage.setItem('mgltokenlogin',res.data.user.token);
-                    window.open('/subsciption', '_self');
+                    window.open('/subscription', '_self');
                 } else {
                     Swal.fire({
                         icon: 'warning',

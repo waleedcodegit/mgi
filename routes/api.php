@@ -170,6 +170,7 @@ Route::get('edit_privacy_and_policy/{id}','PrivacyAndPolicyController@edit_priva
 Route::get('get_privacy_and_policy','PrivacyAndPolicyController@get_privacy_and_policy');
 Route::post('update_privacy_and_policy','PrivacyAndPolicyController@update_privacy_and_policy');
 Route::post('delete_privacy_and_policy','PrivacyAndPolicyController@delete_privacy_and_policy');
+Route::post('privacy_policy_front_page','PrivacyAndPolicyController@privacy_policy_front_page');
 
 //term_and_condition
 Route::get('Edit_term_and_condition/{id}','TermsAndConditionsController@Edit_term_and_condition');
@@ -177,6 +178,7 @@ Route::get('term_and_condition_list','TermsAndConditionsController@term_and_cond
 Route::post('Update_term_and_condition','TermsAndConditionsController@Update_term_and_condition');
 Route::post('delete_TermsandConditions','TermsAndConditionsController@delete_TermsandConditions');
 Route::post('add_term_and_condition','TermsAndConditionsController@add_term_and_condition');
+Route::post('term_and_condition_front_page','TermsAndConditionsController@term_and_condition_front_page');
 
 Route::get('show_articals/{id}','Admin\PostsController@show');
 Route::get('show_videos/{id}','Admin\VideoController@show');

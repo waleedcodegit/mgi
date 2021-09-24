@@ -18,7 +18,7 @@ class Footer extends Component {
         <div className="col-md-2 col-sm-3"></div>
         <div className="col-md-4 col-sm-6">
           <ul className="footer-list">
-            <li><a href="/subsciption">Subscription</a></li>
+            <li><a href="/subscription">Subscription</a></li>
             <li><a href="/term-and-condition">Terms &amp; Condition</a></li>
             <li>Social Media</li>
             <li><a href="/tournament">Tournament</a></li>

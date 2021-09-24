@@ -69,7 +69,7 @@ class SignUpStepOne extends Component {
                                         <div className="item">
                                             <label>
                                             <span>Email <i>*</i></span>
-                                            <input type="text" name="first name" className="form-input" onChange={this.getEmail.bind(this)} />
+                                            <input type="email" name="first name" className="form-input" onChange={this.getEmail.bind(this)} />
                                             </label>
                                         </div>
                                         </div>

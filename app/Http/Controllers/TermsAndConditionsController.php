@@ -65,5 +65,15 @@ class TermsAndConditionsController extends Controller
         ];
         return $response;
     }
+
+    public function term_and_condition_front_page() {
+        $termandcondition = TermAndCondition::find(1);
+        $response = [
+            'msg'=> 'privacy & Policy', 
+            'status'=> 200,
+            'term'=>  $termandcondition
+        ];
+        return $response;
+   }
     
 }

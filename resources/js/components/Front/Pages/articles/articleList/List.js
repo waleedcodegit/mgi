@@ -68,7 +68,7 @@ class List extends Component {
                         </div> 
                         <div className="row">
                             <div className="col-md-3 ">
-                            <a href="articles-detail.html" className="btn-more">
+                            <a href="#" className="btn-more">
                                 See More
                             </a>
                             </div>

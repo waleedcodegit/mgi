@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function form_one_validation(Request $request) {
         $validator = Validator::make($request->all(), [
-            'email' => 'required',
+            'email' => 'required|email',
             'password' => 'required',
             'confirm_password' => 'required|same:password',
         ]);
@@ -25,12 +25,14 @@ class UserController extends Controller
                 'message' => $validator->errors()->first(),
                 'errors' => $validator->errors()     
             ]);
+        } else {
+            return response()->json([
+                'status' => 200,
+                'message' => 'validation',
+            ]);
         }
 
-        return response()->json([
-            'status' => 200,
-            'message' => 'validation',
-        ]);
+        
     }
 
     public function form_secound_validation(Request $request) {
@@ -50,12 +52,14 @@ class UserController extends Controller
                 'message' => $validator->errors()->first(),
                 'errors' => $validator->errors()     
             ]);
+        } else {
+            return response()->json([
+                'status' => 200,
+                'message' => 'validation',
+            ]);
         }
 
-        return response()->json([
-            'status' => 200,
-            'message' => 'validation',
-        ]);
+        
     }
 
 

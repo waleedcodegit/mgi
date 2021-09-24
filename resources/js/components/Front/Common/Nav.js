@@ -77,6 +77,7 @@ class Nav extends Component {
                       <span className="icon-bar" />
                       <span className="icon-bar" />
                     </button>
+                    <div class="right-bar">
                     <nav className="navbar">
                       <div className="collapse navbar-collapse" id="team-menu">
                         <ul className="main-menu nav">
@@ -189,6 +190,7 @@ class Nav extends Component {
                         </div>
                       </div> 
                     </nav>
+                    </div>
                   </div>
                 </div>
             </div>

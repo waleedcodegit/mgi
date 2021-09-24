@@ -23,7 +23,7 @@ class Index extends Component {
                 '/articles',
                 '/videos',
                 '/signup',
-                '/subsciption',
+                '/subscription',
                 '/login',
                 '/enrollment/:id',
                 '/profile',
@@ -57,7 +57,7 @@ class Index extends Component {
                         <Route  path='/videos' component={FrontIndex}></Route>
                         <Route  path='/login' component={FrontIndex}></Route>
                         <Route  path='/signup' component={FrontIndex}></Route>
-                        <Route  path='/subsciption' component={FrontIndex}></Route>
+                        <Route  path='/subscription' component={FrontIndex}></Route>
                         <Route  path='/enrollment/:id' component={FrontIndex}></Route>
                         <Route  path='/profile' component={FrontIndex}></Route>
                         <Route  path='/privacy' component={FrontIndex}></Route>

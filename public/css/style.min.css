@@ -17649,17 +17649,17 @@ body.admin-bar .is-sticky .main-menu-wrap {
     color: #000
 }
 
-.main-menu-wrap .custom-logo-link:before {
+/* .main-menu-wrap .custom-logo-link:before {
     content: '';
     background-color: none;
     top: 0;
     bottom: 0;
-    right: -75%;
+    right: -20%;
     left: -10000%;
     position: absolute;
     transform: skew(-10deg);
     z-index: 0
-}
+} */
 
 .main-menu-wrap .custom-logo-link img {
     margin: auto 0;
@@ -40003,3 +40003,19 @@ display: block;
 		background: #000;
 }
 	}
+
+    .main-menu-wrap .custom-logo-link:before {
+        content: '';
+        background-color: none;
+        top: 0;
+        bottom: 0;
+        right: -20%;
+        left: -10000%;
+        position: absolute;
+        transform: skew(-10deg);
+        z-index: 0
+    }
+    .right-bar{
+            float: right;
+        width: 92%;
+    }

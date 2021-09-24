@@ -93,7 +93,7 @@ class TeamController extends Controller
 
     public function team_detail(Request $request) {
         $team = Team::where('id', $request->id)->first();
-        $team->team_user = ListUserTeams::where('team_id', $request->id)->with('user')->get();
+        $team->team_user = ListUserTeams::where('team_id', $request->id)->where('status', 1)->with('user')->get();
         $response = [
             'status' => 200,
             'msg' => 'Team Detail',

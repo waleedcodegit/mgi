@@ -30,7 +30,7 @@ class subsciption extends Component {
                     <div className="row">
                         <div className="customer-info">
                         <div className="row">
-                            <h4>Select Subsciption</h4>
+                            <h4>Select Subscription</h4>
 
 
                         

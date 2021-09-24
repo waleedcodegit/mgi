@@ -68,12 +68,12 @@ class VideoController extends Controller
     }
 
     public function get_videos(){
-        $video = Video::limit(3)->where('delete_status',0)->limit(3)->get();
+        $video = Video::where('delete_status',0)->limit(3)->latest()->get();
         return $video;
     }
 
     public function get_videos_list(){
-        $video = Video::limit(6)->where('delete_status',0)->limit(6)->get();
+        $video = Video::where('delete_status',0)->limit(6)->get();
         return $video;
     }
     public function show($id){

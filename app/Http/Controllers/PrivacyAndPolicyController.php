@@ -72,7 +72,14 @@ class PrivacyAndPolicyController extends Controller
        ];
        return $response;
    }
-    
-    
-        
+
+   public function privacy_policy_front_page() {
+        $privacyAndPolicy = PrivacyAndPolicy::find(1);
+        $response = [
+            'msg'=> 'privacy & Policy', 
+            'status'=> 200,
+            'privacy'=>  $privacyAndPolicy
+        ];
+        return $response;
+   }    
 }

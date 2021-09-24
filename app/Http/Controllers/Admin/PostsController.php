@@ -62,7 +62,7 @@ class PostsController extends Controller
         return $posts;
     }
     public function get_feature_posts(){
-        $posts = Post::where('status','Public')->where('feature',1)->orderBy('id', 'DESC')->where('delete_status',0)->limit(3)->get();
+        $posts = Post::where('status','Public')->where('feature',1)->orderBy('id', 'DESC')->where('delete_status',0)->limit(3)->latest()->get();
         return $posts;
     }
 

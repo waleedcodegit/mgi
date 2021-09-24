@@ -73,22 +73,22 @@ class ArticalDetail extends Component {
                             <div className="item">
                                             <div className="row no-gutters row-eq-height">
                                                 <div className="col-md-12">
-                                                <a href="" className="article-wprapper">
+                                                <div className="article-wprapper">
                                                     <img src={img_base+this.state.image} value="image"alt="news-img" />
                                                     <div className="news-border">
-                                                    <div className="left-news">
+                                                    {/* <div className="left-news">
                                                         <span>News</span>
                                                     </div>
                                                     <div className="right-news">
                                                         <i className="fa fa-commenting" aria-hidden="true" />
                                                         <span>200</span>
+                                                    </div> */}
+                                                    <div className="artcle-text" style={{marginTop: "20px"}}>
+                                                        <span className="date" style={{color:"#fff"}} value="title" onChange=""><b>{this.state.title}</b></span>
+                                                        <span className="name" style={{color:"#fff"}} dangerouslySetInnerHTML={{__html:this.state.body}} value="body"></span>
                                                     </div>
-                                                    <div className="artcle-text">
-                                                        <span className="date" value="title" onChange="">{this.state.title}</span>
-                                                        <span className="name" dangerouslySetInnerHTML={{__html:this.state.body}} value="body"></span>
                                                     </div>
-                                                    </div>
-                                                </a>
+                                                </div>
                                                 </div>
                                             </div>                           
                                 </div>

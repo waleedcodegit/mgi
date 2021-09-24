@@ -40,7 +40,8 @@ class Index extends Component {
     constructor(props){
         super(props);
         this.state = {
-            loading:true
+            loading:true,
+            display:false
         }
     }
     componentDidMount(){
@@ -48,6 +49,11 @@ class Index extends Component {
             token: window.localStorage.getItem('mgltokenlogin')
           }
           Axios.post('/api/user_check_auth', senderdata).then(res => {
+              setTimeout(()=>{
+                this.setState({
+                    display:true
+                })
+              },5000)
             if (res.data.status == 200) {
                this.props.changeUser({is_login:true,data:res.data.user});
                 this.setState({
@@ -82,6 +88,25 @@ class Index extends Component {
                       </div>
                         :
                         <>
+                        {
+                            !this.state.display ?
+                        
+                         <div class="modal fade in" id="myModal" role="dialog" style={{display: "block"}}>
+                        <div class="modal-dialog">
+                        
+                          <div class="modal-content">
+                     
+                            <div class="modal-body">
+                             <div class="loader"></div>
+                            </div>
+                         
+                          </div>
+                          
+                        </div>
+                      </div>
+                      :
+                      null
+                      }
                             <Nav></Nav>
                                 
                                     
@@ -93,7 +118,7 @@ class Index extends Component {
                                     <Route path="/store" component={Store}></Route>
                                     <Route path="/login" component={Login}></Route>
                                     <Route path="/signup" component={SignUp}></Route>
-                                    <Route path="/subsciption" component={Subsciption}></Route>
+                                    <Route path="/subscription" component={Subsciption}></Route>
                                     <Route path="/enrollment/:id" component={Enrollment}></Route>
                                     <Route path="/profile" component={Profile}></Route>
                                     <Route path="/privacy" component={PrivacyPolicy}></Route>

@@ -112,7 +112,7 @@ class CreateTeam extends Component {
                                 <div className="col-md-12">
                                 <div className="item">
                                     <label>
-                                    <span>Add Team Logo/Icon <i>*</i></span>
+                                    <span>Add Team Logo/Icon</span>
                                     <input type="file" id="img" name="img" onChange={this.getImage.bind(this)} />
                                     </label>
                                 </div>
