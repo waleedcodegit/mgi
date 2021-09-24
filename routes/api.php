@@ -153,6 +153,11 @@ Route::post('get_user_enroll_tournament','Front\TournamentController@get_user_en
 
 Route::post('enrollment_check','User\EnrollmentController@enrollment_check');
 Route::post('create_enrollment','User\EnrollmentController@create_enrollment');
+Route::post('get_enrollments','User\EnrollmentController@get_enrollments');
+Route::post('get_enrollments','User\EnrollmentController@get_enrollments');
+Route::post('delete_enrollments','User\EnrollmentController@delete_enrollments');
+
+Route::get('get_enrollments','User\UserController@get_enrollments');
 
 
 // Subscription Api

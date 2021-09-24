@@ -13,6 +13,7 @@ class Profile extends Component {
             team_image: '',
             team_name: '',
             
+            
         }
 
         if(!this.props.user.is_login) {
@@ -27,7 +28,7 @@ class Profile extends Component {
             })
         })
 
-        Axios.post('/api/get_user_team',{id:this.props.user.data.id}).then(res=>{
+        Axios.post('/api/get_user_team',{id:this.props.user.data.id}).then(res=>{          
             this.setState({
                 team_image: res.data.team.image,
                 team_name: res.data.team.title
@@ -50,7 +51,7 @@ class Profile extends Component {
                         </div>
                         <div className="col-md-2 col-sm-4">
                             <div className="profile-img">
-                            <img src="/images/common/stuff-person.jpg" />
+                            <img src={img_base+this.props.user.data.image}/>
                             </div>
                         </div>
                         <div className="col-md-10 col-sm-8">

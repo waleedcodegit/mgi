@@ -139,7 +139,7 @@ class Nav extends Component {
                                   <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <div className="profile-dr-sec">
                                       <div className="pr-image">
-                                        <img src="/images/common/quote-author.jpg" />
+                                        <img src={img_base+this.props.user.data.image} />
                                       </div>
                                       <div className="pr-text">
                                         <h3>{this.props.user.data.first_name}</h3>

@@ -363,8 +363,7 @@ class Setting extends Component {
                                             <label className="css-g0mr223 css-wjd590">Password</label>
                                             <input value="" className="css-1l4244b0 css-13owws" ></input>
                                         </div> */}
-                                            <a className="css-1khann70 css-1khann72 css-1jau80d">
-                                            Change email</a></div>
+                                           </div>
                                         <div className="css-g0mr222 css-gx84ul">                  
                                             <a className="css-1khann70 css-1khann72 css-1jau80d">Change password</a>
                                         </div>
