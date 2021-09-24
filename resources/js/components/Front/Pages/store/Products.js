@@ -45,7 +45,7 @@ class Products extends Component {
                                                     <span className="name">{data.name}</span>
                                                     <span className="price">$ {data.cheep_varient.price}</span>	
                                                     <div className="btn-wrap">
-                                                        <button className="btn small"><a href="cart.html">add to cart</a></button>
+                                                        {/* <button className="btn small"><a href="cart.html">add to cart</a></button> */}
                                                         <button className="btn small"><a href={`/product-detail/${data.id}`}>Details</a></button>
                                                     </div>
                                                 </div>

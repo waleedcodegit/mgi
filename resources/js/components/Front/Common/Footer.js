@@ -1,7 +1,29 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
 
 class Footer extends Component {
+  constructor(props) {
+    super(props);
+    this.state={
+        facebook_link:'',
+        twitter_link:'',
+        linkedin_link:'',
+        youtube_link:'',
+        gaming_link:'',
+    }
+}
+componentDidMount(){
+    Axios.get('/api/websettings').then(res=>{
+        this.setState({
+            facebook_link:res.data.websettings.facebook_link,
+            twitter_link:res.data.websettings.twitter_link,
+            linkedin_link:res.data.websettings.linkedin_link,
+            youtube_link:res.data.websettings.youtube_link,
+            gaming_link:res.data.websettings.gaming_link,
+        })
+    })
+}
     render() {
         return (
             <div>
@@ -48,11 +70,11 @@ class Footer extends Component {
       </div>
       <div className="col-md-3 col-sm-6">
         <ul className="socials">
-          <li><a href="#"><i className="fa fa-facebook" aria-hidden="true" /></a></li>
-          <li><a href="#"><i className="fa fa-twitter" aria-hidden="true" /></a></li>
-          <li><a href="#"><i className="fa fa-linkedin" aria-hidden="true" /></a></li>
-          <li><a href="#"><i className="fa fa-youtube" aria-hidden="true" /></a></li>
-          <li><a href="#"><i className="fa fa-reddit-alien" aria-hidden="true" /></a></li>
+          <li><a href={this.state.facebook_link}><i className="fa fa-facebook" aria-hidden="true" /></a></li>
+          <li><a href={this.state.twitter_link}><i className="fa fa-twitter" aria-hidden="true" /></a></li>
+          <li><a href={this.state.linkedin_link}><i className="fa fa-linkedin" aria-hidden="true" /></a></li>
+          <li><a href={this.state.youtube_link}><i className="fa fa-youtube" aria-hidden="true" /></a></li>
+          <li><a href={this.state.gaming_link}><i className="fa fa-reddit-alien" aria-hidden="true" /></a></li>
         </ul>
       </div>
     </div>

@@ -9,6 +9,7 @@ use App\User;
 use App\user_social_link;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use App\user_social_link;
 
 class UserController extends Controller
 {
@@ -83,6 +84,10 @@ class UserController extends Controller
                 $user->country = $request->secound_form['country'];
                 $user->gender = $request->secound_form['gender'];
                 $user->save();
+
+                $social = new user_social_link();
+                $social->user_id = $user->id;
+                $social->save();
 
                 $meta_check = UserAuthMeta::where('user_id',$user->id)
                                     ->where('ip',$request->ip())
