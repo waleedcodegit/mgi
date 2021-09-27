@@ -44,6 +44,7 @@ Route::post('get-change-banner-ads','Admin\PostsController@get_change_banner_ads
 
 Route::post('add_product','Admin\StoreController@add_product');
 Route::post('get_all_products','Admin\StoreController@get_all_products');
+Route::get('get_all_products_counter','Admin\StoreController@get_all_products_counter');
 Route::post('get_product_images','Admin\StoreController@get_product_images');
 Route::post('add_product_img','Admin\StoreController@add_product_img');
 Route::post('delete_produc_img','Admin\StoreController@delete_produc_img');
@@ -154,10 +155,17 @@ Route::post('get_user_enroll_tournament','Front\TournamentController@get_user_en
 Route::post('enrollment_check','User\EnrollmentController@enrollment_check');
 Route::post('create_enrollment','User\EnrollmentController@create_enrollment');
 Route::post('get_enrollments','User\EnrollmentController@get_enrollments');
-Route::post('get_enrollments','User\EnrollmentController@get_enrollments');
+Route::post('get_tournament_enroll_user','User\EnrollmentController@get_tournament_enroll_user');
 Route::post('delete_enrollments','User\EnrollmentController@delete_enrollments');
 
-Route::get('get_enrollments','User\UserController@get_enrollments');
+
+
+
+Route::get('get_all_users','User\UserController@get_all_users');
+Route::get('get_onsubscription_users','User\UserController@get_onsubscription_users');
+Route::get('get_withoutsubscription_users','User\UserController@get_withoutsubscription_users');
+Route::get('get_all_users_counter','User\UserController@get_all_users_counter');
+
 
 
 // Subscription Api
@@ -226,6 +234,9 @@ Route::post('get_watchstream','WatchStreamController@get_watchstream');
 Route::post('get_watchstream_by_id','WatchStreamController@get_watchstream_by_id');
 Route::post('delete_watchstream','WatchStreamController@delete_watchstream');
 
+
+Route::post('leave_team','Front\TeamController@leave_team');
+Route::post('KickOut','Front\TeamController@KickOut');
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

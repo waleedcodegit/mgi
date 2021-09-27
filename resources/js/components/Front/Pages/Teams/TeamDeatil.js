@@ -11,17 +11,21 @@ class TeamDeatil extends Component {
             title: '',
             type: '',
             image: '',
+            user_id:'',
             userList: []
         }
     }
 
     componentDidMount() {
         Axios.post('/api/team-detail',{id:this.props.match.params.id}).then(res=>{
+            console.log(res);
             this.setState({
                 title: res.data.team_detail.title,
                 type: res.data.team_detail.type,
                 image: res.data.team_detail.image,
-                userList: res.data.team_detail.team_user
+                userList: res.data.team_detail.team_user,
+                // userList: res.data.team_detail.team_user,
+                user_id: res.data.team_detail.user_id,
             })
         })
     }
@@ -51,6 +55,14 @@ class TeamDeatil extends Component {
             }
         })
     }
+    leaveteam(id){
+        let senderdata={
+          id:id
+        }
+        Axios.post('/api/leave_team',senderdata).then(res=>{
+           this.componentDidMount();
+        });
+       }
     render() {
         return (
 
@@ -71,6 +83,15 @@ class TeamDeatil extends Component {
                                     <div className="col-md-4">
                                         <div className="join-team-btn">
                                             <a className="pointer" onClick={this.joinTeam.bind(this)}>Join Team</a>
+                                        </div>
+                                        <div className="join-team-btn">
+                                               {
+                                                 this.props.user.data.id != this.state.user_id ? 
+                                                <a className="pointer" onClick={this.leaveteam.bind(this,this.props.user.data.id)}>Leave Team</a>
+                                                 : 
+                                                 null
+                                                 }
+                                            
                                         </div>
                                     </div>
                                     <div className="col-md-3">
@@ -127,6 +148,15 @@ class TeamDeatil extends Component {
                                                                     </td>
                                                                 <td>{data.user.first_name}</td>
                                                                 <td>{data.user.last_name}</td>
+                                                                {/* <td>
+                                                                    {
+                                                                        this.props.user.data.id  != data.userList.user_id ? 
+                                                                                <button  className="" onClick={this.leaveteam.bind(this,data.id,index)}>Out</button>
+                                                                   :  <button  className="" onClick={this.leaveteam.bind(this,data.id,index)}>Leader</button>
+                                                                }
+                                                                   </td> */}
+                                                                
+                                                                
                                                             </tr>
                                                         )
                                                     })

@@ -301,4 +301,13 @@ class StoreController extends Controller
         ];
         return $response;
     }
+    public function get_all_products_counter(){
+        $product  = Product::where('delete_status',0)->count();
+        $response = [ 
+            'msg'=>'product Sent',
+            'status'=>'200',
+            'Product'=> $product
+        ];
+        return $response;
+    }
 }

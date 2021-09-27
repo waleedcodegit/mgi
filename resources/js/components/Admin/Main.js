@@ -26,9 +26,9 @@ import GamesList from '../Admin/Games/List';
 import EditGame from '../Admin/Games/Edit';
 
 import SliderImages from '../Admin/Websettings/SliderImages';
-import PrivacyPolicy from '../Admin/Websettings/PrivacyPolicy';
+import PrivacyAndPolicyList from '../Admin/Websettings/PrivacyAndPolicy';
 import SocialLinks from '../Admin/Websettings/SocialMedia';
-import TermsConditions from '../Admin/Websettings/TermsConditions';
+import TermAndConditionList from '../Admin/Websettings/TermAndCondition';
 import CreateSubAdmins from '../Admin/SubAdmins/Create';
 import EditAdmins from '../Admin/SubAdmins/Edit';
 import SubAdmins from '../Admin/SubAdmins/List';
@@ -39,6 +39,8 @@ import TournamentInfo from './Tournament/Index';
 import TournamentList from './Tournament/List';
 import EditTournament from './Tournament/EditTournament';
 import EditFeilds from './Tournament/EditTournament';
+import TodayTournaments from './Tournament/TodayTournaments';
+import TournamentsofOngoingWeek from './Tournament/TournamentsOngoingweek';
 
 import CreateBanner from '../Admin/Banner/create';
 import BannersList from '../Admin/Banner/list';
@@ -49,9 +51,9 @@ import SubscriptionList from '../Admin/Subscription/list';
 import EditSubscription from '../Admin/Subscription/Edit';
 import EditPrivacyAndPolicy from '../Admin/PrivacyAndPolicy/Edit';
 import CreatePrivacyAndPolicy from '../Admin/PrivacyAndPolicy/Create';
-import PrivacyAndPolicyList from '../Admin/PrivacyAndPolicy/List';
+
 import EditTermAndCondition from '../Admin/TermAndCondition/Edit';
-import TermAndConditionList from '../Admin/TermAndCondition/list';
+
 import CreateTermAndCondition from '../Admin/TermAndCondition/Create';
 
 import UserEnrolledsList from '../Admin/UserEnrolled/List';
@@ -69,6 +71,11 @@ import EditAnnouncement from '../Admin/Announcements/edit';
 import CreateWatchstream from '../Admin/Watchstream/create';
 import WatchstreamList from '../Admin/Watchstream/list';
 import EditWatchstream from '../Admin/Watchstream/edit';
+
+
+import UsersList from '../Admin/Users/UsersList';
+import OnSubscriptionUsers from '../Admin/Users/OnSubscriptionUsers';
+import WithOutSubscriptionUsers from '../Admin/Users/WithOutSubscriptionUsers';
 
 
 import props from 'prop-types';
@@ -123,8 +130,8 @@ class Main extends Component {
                         <Route path="/adminpanel/games-list" component={GamesList}></Route>
                         <Route path="/adminpanel/edit-game/:id" component={EditGame}></Route>
                         <Route path="/adminpanel/slider-images" component={SliderImages}></Route>
-                        <Route path="/adminpanel/privacy-policy" component={PrivacyPolicy}></Route>
-                        <Route path="/adminpanel/terms-and-conditions" component={TermsConditions}></Route>
+                        <Route path="/adminpanel/privacyandpolicy-list" component={PrivacyAndPolicyList}></Route>
+                        <Route path="/adminpanel/term-and-condition-list" component={TermAndConditionList}></Route>
                         <Route path="/adminpanel/social-media-links" component={SocialLinks}></Route>
                         <Route path="/adminpanel/add-admin" component={CreateSubAdmins}></Route>
                         <Route path="/adminpanel/admins" component={SubAdmins}></Route>
@@ -133,6 +140,9 @@ class Main extends Component {
                         <Route path="/adminpanel/tournament-create" component={TournamentInfo}></Route>
                         <Route path="/adminpanel/tournament-list" component={TournamentList}></Route>
                         <Route path="/adminpanel/edit-tournament/:id" component={EditTournament}></Route>
+                        <Route path="/adminpanel/today-tournaments" component={TodayTournaments}></Route>
+                        <Route path="/adminpanel/tournaments-ongoingweek" component={TournamentsofOngoingWeek}></Route>
+
                         <Route path="/adminpanel/edit-fields/:id" component={EditFeilds}></Route>
                         <Route path="/adminpanel/add-banner" component={CreateBanner}></Route>
                         <Route path="/adminpanel/banners-list" component={BannersList}></Route>
@@ -141,14 +151,14 @@ class Main extends Component {
 
                         <Route path="/adminpanel/edit-privacyandpolicy/:id" component={EditPrivacyAndPolicy}></Route>
                         <Route path="/adminpanel/create-privacyandpolicy" component={CreatePrivacyAndPolicy}></Route>
-                        <Route path="/adminpanel/privacyandpolicy-list" component={PrivacyAndPolicyList}></Route>
+                        
 
 
                         <Route path="/adminpanel/add-subscription" component={CreateSubscription}></Route>
                         <Route path="/adminpanel/subscriptions-list" component={SubscriptionList}></Route>
                         <Route path="/adminpanel/edit-subscriptions/:id" component={EditSubscription}></Route>
 
-                        <Route path="/adminpanel/term-and-condition-list" component={TermAndConditionList}></Route>
+                       
                         <Route path="/adminpanel/edit-term_and_condition/:id" component={EditTermAndCondition}></Route>
                         <Route path="/adminpanel/create-term_and_condition" component={CreateTermAndCondition}></Route>
 
@@ -165,6 +175,10 @@ class Main extends Component {
                         <Route path="/adminpanel/create-watchstream" component={CreateWatchstream}></Route>
                         <Route path="/adminpanel/watchstream-list" component={WatchstreamList}></Route>
                         <Route path="/adminpanel/edit-watchstream/:id" component={EditWatchstream}></Route>
+
+                        <Route path="/adminpanel/users-list" component={UsersList}></Route>
+                        <Route path="/adminpanel/onsubscription-users" component={OnSubscriptionUsers}></Route>
+                        <Route path="/adminpanel/withoutsubscription-users" component={WithOutSubscriptionUsers}></Route>
 
 
                         

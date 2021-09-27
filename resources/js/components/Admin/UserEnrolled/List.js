@@ -17,7 +17,7 @@ class List extends Component {
     
     componentDidMount(){
         Axios.post('/api/get_enrollments').then(res=>{
-            console.log(res.data.enrollments);
+            // console.log(res.data.enrollments);
             this.setState({
                 is_display:true,
                 enrollments:res.data.enrollments

@@ -93,7 +93,7 @@ class TeamController extends Controller
 
     public function team_detail(Request $request) {
         $team = Team::where('id', $request->id)->first();
-        $team->team_user = ListUserTeams::where('team_id', $request->id)->where('status', 1)->with('user')->get();
+        $team->team_user = ListUserTeams::where('team_id', $request->id)->where('status', 1)->where('leaveORexit',0)->where('kickOut',0)->with('user')->get();
         $response = [
             'status' => 200,
             'msg' => 'Team Detail',
@@ -209,5 +209,27 @@ class TeamController extends Controller
                 ];
                 return $response;
             }
+        }
+        public function leave_team(Request $request){
+            $team = ListUserTeams::where('user_id', $request->id)->update([
+                'LeaveORexit' => true,
+               
+            ]);
+            $response = [
+                'status' => 200,
+                'msg' => 'Leave'
+            ];
+            return $response;
+        }
+        public function KickOut(Request $request){
+            $team = ListUserTeams::where('user_id', $request->id)->update([
+                'kickOut' => true,
+               
+            ]);
+            $response = [
+                'status' => 200,
+                'msg' => 'KickOut'
+            ];
+            return $response;
         }
 }

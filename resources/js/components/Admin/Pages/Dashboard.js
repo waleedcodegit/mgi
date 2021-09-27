@@ -1,7 +1,34 @@
 import React, { Component } from 'react';
 import {backend_images} from '../../Configs/baseUrls';
+import Axios from 'axios';
 
 class Dashboard extends Component {
+    constructor(props) {
+        super(props);
+        this.state={
+            User:[],
+            Product:[],
+            msg:'',
+            is_display: false
+        }
+    }
+    componentDidMount(){
+        Axios.get('/api/get_all_users_counter').then(res=>{
+            
+            this.setState({
+                User:res.data.User,
+                is_display: true
+            })
+            
+        })
+        Axios.get('/api/get_all_products_counter').then(res=>{
+            console.log(res);
+            this.setState({
+                Product:res.data.Product,
+                is_display:true
+            })
+        })
+    }
     render() {
         return (
             <div>
@@ -14,8 +41,8 @@ class Dashboard extends Component {
                                 <div className="row ">
                                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                     <div className="card-content">
-                                        <h5 className="font-15">New Booking</h5>
-                                        <h2 className="mb-3 font-18">258</h2>
+                                        <h5 className="font-15">Users Counter</h5>
+                                        <h2 className="mb-3 font-18">{this.state.User}</h2>
                                         <p className="mb-0"><span className="col-green">10%</span> Increase</p>
                                     </div>
                                     </div>
@@ -36,8 +63,8 @@ class Dashboard extends Component {
                                 <div className="row ">
                                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                     <div className="card-content">
-                                        <h5 className="font-15"> Customers</h5>
-                                        <h2 className="mb-3 font-18">1,287</h2>
+                                        <h5 className="font-15">Products</h5>
+                                        <h2 className="mb-3 font-18">{this.state.Product}</h2>
                                         <p className="mb-0"><span className="col-orange">09%</span> Decrease</p>
                                     </div>
                                     </div>

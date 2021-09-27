@@ -29,7 +29,8 @@ class App extends Component {
         is_announcements:true,
         is_watchstream:true,
         is_userenrolled:true,
-        is_subscription: true
+        is_subscription: true,
+        is_users:true,
         // is_display: false
     }
 }
@@ -136,8 +137,9 @@ class App extends Component {
                       <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="watch" /><span>Manage Tournamets</span></a>
                       <ul className="dropdown-menu">
                         <li><Link to="/adminpanel/tournament-create">Create</Link></li>
-                        {/* <li><Link to="/adminpanel/edit-tournament">Edit</Link></li> */}
-                        <li><Link to="/adminpanel/tournament-list">List</Link></li>
+                        <li><Link to="/adminpanel/today-tournaments">Today Tournaments</Link></li>
+                        <li><Link to="/adminpanel/tournaments-ongoingweek">Tournaments of Ongoing Week</Link></li>
+                        <li><Link to="/adminpanel/tournament-list">All Tournaments</Link></li>
                       </ul>
                     </li>
                     : '' 
@@ -229,8 +231,8 @@ class App extends Component {
                       <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="chrome" /><span>Web Settings</span></a>
                       <ul className="dropdown-menu">
                         {/* <li><Link to="/adminpanel/slider-images">Slider Images</Link></li> */}
-                        {/* <li><Link to="/adminpanel/privacy-policy">Privacy & Policy</Link></li> */}
-                        {/* <li><Link to="/adminpanel/terms-and-conditions">Terms & Conditions</Link></li> */}
+                        <li><Link to="/adminpanel/privacyandpolicy-list">Privacy And Policy</Link></li>
+                        <li><Link to="/adminpanel/term-and-condition-list">Term And Condition</Link></li>
                         <li><Link to="/adminpanel/social-media-links">Social Links</Link></li>
                       </ul>
                     </li>
@@ -245,6 +247,17 @@ class App extends Component {
                       </ul>
                     </li>
                     : '' 
+                    }
+                     {this.state.is_users ?
+                    <li className={this.props.history.location.pathname == "/adminpanel/add-teams" || this.props.history.location.pathname == "/adminpanel/admins" ? "dropdown active": "dropdown"}>
+                      <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="watch" /><span>Users</span></a>
+                      <ul className="dropdown-menu">
+                      <li><Link to="/adminpanel/users-list">Users List</Link></li>
+                        <li><Link to="/adminpanel/onsubscription-users">On Subscription Users</Link></li>
+                        <li><Link to="/adminpanel/withoutsubscription-users">WithOut Subscription Users</Link></li>
+                      </ul>
+                    </li>
+                    : ''
                     }
                      {this.state.is_userenrolled ?
                     <li className={this.props.history.location.pathname == "/adminpanel/add-admin" || this.props.history.location.pathname == "/adminpanel/admins" ? "dropdown active": "dropdown"}>
@@ -267,30 +280,30 @@ class App extends Component {
                     : '' 
                     }
 
-                    {this.state.is_TermAndCondition?
+                    {/* {this.state.is_TermAndCondition?
                       <li className={this.props.history.location.pathname == "/adminpanel/terms-and-Conditions" || this.props.history.location.pathname == "/adminpanel/terms-and-Conditions-list" ? "dropdown active": "dropdown"}>
                         <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="shopping-bag" /><span>Terms & Conditions</span></a>
                         <ul className="dropdown-menu">
-                        {/* <li><Link to="/adminpanel/create-term_and_condition">Create</Link></li> */}
-                          {/* <li><Link to="/adminpanel/edit-term_and_condition/:id">Edit</Link></li> */}
+                        <li><Link to="/adminpanel/create-term_and_condition">Create</Link></li>
+                          <li><Link to="/adminpanel/edit-term_and_condition/:id">Edit</Link></li>
                           <li><Link to="/adminpanel/term-and-condition-list">List</Link></li>
                         </ul>
                       </li>
                      : ''
-                     }
+                     } */}
 
 
-                    {this.state.is_PrivacyAndPolicy?
+                    {/* {this.state.is_PrivacyAndPolicy?
                       <li className={this.props.history.location.pathname == "/adminpanel/privacy_and_policy" || this.props.history.location.pathname == "/adminpanel/privacy-and-policy-list" ? "dropdown active": "dropdown"}>
                         <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="filter" /><span>Privacy & Policy</span></a>
                         <ul className="dropdown-menu">
-                        {/* <li><Link to="/adminpanel/create-privacyandpolicy">Create</Link></li> */}
+                        <li><Link to="/adminpanel/create-privacyandpolicy">Create</Link></li>
                         <li><Link to="/adminpanel/privacyandpolicy-list">List</Link></li>
-                          {/* <li><Link to="/adminpanel/edit-privacyandpolicy">Edit</Link></li> */}
+                          <li><Link to="/adminpanel/edit-privacyandpolicy">Edit</Link></li>
                         </ul>
                       </li>
                      : ''
-                     }
+                     } */}
 
                     {this.state.is_subscription?
                       <li className={this.props.history.location.pathname == "/adminpanel/add-subscription" || this.props.history.location.pathname == "/adminpanel/subscriptions-list" ? "dropdown active": "dropdown"}>

@@ -43,7 +43,7 @@ class List extends Component {
                         <th>Sr</th>
                         <th>Name</th>
                         <th>Email</th>
-                        {/* <th>Address</th> */}
+                        <th>Phone#</th>
                         <th colSpan="2">Actions</th>
                     </tr>
                 </thead>
@@ -56,7 +56,7 @@ class List extends Component {
                                     <td>{index+1}</td>
                                     <td>{data.first_name + ' ' +data.last_name}</td>
                                     <td>{data.email}</td>
-                                    <td>{data.address}</td>
+                                    <td>{data.phone}</td>
                                     <td><Link to={`/adminpanel/edit-admin/${data.id}`}><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link>
                                     {/* <button className="btn btn-light" onClick={this.deleteAdmin.bind(this,data.id,index)}> <i  style={{color:'red'}}  className="fas fa-trash-alt"></i></button> */}
                                     <Link to={`/adminpanel/admin-rights/${data.id}`}> <button className="btn btn-warning">Manage Rights</button></Link>

@@ -74,6 +74,8 @@ Route::view('/adminpanel/change-ads-banner','admin');
 
 
 //Tournament Routes
+Route::view('/adminpanel/today-tournaments', 'admin');
+Route::view('/adminpanel/tournaments-ongoingweek', 'admin');
 Route::view('/adminpanel/tournament-create', 'admin');
 Route::view('/adminpanel/edit-tournament', 'admin');
 Route::view('/adminpanel/edit-tournament/{id}', 'admin');
@@ -102,6 +104,10 @@ Route::view('/adminpanel/edit-announcement/{id}','admin');
 Route::view('/adminpanel/create-watchstream','admin');
 Route::view('/adminpanel/watchstream-list','admin');
 Route::view('/adminpanel/edit-watchstream/{id}','admin');
+
+Route::view('/adminpanel/users-list','admin');
+Route::view('/adminpanel/onsubscription-users','admin');
+Route::view('/adminpanel/withoutsubscription-users','admin');
 
 Route::get('/{path?}', function () {
     return view('front');

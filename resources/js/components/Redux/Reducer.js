@@ -34,7 +34,7 @@ const reducer = (state = current_state, action) => {
             signUpFormOne:action.payload
         }
     }else if(action.type == 'CHANGE_SignUp_STEP'){
-        console.log(action.payload);
+        // console.log(action.payload);
         return {
             ...state,
             stepSignUp:action.payload

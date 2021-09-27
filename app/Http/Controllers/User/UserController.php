@@ -241,4 +241,40 @@ class UserController extends Controller
         ];
         return $response;
     }
+    public function get_all_users(){
+        $User  = User::where('is_delete',0)->get();
+        $response = [ 
+            'msg'=>'Users Sent',
+            'status'=>'200',
+            'User'=> $User
+        ];
+        return $response;
+    }
+    public function get_onsubscription_users(){
+        $User  = User::where('is_delete',0)->where('subscription',1)->get();
+        $response = [ 
+            'msg'=>'Users Sent',
+            'status'=>'200',
+            'User'=> $User
+        ];
+        return $response;
+    }
+    public function get_withoutsubscription_users(){
+        $User  = User::where('is_delete',0)->where('subscription',0)->get();
+        $response = [ 
+            'msg'=>'Users Sent',
+            'status'=>'200',
+            'User'=> $User
+        ];
+        return $response;
+    }
+    public function get_all_users_counter(){
+        $User  = User::where('is_delete',0)->count();
+        $response = [ 
+            'msg'=>'Users Sent',
+            'status'=>'200',
+            'User'=> $User
+        ];
+        return $response;
+    }
 }
