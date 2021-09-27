@@ -32,7 +32,7 @@ class Index extends Component {
                     display: true
                 }) 
             }
-          })
+        })
           
         
     }
@@ -89,7 +89,7 @@ class Index extends Component {
                                 </div>
                                 <div className="tab-pane" id="participants" role="tabpanel">
 
-                                    <Participants></Participants>
+                                    <Participants {...this.props}></Participants>
 
                                 </div>
                                 <div className="tab-pane" id="brackets" role="tabpanel">
@@ -104,7 +104,7 @@ class Index extends Component {
                                 </div> */}
                                 <div className="tab-pane" id="stats" role="tabpanel">
                                     
-                                    <Stats></Stats>
+                                    <Stats {...this.props}></Stats>
 
                                 </div>
                                 <div className="tab-pane" id="announcements" role="tabpanel">

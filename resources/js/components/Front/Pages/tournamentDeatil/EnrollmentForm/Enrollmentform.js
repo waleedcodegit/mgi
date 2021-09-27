@@ -80,6 +80,7 @@ class Enrollmentform extends Component {
                 tournament_id: this.props.match.params.id,
             }
             Axios.post('/api/create_enrollment',senderData).then(res=>{
+                console.log(res);
                     if(res.data.status == 200){
                         Swal.fire({
                             icon: 'success',
