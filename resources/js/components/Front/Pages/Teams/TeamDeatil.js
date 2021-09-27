@@ -111,6 +111,7 @@ class TeamDeatil extends Component {
                                                         <th>Image</th>
                                                         <th>First Name</th>
                                                         <th>Last Name</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 {
                                                     this.state.userList.map((data,index)=>{

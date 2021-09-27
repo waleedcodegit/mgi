@@ -12,8 +12,7 @@ class Profile extends Component {
             tournaments:[],
             team_image: '',
             team_name: '',
-            
-            
+            team_id: ''          
         }
 
         if(!this.props.user.is_login) {
@@ -31,7 +30,8 @@ class Profile extends Component {
         Axios.post('/api/get_user_team',{id:this.props.user.data.id}).then(res=>{          
             this.setState({
                 team_image: res.data.team.image,
-                team_name: res.data.team.title
+                team_name: res.data.team.title,
+                team_id: res.data.team.id
             })
         })
     }
@@ -163,7 +163,7 @@ class Profile extends Component {
                         <div className="col-md-4 col-sm-6">
                         {
                             this.state.team_name ?
-
+                        <a href={`/team-detail/${this.state.team_id}`}>
                             <div className="full-sec">
                                 <h2>Team 
                                 </h2>
@@ -185,7 +185,7 @@ class Profile extends Component {
                                 </div>
                                 </div>
                             </div>
-
+                        </a>
                         : 
                         
                             <div className="full-sec">
