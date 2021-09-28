@@ -27,11 +27,12 @@ class Profile extends Component {
             })
         })
 
-        Axios.post('/api/get_user_team',{id:this.props.user.data.id}).then(res=>{          
+        Axios.post('/api/get_user_team',{user_id:this.props.user.data.id}).then(res=>{ 
+            console.log(res);        
             this.setState({
-                team_image: res.data.team.image,
-                team_name: res.data.team.title,
-                team_id: res.data.team.id
+                team_image: res.data.team.team.image,
+                team_name: res.data.team.team.title,
+                team_id: res.data.team.team.id
             })
         })
     }

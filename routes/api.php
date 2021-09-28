@@ -236,7 +236,9 @@ Route::post('delete_watchstream','WatchStreamController@delete_watchstream');
 
 
 Route::post('leave_team','Front\TeamController@leave_team');
-Route::post('KickOut','Front\TeamController@KickOut');
+Route::post('kickout','Front\TeamController@kickout');
+Route::post('get_user_id','Front\TeamController@get_user_id');
+
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

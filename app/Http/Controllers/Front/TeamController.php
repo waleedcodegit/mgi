@@ -11,10 +11,10 @@ use App\ListUserTeams;
 class TeamController extends Controller
 {
     public function get_user_team(Request $request) {
-        $data = Team::where('user_id', $request->id)->first();
+        $data = ListUserTeams::where('user_id', $request->user_id)->where('status', 1)->with('team')->first();
         $response = [
             'status' => 200,
-            'msg' => 'Team Created',
+            'msg' => 'Team',
             'team' => $data
         ];
         return $response;
@@ -93,7 +93,7 @@ class TeamController extends Controller
 
     public function team_detail(Request $request) {
         $team = Team::where('id', $request->id)->first();
-        $team->team_user = ListUserTeams::where('team_id', $request->id)->where('status', 1)->where('leaveORexit',0)->where('kickOut',0)->with('user')->get();
+        $team->team_user = ListUserTeams::where('team_id', $request->id)->where('status', 1)->where('leave_user_team',0)->where('kick_out',0)->with('user')->get();
         $response = [
             'status' => 200,
             'msg' => 'Team Detail',
@@ -103,7 +103,7 @@ class TeamController extends Controller
     }
 
     public function join_team_request(Request $request) {
-        $userAlready = ListUserTeams::where('team_id', $request->team_id)->where('user_id', $request->user_id)->first();
+        $userAlready = ListUserTeams::where('team_id', $request->team_id)->where('user_id', $request->user_id)->where('status',1)->first();
         if($userAlready) {
             $response = [
                 'status' => 201,
@@ -124,7 +124,7 @@ class TeamController extends Controller
      
                     $response = [
                      'status' => 200,
-                     'msg' => 'User Add',
+                     'msg' => 'join Team',
                      ];
                      return $response;
                  } else {
@@ -211,24 +211,27 @@ class TeamController extends Controller
             }
         }
         public function leave_team(Request $request){
-            $team = ListUserTeams::where('user_id', $request->id)->update([
-                'LeaveORexit' => true,
-               
-            ]);
+            $team = ListUserTeams::where('user_id', $request->id)->delete();
             $response = [
                 'status' => 200,
                 'msg' => 'Leave'
             ];
             return $response;
         }
-        public function KickOut(Request $request){
-            $team = ListUserTeams::where('user_id', $request->id)->update([
-                'kickOut' => true,
-               
-            ]);
+        public function kickout(Request $request){
+            $team = ListUserTeams::where('user_id', $request->id)->delete();
             $response = [
                 'status' => 200,
                 'msg' => 'KickOut'
+            ];
+            return $response;
+        }
+        public function get_user_id(Request $request) {
+            $data = Team::where('user_id', $request->user_id)->where('status', 1)->with('team')->first();
+            $response = [
+                'status' => 200,
+                'msg' => 'user_id',
+                'team' => $data
             ];
             return $response;
         }
