@@ -136,7 +136,8 @@ Route::post('update-tournament-status','Admin\TournamentController@update_tourna
 Route::post('delete_tournament','Admin\TournamentController@delete_tournament');
 // Route::post('get_tournaments_by_id','Admin\TournamentController@get_tournaments_by_id');
 
-
+Route::post('get_tournament_chat_messages','Front\TournamentController@get_tournament_chat_messages');
+Route::post('send_tournament_chat_messages','Front\TournamentController@send_tournament_chat_messages');
 Route::post('get_user_enroll_tournament','Front\TournamentController@get_user_enroll_tournament');
 Route::post('get_tournament_with_game_id','Admin\TournamentController@get_tournament_with_game_id');
 
@@ -150,7 +151,7 @@ Route::post('/join-team-request', 'Front\TeamController@join_team_request');
 Route::post('/team_add_request', 'Front\TeamController@team_add_request');
 Route::post('/approve_team_request', 'Front\TeamController@approve_team_request');
 
-Route::post('get_user_enroll_tournament','Front\TournamentController@get_user_enroll_tournament');
+
 
 Route::post('enrollment_check','User\EnrollmentController@enrollment_check');
 Route::post('create_enrollment','User\EnrollmentController@create_enrollment');

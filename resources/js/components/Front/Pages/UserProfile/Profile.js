@@ -94,6 +94,7 @@ class Profile extends Component {
                             {
                                 this.state.tournaments.map((data,index)=>{
                                     return(
+                                        <a href={`/tournamentDetail/${data.id}`}>
                                         <div className="row" key={index}>
                                             <div className="col-md-3">
                                                 <div className="profile-img">
@@ -150,6 +151,7 @@ class Profile extends Component {
                                                 </div>
                                             </div>
                                         </div>
+                                        </a>
                                     )
                                 })
                             }

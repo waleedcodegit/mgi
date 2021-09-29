@@ -13,6 +13,8 @@ class Overview extends Component {
             watchstream:'',
             videolink:'',
             contact_details: '',
+            chat_messages: [],
+            message: '',
             chat_display: false
         }
     }
@@ -38,7 +40,44 @@ class Overview extends Component {
         })
     }
 
-    
+    componentWillMount() {
+        setInterval(()=>{
+            Axios.post('/api/get_tournament_chat_messages',{id:this.props.match.params.id}).then(res=>{
+                this.set_scroll();
+                this.setState({
+                    chat_messages: res.data.messages
+                })
+            })
+            this.set_scroll();
+        }, 5000)  
+    }
+
+    getMessage(e) {
+        this.setState({
+            message: e.target.value
+        })
+    }
+
+    sendMessage(e) {
+        e.preventDefault();
+        let senddata = {
+            message: this.state.message,
+            tournament_id:this.props.match.params.id,
+            sender_id:this.props.user.data.id
+        }
+
+        Axios.post('/api/send_tournament_chat_messages',senddata).then(res=>{
+            this.setState({
+                chat_messages: res.data.messages
+            })
+        })
+    }
+
+    set_scroll(){
+        var d = $('#messages_div');
+        d.scrollTop(d.prop("scrollHeight"));
+    }
+
     render() {
         return (
             <div>
@@ -60,28 +99,41 @@ class Overview extends Component {
                                 this.state.chat_display == true ? 
                                     <div className="col-md-12">
                                         <div className="mesgs-2 margin-top">
-                                            <div className="msg_history-2">
-                                                <div className="incoming_msg">
-                                                    <div className="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" /> </div>
-                                                    <div className="received_msg">
-                                                        <div className="received_withd_msg">
-                                                        <p>Test which is a new approach to have all
-                                                            solutions</p>
-                                                        <span className="time_date"> 11:01 AM    |    June 9</span></div>
-                                                    </div>
-                                                </div>
-                                                <div className="outgoing_msg">
-                                                    <div className="sent_msg">
-                                                        <p>Test which is a new approach to have all
-                                                        solutions</p>
-                                                        <span className="time_date"> 11:01 AM    |    June 9</span>
-                                                    </div>
-                                                </div>
+                                            <div className="msg_history-2" id="messages_div">
+                                                {
+                                                    this.state.chat_messages.map((data,index) => {
+                                                        return(
+                                                            <>
+                                                            {
+                                                                this.props.user.data.id == data.sender ?
+                                                                <div className="outgoing_msg">
+                                                                    <div className="sent_msg">
+                                                                        <p>{data.message}</p>
+                                                                        <span className="time_date"> {data.time}    |    {data.date}</span>
+                                                                    </div>
+                                                                </div>
+                                                                :
+                                                                <div className="incoming_msg">
+                                                                    <div className="incoming_msg_img"></div>
+                                                                    <div className="received_msg">
+                                                                        <div className="received_withd_msg">
+                                                                            <p>{data.message}</p>
+                                                                            <span className="time_date"> {data.time}    |    {data.date}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                            </>
+                                                            
+                                                        )
+                                                    })
+                                                }
+                        
                                             </div>
                                         <div className="type_msg">
                                             <div className="input_msg_write">
-                                            <input type="text" className="write_msg" placeholder="Type a message" />
-                                            <button className="msg_send_btn" type="button"><i className="fa fa-paper-plane-o" aria-hidden="true" /></button>
+                                            <input type="text" className="write_msg" placeholder="Type a message" onChange={this.getMessage.bind(this)} />
+                                            <button className="msg_send_btn" type="button" onClick={this.sendMessage.bind(this)}><i className="fa fa-paper-plane-o" aria-hidden="true" /></button>
                                             </div>
                                         </div>
                                     </div>
@@ -131,4 +183,10 @@ class Overview extends Component {
     }
 }
 
-export default Overview;
+const mapStateToProps=(state)=>{
+    return{
+        user:state.user
+    }
+}
+
+export default connect(mapStateToProps,null) (Overview);
