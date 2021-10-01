@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {img_base} from '../../../Configs/baseUrls';
 
 
-class Profile extends Component {
+class PublicProfile extends Component {
 
     constructor(props) {
         super(props);
@@ -12,23 +12,35 @@ class Profile extends Component {
             tournaments:[],
             team_image: '',
             team_name: '',
-            team_id: ''          
-        }
-
-        if(!this.props.user.is_login) {
-            window.open('/login', '_self');
+            team_id: '',
+            first_name: '',  
+            last_name: '',  
+            user_image: '',
+            country: '',
+            visitor_user_id: ''     
         }
     }
 
     componentDidMount(){
-        Axios.post('/api/get_user_enroll_tournament',{id:this.props.user.data.id}).then(res=>{
+        Axios.post('/api/get_user_profile',{id:this.props.match.params.id}).then(res=>{
+            if(res.data.status == 200) {
+                this.setState({
+                    first_name: res.data.data.first_name,
+                    last_name: res.data.data.last_name,
+                    country: res.data.data.country,
+                    user_image: res.data.data.image,
+                    visitor_user_id: res.data.data.id
+                })
+            }
+        })
+
+        Axios.post('/api/get_user_enroll_tournament',{id:this.props.match.params.id}).then(res=>{
             this.setState({
                 tournaments: res.data.data
             })
         })
 
-        Axios.post('/api/get_user_team',{user_id:this.props.user.data.id}).then(res=>{ 
-            console.log(res);        
+        Axios.post('/api/get_user_team',{user_id:this.props.match.params.id}).then(res=>{         
             this.setState({
                 team_image: res.data.team.team.image,
                 team_name: res.data.team.team.title,
@@ -36,9 +48,20 @@ class Profile extends Component {
             })
         })
     }
+    create_chat(e) {
+        let senddata = {
+            reciver_id: this.state.visitor_user_id,
+            sender_id: this.props.user.data.id
+        }
+        Axios.post('/api/create_chat_message',senddata).then(res=>{         
+            if(res.data.status == 200) {
+                window.open('/chat', '_self')
+            }
+        })
+
+    }
     render() {
         return (
-            
             <div>
                 <section className="image-header">
 
@@ -56,25 +79,26 @@ class Profile extends Component {
                         </div>
                         <div className="col-md-2 col-sm-4">
                             <div className="profile-img">
-                            <img src={img_base+this.props.user.data.image} className="img-up-thumb"/>
+                            <img src={img_base+this.state.user_image}/>
                             </div>
                         </div>
                         <div className="col-md-10 col-sm-8">
                             <div className="profile-sec">
                             <div className="row">
                                 <div className="col-md-5 col-sm-4 col-xs-12">
-                                <h3>{this.props.user.data.first_name} {this.props.user.data.last_name}</h3>
+                                <h3>{this.state.first_name} {this.state.last_name}</h3>
                                 {/* <img src="/images/common/usa-flag.png" /> */}
-                                <span> {this.props.user.data.country}</span>
+                                <span>{this.state.country}</span>
                                 </div>
                                 <div className="col-md-4 col-sm-8 col-xs-12">
                                 
                                 </div>
                                 <div className="col-md-3 col-xs-12">
                                 <div className="profile-buttons">
-                                    <a href="" className="btn-prf">
-                                        Inbox
+                                    <a onClick={this.create_chat.bind(this)} className="btn-prf">
+                                    Message
                                     </a>
+                                    
                                 </div>
                                 </div>
                                 
@@ -97,11 +121,11 @@ class Profile extends Component {
                             {
                                 this.state.tournaments.map((data,index)=>{
                                     return(
-                                        <a href={`/tournamentDetail/${data.id}`}>
+                                        
                                         <div className="row" key={index}>
                                             <div className="col-md-3">
                                                 <div className="profile-img">
-                                                    <img src={img_base+data.tournament.header_image} className="img-up-thumb" />
+                                                    <img src={img_base+data.tournament.header_image} />
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
@@ -154,7 +178,6 @@ class Profile extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                        </a>
                                     )
                                 })
                             }
@@ -169,7 +192,6 @@ class Profile extends Component {
                         <div className="col-md-4 col-sm-6">
                         {
                             this.state.team_name ?
-                        <a href={`/team-detail/${this.state.team_id}`}>
                             <div className="full-sec">
                                 <h2>Team 
                                 </h2>
@@ -177,43 +199,20 @@ class Profile extends Component {
                                 <div className="row padding-bt">
                                     <div className="col-md-5 col-sm-5">
                                     <div className="calnder-img">
-                                        <img src={img_base+this.state.team_image} className="img-up-thumb2" />
+                                        <img src={img_base+this.state.team_image} />
                                     </div>
                                     </div>
                                     <div className="col-md-7 col-sm-7">
                                     <div className="calnder-div">
                                         <h3>{this.state.team_name}</h3>
-                                        {/* <p> 26 members</p>
-                                        <span>Wins  20</span>
-                                        <h5>Loses 30</h5> */}
                                     </div>
                                     </div>
                                 </div>
                                 </div>
                             </div>
-                        </a>
                         : 
-                        
-                            <div className="full-sec">
-                                    <h2>Team 
-                                    </h2>
-                                    <div className="gems-section-vb">
-                                        <div className="row padding-bt">
-                                        <div className="create-btn">
-                                            <a href="/create-team">Create Team</a>
-                                        </div>
-                                        <div className="join-btn">
-                                            <a href="/join-team">Join Team</a>
-                                        </div>
-                                        </div>
-                                    </div>
-                            </div>
-
+                            null
                         }
-                        
-
-                            
-
                         </div>
                     </div>
                     </div>
@@ -242,4 +241,4 @@ const mapStateToProps=(state)=>{
     }
 }
 
-export default connect(mapStateToProps,null) (Profile);
+export default connect(mapStateToProps,null) (PublicProfile);

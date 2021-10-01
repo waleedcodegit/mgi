@@ -13,14 +13,14 @@
         {{-- <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}"> --}}
         <link rel="icon" href="{{asset('images/common/fav-icon.png')}}" type="image/x-icon">
         <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{asset('css/style.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('css/style.min-n.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('css/preloader-default.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('css/demo-switcher.css')}}" rel="stylesheet" type="text/css" />
     {{-- <link rel="stylesheet" href="{{asset('carousel.css')}}"/> --}}
         <!-- Styles -->
     </head>
-    <body class="esport-black modal-open">
-       <div id="root">
+    <body class="esport-black">
+       <div id="root" class="modal-open">
        </div>
     </body>
     <script src="{{asset('/js/app.js')}}"></script>

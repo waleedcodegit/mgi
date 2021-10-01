@@ -240,6 +240,12 @@ Route::post('leave_team','Front\TeamController@leave_team');
 Route::post('kickout','Front\TeamController@kickout');
 Route::post('get_user_id','Front\TeamController@get_user_id');
 
+// User Team Chat
+Route::post('create_chat_message','Front\UserChatController@create_chat_message');
+Route::post('get_all_user_chats','Front\UserChatController@get_all_user_chats');
+Route::post('get_user_chat_messages','Front\UserChatController@get_user_chat_messages');
+Route::post('user_message_sender','Front\UserChatController@user_message_sender');
+
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

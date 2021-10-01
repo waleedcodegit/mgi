@@ -83,7 +83,7 @@ class Overview extends Component {
             <div>
                 <div className="col-md-12 col-sm-12">
                             <div className="matches-over">
-                                <img src="/images/common/article-list.jpg" />
+                                <img src="/images/common/article-list.jpg" className="img-up-detail-thumb"/>
                                 <a href={"https://www.youtube.com/embed/"+this.state.videolink} target="_blank" className="btn-stream"><i className="fa fa-video-camera" aria-hidden="true" /> Watch Stream </a>
                             </div>
                             </div>

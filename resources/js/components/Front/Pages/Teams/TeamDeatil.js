@@ -177,8 +177,8 @@ class TeamDeatil extends Component {
                                                                         :
                                                                         <img src="/images/common/stuff-person.jpg" width={40} height={40} />
                                                                     }
-                                                                    </td>
-                                                                <td>{data.user.first_name}</td>
+                                                                </td>
+                                                                <td><a href={`/user-profile/${data.user.id}`}>{data.user.first_name}</a></td>
                                                                 <td>{data.user.last_name}</td>
                                                                 <td>
                                                                    {

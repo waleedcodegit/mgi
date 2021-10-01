@@ -110,10 +110,13 @@ class CreateTeam extends Component {
                                 </div>
                                 </div>
                                 <div className="col-md-12">
-                                <div className="item">
+                                <div class="calnder-img ad-image-new">
+				                    <img src="/images/common/placeholder.jpg" class="img-up-thumb2" />
+				                </div>
+                                <div className="item brse-img">
                                     <label>
                                     <span>Add Team Logo/Icon</span>
-                                    <input type="file" id="img" name="img" onChange={this.getImage.bind(this)} />
+                                    <input type="file" id="img" name="img" onChange={this.getImage.bind(this)} className="clg-img" />
                                     </label>
                                 </div>
                                 </div>

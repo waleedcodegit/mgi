@@ -170,7 +170,7 @@ class UserController extends Controller
         }                                                       
     }
     public function get_user_profile(Request $request) {
-        $data = User::find($request->id)->get();
+        $data = User::find($request->id);
         $response = [
                 'status' => 200,
                 'msg' => 'User profile', 

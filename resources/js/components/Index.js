@@ -40,7 +40,9 @@ class Index extends Component {
                 '/check-out',
                 '/support',
                 '/create-ticket',
-                '/ticket-detail/:id'
+                '/ticket-detail/:id',
+                '/user-profile/:id',
+                '/chat'
             ]
         }
     }
@@ -50,7 +52,7 @@ class Index extends Component {
                 <BrowserRouter>
                     <Switch>
                         <Route exact path='/' component={FrontIndex}></Route>
-                        <Route  path='/tournament' component={FrontIndex}></Route>
+                        {/* <Route  path='/tournament' component={FrontIndex}></Route>
                         <Route  path='/tournamentDetail/:id' component={FrontIndex}></Route>                        
                         <Route  path='/store' component={FrontIndex}></Route>
                         <Route  path='/articles' component={FrontIndex}></Route>
@@ -74,14 +76,16 @@ class Index extends Component {
                         <Route  path='/support' component={FrontIndex}></Route>
                         <Route  path='/create-ticket' component={FrontIndex}></Route>
                         <Route  path='/ticket-detail/:id' component={FrontIndex}></Route>
+                        <Route  path='/user-profile/:id' component={FrontIndex}></Route>
+                        <Route  path='/chat' component={FrontIndex}></Route> */}
                         
-                        {/* {
+                        {
                             this.state.paths.map((data, index)=>{
                                 return(
                                     <Route key={index} path={data} component={FrontIndex}></Route> 
                                 )
                             })
-                        } */}
+                        }
                         <Route  path="/adminpanel" component={AdminPanel}></Route>
                         <Route  path="/admin-login" component={AdminLogin}></Route>
                     </Switch>

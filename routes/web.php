@@ -82,17 +82,6 @@ Route::view('/adminpanel/edit-tournament/{id}', 'admin');
 // Route::view('/adminpanel/tournament-basic-details', 'admin');
 // Route::view('/adminpanel/tournament-info', 'admin');
 Route::view('/adminpanel/tournament-list', 'admin');
-//Front-end Routes
-Route::view('/tournamentDetail/{id}', 'front');
-Route::view('/productDetail/{id}', 'front');
-Route::view('/enrollment/{id}', 'front');
-Route::view('/artical-detail/{id}', 'front');
-Route::view('/video-detail/{id}', 'front');
-Route::view('/team-detail/{id}', 'front');
-Route::view('/product-detail/{id}', 'front');
-Route::view('/ticket-detail/{id}', 'front');
-
-
 Route::view('/adminpanel/create-brackets','admin');
 Route::view('/adminpanel/brackets-list','admin');
 Route::view('/adminpanel/edit-brackets/{id}','admin');
@@ -108,6 +97,21 @@ Route::view('/adminpanel/edit-watchstream/{id}','admin');
 Route::view('/adminpanel/users-list','admin');
 Route::view('/adminpanel/onsubscription-users','admin');
 Route::view('/adminpanel/withoutsubscription-users','admin');
+
+
+
+
+//Front-end Routes
+Route::view('/tournamentDetail/{id}', 'front');
+Route::view('/productDetail/{id}', 'front');
+Route::view('/enrollment/{id}', 'front');
+Route::view('/artical-detail/{id}', 'front');
+Route::view('/video-detail/{id}', 'front');
+Route::view('/team-detail/{id}', 'front');
+Route::view('/product-detail/{id}', 'front');
+Route::view('/ticket-detail/{id}', 'front');
+Route::view('/user-profile/{id}', 'front');
+
 
 Route::get('/{path?}', function () {
     return view('front');

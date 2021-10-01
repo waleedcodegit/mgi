@@ -27,14 +27,11 @@ import CheckOut from '../Pages/store/CheckOut/CheckOut';
 import Support from '../Pages/Support/Support';
 import CreateTicket from '../Pages/Support/CreateTicket';
 import TicketDetail from '../Pages/Support/TicketDetail';
+import PublicProfile from '../Pages/UserProfile/PublicProfile';
+import Chat from '../Pages/UserChat/Chat';
 
 import Axios from 'axios';
 import { connect } from 'react-redux';
-
-
-
-
-
 
 class Index extends Component {
     constructor(props){
@@ -108,8 +105,6 @@ class Index extends Component {
                       null
                       }
                             <Nav></Nav>
-                                
-                                    
                                     <Route exact path="/" component={Landing}></Route>
                                     <Route path="/tournament" component={Tournament}></Route>
                                     <Route path="/tournamentDetail/:id" component={TournamentDeatil}></Route>
@@ -135,7 +130,8 @@ class Index extends Component {
                                     <Route path="/support" component={Support}></Route>
                                     <Route path="/create-ticket" component={CreateTicket}></Route>
                                     <Route path="/ticket-detail/:id" component={TicketDetail}></Route>
-                                    
+                                    <Route path="/user-profile/:id" component={PublicProfile}></Route>
+                                    <Route path="/chat" component={Chat}></Route>    
                             <Footer></Footer>
                         </>
                     }

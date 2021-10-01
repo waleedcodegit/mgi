@@ -7,6 +7,9 @@ class Index extends Component {
     render() {
         return (  
             <div>
+                <section className="image-header">
+                    
+                </section>
                 <Banner></Banner>
                 <div className="tourna-sec">
                     <div className="container">

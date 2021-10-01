@@ -10,20 +10,34 @@ class Nav extends Component {
     super(props);
     this.state={
       display_drop_down: false,
+      display_cart_dot: false,
+      display_notification_dot: false,
       team_request_notification: []
     }
   }
 
   componentDidMount() {
-    
-  }
+    let senderdata = {
+        cart_cookie_id : window.localStorage.getItem('cart_cookie_id')
+    }
+    Axios.post('/api/get_cookie_session_cart',senderdata).then(res=>{
+        if(res.data.cart) {
+            if(res.data.cart.length > 0){
+                this.setState({
+                  display_cart_dot:true,
+                })
+            }
+        }
+    })
+}
 
   notification() {
     Axios.post('/api/team_add_request',{id:this.props.user.data.id}).then(res=>{
       if(res.data.status == 200){
           this.setState({
             team_request_notification: res.data.data,
-            display_drop_down: !this.state.display_drop_down
+            display_drop_down: !this.state.display_drop_down,
+            display_notification_dot: true
           })
       } else {
         this.setState({
@@ -87,11 +101,11 @@ class Nav extends Component {
                           <li>
                             <a href="/tournament"><span>Tournaments</span></a>
                           </li>
-                          <li><a href="/articles"><span>Media</span></a></li>
+                          <li><a href="/articles"><span>Articles</span></a></li>
                           <li><a href="/store"><span>Store</span></a></li>
                           
                           <li><a href="/support"><span>Support</span></a></li>
-                          <li className="cart full">
+                          <li className={this.state.display_cart_dot == true ? "cart full" : "cart"}>
                             <a href="/cart">
                               <span><i className="fa fa-shopping-cart" aria-hidden="true" /></span>
                             </a>
@@ -146,7 +160,7 @@ class Nav extends Component {
                                       </div>
                                     </div>
                                     <a className="dropdown-item" href="/profile"> <i className="fa fa-user" aria-hidden="true" />Profile</a>
-                                    <a className="dropdown-item" href="chat.html"> <i className="fa fa-commenting" aria-hidden="true" />Chat Massenger</a>
+                                    <a className="dropdown-item" href="/chat"> <i className="fa fa-commenting" aria-hidden="true" />Chat Massenger</a>
                                     <a className="dropdown-item" href="#"><i className="fa fa-credit-card-alt" aria-hidden="true" />Wallet</a>
                                     <a className="dropdown-item" href="/settings"><i className="fa fa-cog" aria-hidden="true" />Setting</a>
                                     <a className="dropdown-item log-end" onClick={this.logout.bind(this)}><i className="fa fa-sign-out" aria-hidden="true" />Log Out</a>

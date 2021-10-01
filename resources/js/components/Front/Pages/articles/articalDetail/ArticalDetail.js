@@ -74,7 +74,7 @@ class ArticalDetail extends Component {
                                             <div className="row no-gutters row-eq-height">
                                                 <div className="col-md-12">
                                                 <div className="article-wprapper">
-                                                    <img src={img_base+this.state.image} value="image"alt="news-img" />
+                                                    <img src={img_base+this.state.image} className="img-up-detail-thumb" value="image"alt="news-img" />
                                                     <div className="news-border">
                                                     {/* <div className="left-news">
                                                         <span>News</span>
@@ -108,7 +108,7 @@ class ArticalDetail extends Component {
                                                     <span className="name">{data.title}</span>
                                                    
                                                 </div>
-                                                <img src={img_base+data.image} alt="news-img" />
+                                                <img src={img_base+data.image} alt="news-img"  className="img-side-thumb"/>
                                                 <div className="news-border">
                                                 <div className="left-news">
                                                     <span>{data.type}</span>
