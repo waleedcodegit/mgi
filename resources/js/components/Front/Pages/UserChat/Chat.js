@@ -23,7 +23,7 @@ class Chat extends Component {
     componentWillMount(){
       setInterval(() => {
         Axios.post('/api/get_all_user_chats',{user_id:this.props.user.data.id}).then(res=>{
-            console.log(res.data[0]);
+            // console.log(res.data[0]);
             this.setState({
                 chats:res.data,
                 chat:this.state.active_chat == 0 ? res.data[0] : this.state.chat,

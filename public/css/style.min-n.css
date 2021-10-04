@@ -17571,7 +17571,8 @@ body.admin-bar .is-sticky .main-menu-wrap {
     margin-left: 20px;
     border-radius: 100px;
     padding-left: 30px;
-    width: 625px;
+    padding-right: 40px;
+    width: auto;
     float: left;
     margin-top: 20px;
 }
@@ -28085,6 +28086,14 @@ table tr td .organisation-name {
     position: relative;
     overflow: hidden;
 	    height: 900px;
+    background-size: cover;
+    background-position: center center;
+	
+}
+.CarouselItem {
+    position: relative;
+    overflow: hidden;
+	    height: 700px;
     background-size: cover;
     background-position: center center;
 	
@@ -40260,7 +40269,7 @@ display: block;
     }
     .right-bar{
             float: right;
-        width: 92%;
+        width: 90%;
     }
 
     ::-webkit-calendar-picker-indicator {
