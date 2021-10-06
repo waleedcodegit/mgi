@@ -12,6 +12,7 @@ class Enrollmentform extends Component {
             fields: [],
             ansFields: [],
             user_id: '',
+            type:'team',
 
         }
         if(!this.props.user.is_login){
@@ -78,6 +79,7 @@ class Enrollmentform extends Component {
                 ansFields: this.state.ansFields,
                 user_id: this.state.user_id,
                 tournament_id: this.props.match.params.id,
+                
             }
             Axios.post('/api/create_enrollment',senderData).then(res=>{
                 console.log(res);

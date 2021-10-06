@@ -16,7 +16,7 @@ class Brackets extends Component {
     componentDidMount(){
         
         Axios.post('/api/get_brackets_by_id',{id:this.props.match.params.id}).then(res=>{
-            console.log(res);
+            // console.log(res);
             this.setState({
                 is_display:true,
                 image:res.data.bracket.image

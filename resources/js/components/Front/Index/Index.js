@@ -12,6 +12,7 @@ import SignUp from '../../Front/Auth/Signup';
 import Login from '../../Front/Auth/Login';
 import Subsciption from '../Pages/Subsciption/subsciption';
 import Enrollment from '../Pages/tournamentDeatil/EnrollmentForm/Enrollmentform';
+import TeamEnrollment from '../Pages/tournamentDeatil/EnrollmentForm/TeamEnrollment';
 import Profile from '../Pages/UserProfile/Profile';
 import PrivacyPolicy from '../Pages/privacy_policy/PrivacyPolicy';
 import TermAndCondition from '../Pages/TermsAndCondition/TermAndCondition';
@@ -115,6 +116,7 @@ class Index extends Component {
                                     <Route path="/signup" component={SignUp}></Route>
                                     <Route path="/subscription" component={Subsciption}></Route>
                                     <Route path="/enrollment/:id" component={Enrollment}></Route>
+                                    <Route path="/teamenrollment/:id" component={TeamEnrollment}></Route>
                                     <Route path="/profile" component={Profile}></Route>
                                     <Route path="/privacy" component={PrivacyPolicy}></Route>
                                     <Route path="/term-and-condition" component={TermAndCondition}></Route>

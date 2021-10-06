@@ -8,13 +8,19 @@ import Announcements from './Announcements/Announcements';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { connect } from 'react-redux';
+import reactSelectCjs from 'react-select';
 
 class Index extends Component {
     constructor(props) {
         super(props);
         this.state = {
             display: false,
-            user_id: '',
+            user_id: [],
+            id:'',
+            team_id: "",
+            teams_id:'',
+            id:'',
+            id: this.props.match.params.id
         }
     }
 
@@ -33,9 +39,35 @@ class Index extends Component {
                 }) 
             }
         })
-          
+
+        Axios.post('/api/get_team_id',{id:this.props.match.params.id}).then(res=>{  
+            console.log(res);
+            if(res.data.status == 200) {
+                // console.log(res);
+                this.setState({
+                    // user_id: res.data.team.user_id,
+                    team_id:res.data.team.team_id
+
+                })
+            }       
+           
+        })
+        // console.log(this.props.match.params.id);
+        Axios.post('/api/get_user_id',{user_id:this.props.user.data.id}).then(res=>{  
+            // console.log(res);
+            if(res.data.status == 200) {
+                // console.log(res);
+                this.setState({
+                    user_id:res.data.team.user_id,
+                    teams_id:res.data.team.id
+
+                })
+            }       
+           
+        })
         
     }
+   
     render() {
         return (
             <div>
@@ -59,6 +91,26 @@ class Index extends Component {
                                 <li><a href="#stats" role="tab" data-toggle="tab">Stats</a></li>
                                 <li><a href="#announcements" role="tab" data-toggle="tab">Announcements</a></li>
                             </ul>
+
+                             { 
+                                         this.props.user.data.id === this.state.user_id ? 
+                                         
+                                         <div className="item tab-drop2">
+                                          {
+                                                this.state.teams_id === this.state.team_id ?
+                                                <a className="btn-more">Team Enrolled</a> 
+                                                :
+                                                <a className="btn-more" href={`/teamenrollment/${this.props.match.params.id}`}>Team Enrollment</a> 
+                                                
+                                          }   
+                                        
+                                              
+                                         
+                                         
+                                     </div>
+                                         :null
+                                         
+                                        }      
 
                             <div className="item tab-drop2">
                                 {

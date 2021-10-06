@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 use App\Enrollment;
 use App\TournamentRequiredFieldUserAnswer;
 use App\Tournament;
+use App\Team;
 
 class EnrollmentController extends Controller
 {
     public function enrollment_check(Request $request) {
-        $user = Enrollment::where('user_id', $request->user_id)->where('tournament_id', $request->tournament_id)->first();
+        $user = Enrollment::where('user_id', $request->user_id)->where('tournament_id', $request->tournament_id)->where('team_id', $request->team_id)->first();
         if($user) {
             $response = [ 
                 'msg'=>'user enroll',
@@ -36,6 +37,7 @@ class EnrollmentController extends Controller
                     $enroll = new Enrollment();
                     $enroll->user_id = $request->user_id;
                     $enroll->tournament_id = $request->tournament_id;
+                    $enroll->type = $request->type;
                     $enroll->save();
     
                     foreach($request->ansFields as $val) {
@@ -78,7 +80,12 @@ class EnrollmentController extends Controller
 
     }
     public function get_enrollments(){
-        $enrollments = Enrollment::where('delete_status',0)->with('tournament','user')->get();
+        $enrollments = Enrollment::where('type','user')->where('delete_status',0)->with('tournament','user')->get();
+        $response = ['msg'=> 'enrollment Sent', 'status'=> '200' , 'enrollments'=> $enrollments];
+        return $response;
+    }
+    public function get_enrolled_teams(){
+        $enrollments = Enrollment::where('type', 'team')->where('delete_status',0)->with('tournament','user','team')->get();
         $response = ['msg'=> 'enrollment Sent', 'status'=> '200' , 'enrollments'=> $enrollments];
         return $response;
     }
@@ -104,4 +111,41 @@ class EnrollmentController extends Controller
         ];
         return $response;
     }
-}
+    public function create_teamenrollment(Request $request){
+      
+        
+       
+            
+               
+                    $enroll = new Enrollment();
+                    $enroll->team_id = $request->team_id;
+                    $enroll->tournament_id = $request->tournament_id;
+                    $enroll->type = $request->type;
+                    $enroll->save();
+    
+
+    
+                    $response = [ 
+                        'msg'=>'Enrollment Data Save',
+                        'status'=>'200'
+                    ];
+                    return $response;
+                } 
+
+                public function get_team_id(Request $request) {
+                    $data = Enrollment::where('tournament_id', $request->id)->where('type' , 'team')->first();
+                    $response = [
+                        'status' => 200,
+                        'msg' => 'team_enrollment_id',
+                        'team' => $data
+                    ];
+                    return $response;
+                }
+       }
+            
+                    
+        
+        
+            
+
+

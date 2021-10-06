@@ -24,11 +24,11 @@ class App extends Component {
         is_TermAndCondition: true,
         is_header_footer_banner: true,
         is_subadmins: true,
-        is_PrivacyAndPolicy:true,
+        is_emails:true,
         is_brackets:true,
         is_announcements:true,
         is_watchstream:true,
-        is_userenrolled:true,
+        is_enrolleddetails:true,
         is_subscription: true,
         is_users:true,
         // is_display: false
@@ -133,7 +133,7 @@ class App extends Component {
                     </li>
                      : ''}
                      {this.state.is_tournaments ?
-                    <li className={this.props.history.location.pathname == "/adminpanel/tournament-create" || this.props.history.location.pathname == "/adminpanel/tournament-list" ? "dropdown active": "dropdown"}>
+                    <li className={this.props.history.location.pathname == "/adminpanel/tournament-create" || this.props.history.location.pathname == "/adminpanel/tournament-list" || this.props.history.location.pathname == "/adminpanel/tournaments-ongoingweek" || this.props.history.location.pathname == "/adminpanel/today-tournaments" ? "dropdown active": "dropdown"}>
                       <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="watch" /><span>Manage Tournamets</span></a>
                       <ul className="dropdown-menu">
                         <li><Link to="/adminpanel/tournament-create">Create</Link></li>
@@ -145,7 +145,7 @@ class App extends Component {
                     : '' 
                     }
                     {this.state.is_watchstream ?
-                    <li className={this.props.history.location.pathname == "/adminpanel/tournament-create" || this.props.history.location.pathname == "/adminpanel/watchstream-list" ? "dropdown active": "dropdown"}>
+                    <li className={this.props.history.location.pathname == "/adminpanel/create-watchstream" || this.props.history.location.pathname == "/adminpanel/watchstream-list" ? "dropdown active": "dropdown"}>
                       <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="watch" /><span>Watch Stream</span></a>
                       <ul className="dropdown-menu">
                         <li><Link to="/adminpanel/create-watchstream">Create</Link></li>
@@ -156,7 +156,7 @@ class App extends Component {
                     : '' 
                     }
                     {this.state.is_brackets ?
-                    <li className={this.props.history.location.pathname == "/adminpanel/tournament-create" || this.props.history.location.pathname == "/adminpanel/brackets-list" ? "dropdown active": "dropdown"}>
+                    <li className={this.props.history.location.pathname == "/adminpanel/create-brackets" || this.props.history.location.pathname == "/adminpanel/brackets-list" ? "dropdown active": "dropdown"}>
                       <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="watch" /><span>Brackets</span></a>
                       <ul className="dropdown-menu">
                         <li><Link to="/adminpanel/create-brackets">Create</Link></li>
@@ -167,7 +167,7 @@ class App extends Component {
                     
                     }
                     {this.state.is_announcements ?
-                    <li className={this.props.history.location.pathname == "/adminpanel/announcements-create" || this.props.history.location.pathname == "/adminpanel/announcements-list" ? "dropdown active": "dropdown"}>
+                    <li className={this.props.history.location.pathname == "/adminpanel/create-announcements" || this.props.history.location.pathname == "/adminpanel/announcements-list" ? "dropdown active": "dropdown"}>
                       <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="watch" /><span>Announcements</span></a>
                       <ul className="dropdown-menu">
                         <li><Link to="/adminpanel/create-announcements">Create</Link></li>
@@ -259,11 +259,12 @@ class App extends Component {
                     </li>
                     : ''
                     }
-                     {this.state.is_userenrolled ?
+                     {this.state.is_enrolleddetails ?
                     <li className={this.props.history.location.pathname == "/adminpanel/add-admin" || this.props.history.location.pathname == "/adminpanel/admins" ? "dropdown active": "dropdown"}>
-                      <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="watch" /><span>User Enrolled</span></a>
+                      <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="watch" /><span>Enrollements Details</span></a>
                       <ul className="dropdown-menu">
-                        <li><Link to="/adminpanel/user_enrolled_list">List</Link></li>
+                        <li><Link to="/adminpanel/user_enrolled_list">Enrolled Users List</Link></li>
+                        <li><Link to="/adminpanel/teams_enrolled_list">Enrolled Teams List</Link></li>
                       </ul>
                     </li>
                     : '' 
@@ -293,17 +294,19 @@ class App extends Component {
                      } */}
 
 
-                    {/* {this.state.is_PrivacyAndPolicy?
+                     {
+                     this.state.is_emails?
                       <li className={this.props.history.location.pathname == "/adminpanel/privacy_and_policy" || this.props.history.location.pathname == "/adminpanel/privacy-and-policy-list" ? "dropdown active": "dropdown"}>
-                        <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="filter" /><span>Privacy & Policy</span></a>
+                        <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="filter" /><span>Emails</span></a>
                         <ul className="dropdown-menu">
-                        <li><Link to="/adminpanel/create-privacyandpolicy">Create</Link></li>
-                        <li><Link to="/adminpanel/privacyandpolicy-list">List</Link></li>
-                          <li><Link to="/adminpanel/edit-privacyandpolicy">Edit</Link></li>
+                        <li><Link to="/adminpanel/create-emails">Create</Link></li>
+                        <li><Link to="/adminpanel/emails-list">List</Link></li>
+                          {/* <li><Link to="/adminpanel/edit-privacyandpolicy">Edit</Link></li> */}
                         </ul>
                       </li>
                      : ''
-                     } */}
+                     }
+
 
                     {this.state.is_subscription?
                       <li className={this.props.history.location.pathname == "/adminpanel/add-subscription" || this.props.history.location.pathname == "/adminpanel/subscriptions-list" ? "dropdown active": "dropdown"}>

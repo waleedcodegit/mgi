@@ -27,6 +27,7 @@
     "dependencies": {
         "@material-ui/core": "^4.11.3",
         "@material-ui/icons": "^4.11.2",
+        "multiselect-react-dropdown": "^2.0.7",
         "react-country-region-selector": "^3.1.0",
         "react-facebook-login": "^4.1.1",
         "react-google-login": "^5.2.2",
@@ -35,6 +36,7 @@
         "react-redux": "^7.2.4",
         "react-router": "^5.2.0",
         "react-router-dom": "^5.2.0",
+        "react-select": "^5.0.0",
         "react-select-country-list": "^2.2.3",
         "redux": "^4.1.0",
         "sweetalert2": "^10.16.6",

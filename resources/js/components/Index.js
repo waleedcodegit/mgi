@@ -26,6 +26,7 @@ class Index extends Component {
                 '/subscription',
                 '/login',
                 '/enrollment/:id',
+                '/teamenrollment/:id',
                 '/profile',
                 '/privacy',
                 '/term-and-condition',

@@ -12,7 +12,7 @@ class Announcements extends Component {
     }
     componentDidMount(){
         Axios.post('/api/get_announcement',{id:this.props.match.params.id}).then(res=>{
-            console.log(res);
+            // console.log(res);
             this.setState({
                 is_display:true,
                 announcement:res.data. announcement,

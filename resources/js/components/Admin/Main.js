@@ -56,7 +56,10 @@ import EditTermAndCondition from '../Admin/TermAndCondition/Edit';
 
 import CreateTermAndCondition from '../Admin/TermAndCondition/Create';
 
-import UserEnrolledsList from '../Admin/UserEnrolled/List';
+import UserEnrolledsList from '../Admin/Enrolleddetails/UserList';
+import TeamsEnrolledsList from '../Admin/Enrolleddetails/TeamsList';
+import TeamDetails from '../Admin/Enrolleddetails/Teamdetails';
+import UserDetails from '../Admin/Enrolleddetails/UserDetails';
 
 import ChangeAdsBanner from '../Admin/ManageHeaderFooterBanner/Change';
 
@@ -76,6 +79,12 @@ import EditWatchstream from '../Admin/Watchstream/edit';
 import UsersList from '../Admin/Users/UsersList';
 import OnSubscriptionUsers from '../Admin/Users/OnSubscriptionUsers';
 import WithOutSubscriptionUsers from '../Admin/Users/WithOutSubscriptionUsers';
+
+
+import CreateEmails  from '../Admin/Emails/Create';
+import EmailsList from '../Admin/Emails/List';
+// import EditEmails from '../Admin/Emails/Edit';
+
 
 
 import props from 'prop-types';
@@ -167,6 +176,9 @@ class Main extends Component {
                         <Route path="/adminpanel/edit-brackets/:id" component={EditBrackets}></Route>
 
                         <Route path="/adminpanel/user_enrolled_list" component={UserEnrolledsList}></Route>
+                        <Route path="/adminpanel/teams_enrolled_list" component={TeamsEnrolledsList}></Route>
+                        <Route path="/adminpanel/team_details/:id" component={TeamDetails}></Route>
+                        <Route path="/adminpanel/user_details/:id" component={UserDetails}></Route>
 
                         <Route path="/adminpanel/create-announcements" component={CreateAnnouncements}></Route>
                         <Route path="/adminpanel/announcements-list" component={AnnouncementsList}></Route>
@@ -180,6 +192,9 @@ class Main extends Component {
                         <Route path="/adminpanel/onsubscription-users" component={OnSubscriptionUsers}></Route>
                         <Route path="/adminpanel/withoutsubscription-users" component={WithOutSubscriptionUsers}></Route>
 
+                        <Route path="/adminpanel/emails-list" component={EmailsList}></Route>
+                        <Route path="/adminpanel/create-emails"component={CreateEmails}></Route>
+                        {/* <Route path="/adminpanel/edit-emails" component={EditEmails}></Route> */}
 
                         
                         

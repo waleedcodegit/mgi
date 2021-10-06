@@ -16,10 +16,11 @@ export default class CheckOut extends Component {
             phone:"",
             postcode: "",
             city: "",
-            cart_totals: 0,
-            totals: 0,
-            sub_cart_totals: 0,
-            master_totals: 0,
+            user_id:'',
+            cart_totals: [],
+            totals:  [],
+            sub_cart_totals:  [],
+            master_totals:  [],
 
             loading: true
         }
@@ -30,9 +31,10 @@ export default class CheckOut extends Component {
         }
   
         Axios.post('/api/check_customer_auth',data).then(res=>{
-            console.log(res);
+            // console.log(res);
             if(res.data.status == 200){
                this.setState({
+                    user_id:res.data.cus.user.id,
                     first_name:res.data.cus.user.first_name,
                     last_name:res.data.cus.user.last_name,
                     email:res.data.cus.user.email,
@@ -72,10 +74,13 @@ export default class CheckOut extends Component {
             if(res.data.cart){
                 if(res.data.cart.length > 0){
                     this.setState({
-                        cart_totals: res.data.cart[0].cart_totals,    
-                        totals: res.data.cart[0].cart_totals,
-                        master_totals:res.data.cart[0].cart_totals,      
-                        sub_cart_totals:res.data.cart[0].sub_cart_totals
+                        
+                        cart_totals: res.data.cart.cart_totals,    
+                        totals: res.data.cart.cart_totals,
+                        master_totals:res.data.cart.cart_totals,      
+                        sub_cart_totals:res.data.cart.sub_cart_totals,
+                        product_id:res.data.cart.product_id,
+                        quantity:res.data.cart.quantity
                     })
                 }else{
                     this.setState({
@@ -137,7 +142,41 @@ export default class CheckOut extends Component {
         });
     }
 
+    create(e){
+        e.preventDefault();
 
+        let senddata = {
+            user_id: this.state.id,
+            name: this.state.name,
+            description:this.state.description,
+        }
+        
+        console.log(senddata);
+            Axios.post('/api/create_order',this.state).then(res=>{
+               
+                this.setState({
+
+                    loading:false
+                })
+                
+                if(res.data.status == 200){
+                    Swal.fire({
+                        icon: 'success',
+                        title: res.data.msg,
+                        showConfirmButton: false,
+                        timer: 1500
+                        })
+                        // this.props.history.push('/adminpanel/announcements-list');
+                }else{
+                    Swal.fire({
+                        icon: 'warning',
+                        title: res.data.msg,
+                        showConfirmButton: false,
+                        timer: 1500
+                        })
+                }
+            })        
+    }
     
     render() {
         return (
@@ -252,7 +291,7 @@ export default class CheckOut extends Component {
                                             <span className="name">PayPal <a href="https://www.paypal.com/be/smarthelp/article/what-is-paypal-and-how-does-it-work-faq1655" target="_blank">What is PayPal?</a></span>
                                             <span className="price"><img src="images/common/card-img.jpg" alt="card" /></span>	
                                         </label>
-                                        <button className="proceed">Place order<i className="fa fa-check" aria-hidden="true" /></button>
+                                        <button onClick={this.create.bind(this)} className="proceed">Place order<i className="fa fa-check" aria-hidden="true" /></button>
                                     </div>
                                 </div>
                             </div>

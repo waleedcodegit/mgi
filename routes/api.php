@@ -145,6 +145,7 @@ Route::post('get_tournament_with_game_id','Admin\TournamentController@get_tourna
 Route::post('create_team','Front\TeamController@create_team');
 Route::get('all_teams','Front\TeamController@get_all_teams');
 Route::post('get_user_team','Front\TeamController@get_user_team');
+Route::post('get_tournament_id','User\EnrollmentController@get_tournament_id');
 Route::post('/search_team', 'Front\TeamController@search_team');
 Route::post('/team-detail', 'Front\TeamController@team_detail');
 Route::post('/join-team-request', 'Front\TeamController@join_team_request');
@@ -156,13 +157,16 @@ Route::post('/approve_team_request', 'Front\TeamController@approve_team_request'
 Route::post('enrollment_check','User\EnrollmentController@enrollment_check');
 Route::post('create_enrollment','User\EnrollmentController@create_enrollment');
 Route::post('get_enrollments','User\EnrollmentController@get_enrollments');
+Route::post('get_enrolled_teams','User\EnrollmentController@get_enrolled_teams');
 Route::post('get_tournament_enroll_user','User\EnrollmentController@get_tournament_enroll_user');
 Route::post('delete_enrollments','User\EnrollmentController@delete_enrollments');
+Route::post('create_teamenrollment','User\EnrollmentController@create_teamenrollment');
 
 
 
 
 Route::get('get_all_users','User\UserController@get_all_users');
+Route::post('get_team_details','Front\TeamController@get_team_details');
 Route::get('get_onsubscription_users','User\UserController@get_onsubscription_users');
 Route::get('get_withoutsubscription_users','User\UserController@get_withoutsubscription_users');
 Route::get('get_all_users_counter','User\UserController@get_all_users_counter');
@@ -239,12 +243,20 @@ Route::post('delete_watchstream','WatchStreamController@delete_watchstream');
 Route::post('leave_team','Front\TeamController@leave_team');
 Route::post('kickout','Front\TeamController@kickout');
 Route::post('get_user_id','Front\TeamController@get_user_id');
+Route::post('get_team_id','User\EnrollmentController@get_team_id');
+Route::post('team_id','Front\TeamController@team_id');
 
 // User Team Chat
 Route::post('create_chat_message','Front\UserChatController@create_chat_message');
 Route::post('get_all_user_chats','Front\UserChatController@get_all_user_chats');
 Route::post('get_user_chat_messages','Front\UserChatController@get_user_chat_messages');
 Route::post('user_message_sender','Front\UserChatController@user_message_sender');
+
+
+Route::post('create_email','EmailController@create_email');
+Route::post('get_emails','EmailController@get_emails');
+
+Route::post('create_order','OrderController@create_order');
 
 
 

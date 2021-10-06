@@ -14,4 +14,7 @@ class Enrollment extends Model
     public function user(){
         return $this->belongsTo('App\User', 'user_id');
     }
+    public function team(){
+        return $this->belongsTo('App\Team', 'team_id');
+    }
 }

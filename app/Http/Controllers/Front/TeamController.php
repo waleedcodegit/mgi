@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Team;
 use Validator;
 use App\ListUserTeams;
+use App\Enrollment;
 
 class TeamController extends Controller
 {
@@ -227,10 +228,29 @@ class TeamController extends Controller
             return $response;
         }
         public function get_user_id(Request $request) {
-            $data = Team::where('user_id', $request->user_id)->where('status', 1)->with('team')->first();
+            $data = Team::where('user_id', $request->user_id)->first();
             $response = [
                 'status' => 200,
                 'msg' => 'user_id',
+                'team' => $data
+            ];
+            return $response;
+        }
+        public function team_id(Request $request) {
+             $data = Team::where('user_id', $request->id)->first();
+            $response = [
+                'status' => 200,
+                'msg' => 'team_id',
+                'team' => $data
+            ];
+            return $response;
+        }
+     
+        public function get_team_details(Request $request) {
+            $data = ListUserTeams::where('team_id', $request->id)->where('status', 1)->with('user')->get();
+            $response = [
+                'status' => 200,
+                'msg' => 'Team',
                 'team' => $data
             ];
             return $response;

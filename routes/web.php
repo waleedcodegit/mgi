@@ -21,6 +21,9 @@ Route::view('/adminpanel/edit-privacyandpolicy/{id}','admin');
 
 
 Route::view('/adminpanel/user_enrolled_list','admin');
+Route::view('/adminpanel/teams_enrolled_list','admin');
+Route::view('/adminpanel/team_details/{id}','admin');
+Route::view('/adminpanel/user_details/{id}','admin');
 
 
 Route::view('/adminpanel/add-subscription','admin');
@@ -105,6 +108,7 @@ Route::view('/adminpanel/withoutsubscription-users','admin');
 Route::view('/tournamentDetail/{id}', 'front');
 Route::view('/productDetail/{id}', 'front');
 Route::view('/enrollment/{id}', 'front');
+Route::view('/teamenrollment/{id}', 'front');
 Route::view('/artical-detail/{id}', 'front');
 Route::view('/video-detail/{id}', 'front');
 Route::view('/team-detail/{id}', 'front');
@@ -112,6 +116,10 @@ Route::view('/product-detail/{id}', 'front');
 Route::view('/ticket-detail/{id}', 'front');
 Route::view('/user-profile/{id}', 'front');
 
+
+Route::view('/adminpanel/emails-list','admin');
+Route::view('/adminpanel/create-emails','admin');
+Route::view('/adminpanel/edit-emails','admin');
 
 Route::get('/{path?}', function () {
     return view('front');

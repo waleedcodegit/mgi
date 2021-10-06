@@ -36,7 +36,7 @@ class Participants extends Component {
                                                     </bf-avatar>
                                                     </div>
                                                     <div className="player-label">
-                                                    <h1>{data.user.first_name} {data.user.first_name}</h1>
+                                                    {/* <h1>{data.user.first_name} {data.user.first_name}</h1> */}
                                                     </div>
                                                 </div>
                                                 <div className="player-stat">
