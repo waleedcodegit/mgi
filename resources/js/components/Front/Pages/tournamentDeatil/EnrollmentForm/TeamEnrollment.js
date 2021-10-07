@@ -12,8 +12,10 @@ class Enrollmentform extends Component {
             fields: [],
             ansFields: [],
             team_id: '',
+            teams_id: '',
             id:'',
             type:'team',
+            
 
         }
         if(!this.props.user.is_login){
@@ -22,25 +24,37 @@ class Enrollmentform extends Component {
     }
 
     componentDidMount(){
+
         Axios.post('/api/get_user_id',{user_id:this.props.user.data.id}).then(res=>{  
             if(res.data.status == 200) {
-                console.log(res.data.team.id);
+                // console.log(res);
                 this.setState({
                     user_id: res.data.team.user_id,
-                    team_id: res.data.team.id
+                    teams_id: res.data.team.id
+
+                })
+            }       
+           
+        })
+        Axios.post('/api/get_team_id',{id:this.props.match.params.id}).then(res=>{  
+            // console.log(res.data.team.team_id);
+            if(res.data.status == 200) {
+                this.setState({
+                    // user_id: res.data.team.user_id,
+                    team_id:res.data.team.team_id
 
                 })
             }       
            
         })
 
-        Axios.post('/api/get-tournament-by-id',{id:this.props.match.params.id}).then(res=>{
-            // console.log(res);
-            this.setState({
-                prizez: res.data.tournament.prizez,
-                fields: res.data.tournament.tournament_field,
-            })
-        })
+        // Axios.post('/api/get-tournament-by-id',{id:this.props.match.params.id}).then(res=>{
+        //     // console.log(res);
+        //     this.setState({
+        //         prizez: res.data.tournament.prizez,
+        //         fields: res.data.tournament.tournament_field,
+        //     })
+        // })
     }
 
     onChangeTextAnswer(val,data){
@@ -66,7 +80,7 @@ class Enrollmentform extends Component {
             e.preventDefault();
             let senderData = {
                 ansFields: this.state.ansFields,
-                team_id: this.state.team_id,
+                team_id: this.state.teams_id,
                 tournament_id: this.props.match.params.id,
                 type:'team'
             }
@@ -136,7 +150,11 @@ class Enrollmentform extends Component {
                                                     )
                                                 })
                                             }
-                                            <a className="css-1khann70 css-1khann71 css-g0mr225 css-zj48px" onClick={this.createEnrollment.bind(this)}>Enroll</a>
+                                            
+                                                <a className="css-1khann70 css-1khann71 css-g0mr225 css-zj48px" onClick={this.createEnrollment.bind(this)}>Enroll</a>
+                                                
+                                            
+                                            
                                         </section>
                                     </div>
                                 </div>

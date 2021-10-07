@@ -116,12 +116,23 @@ class EnrollmentController extends Controller
         
        
             
-               
-                    $enroll = new Enrollment();
-                    $enroll->team_id = $request->team_id;
-                    $enroll->tournament_id = $request->tournament_id;
-                    $enroll->type = $request->type;
-                    $enroll->save();
+                    $check = Enrollment::where('team_id',$request->team_id)->where('tournament_id',$request->tournament_id)->first();
+                    if(!$check) {
+                        $enroll = new Enrollment();
+                       $enroll->team_id = $request->team_id;
+                       $enroll->tournament_id = $request->tournament_id;
+                       $enroll->type = $request->type;
+                           $enroll->save();
+                            }else{
+                                {
+                                    $response = [
+                                        'status' => 201,
+                                        'msg' => 'Team is Already Enrolled',
+                                    ];
+                                    return $response;
+                                }
+                            }
+                   
     
 
     

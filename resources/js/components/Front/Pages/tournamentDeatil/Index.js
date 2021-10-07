@@ -29,6 +29,7 @@ class Index extends Component {
             token: window.localStorage.getItem('mgltokenlogin')
           }
           const datasend = {
+              
             user_id:this.props.user.data.id,
             tournament_id: this.props.match.params.id
           }
@@ -40,26 +41,27 @@ class Index extends Component {
             }
         })
 
-        Axios.post('/api/get_team_id',{id:this.props.match.params.id}).then(res=>{  
-            console.log(res);
-            if(res.data.status == 200) {
-                // console.log(res);
-                this.setState({
-                    // user_id: res.data.team.user_id,
-                    team_id:res.data.team.team_id
-
-                })
-            }       
-           
-        })
+       
         // console.log(this.props.match.params.id);
         Axios.post('/api/get_user_id',{user_id:this.props.user.data.id}).then(res=>{  
-            // console.log(res);
+            console.log(res);
             if(res.data.status == 200) {
                 // console.log(res);
                 this.setState({
                     user_id:res.data.team.user_id,
                     teams_id:res.data.team.id
+
+                })
+            }       
+           
+        })
+        Axios.post('/api/get_team_id',{id:this.props.match.params.id}).then(res=>{  
+            // console.log(res);
+            if(res.data.status == 200) {
+                // console.log(res);
+                this.setState({
+                    // user_id: res.data.team.user_id,
+                    team_id:res.data.team.team_id
 
                 })
             }       
@@ -96,17 +98,8 @@ class Index extends Component {
                                          this.props.user.data.id === this.state.user_id ? 
                                          
                                          <div className="item tab-drop2">
-                                          {
-                                                this.state.teams_id === this.state.team_id ?
-                                                <a className="btn-more">Team Enrolled</a> 
-                                                :
-                                                <a className="btn-more" href={`/teamenrollment/${this.props.match.params.id}`}>Team Enrollment</a> 
-                                                
-                                          }   
-                                        
-                                              
-                                         
-                                         
+                                           <a className="btn-more" href={`/teamenrollment/${this.props.match.params.id}`}>Team Enrollment</a> 
+                                      
                                      </div>
                                          :null
                                          
