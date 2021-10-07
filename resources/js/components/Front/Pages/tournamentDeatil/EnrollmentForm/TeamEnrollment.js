@@ -130,33 +130,15 @@ class Enrollmentform extends Component {
                                         </div>
                                         <div className="css-g0mr224 col-md-6">
                                         <p className="css-g0mr226 css-1o2xxxc trt-amount">$200</p>
-                                        <p className="css-g0mr226 css-1o2xxxc trt-amount" dangerouslySetInnerHTML={{__html:this.state.prizez}}></p>
+                                        <p className="css-g0mr226 css-1o2xxxc trt-amount" dangerouslySetInnerHTML={{__html:this.state.prizez}}></p><br></br>
                                         </div>
                                     </div>
                                     </section>
                                 </div>
                                 <div className="col-md-12 pr-detail">
-                                    <h4>Required Field</h4>
+                                <a className="css-1khann70 css-1khann71 css-g0mr225 css-zj48px" onClick={this.createEnrollment.bind(this)}>Enroll</a>
                                 </div>
-                                    <div className="col-md-12 col-sm-12">
-                                        <section className="css-g0mr221 css-19m9brh">
-                                            {
-                                                this.state.fields.map((data,index)=>{
-                                                    return(
-                                                        <div className="css-g0mr224 css-1ex6nkr">
-                                                            <p className="css-g0mr223 css-wjd590">{data.name}</p>
-                                                            <input name={data.name} onChange={(e)=>{this.onChangeTextAnswer(e.target.value,data,index)}} className="css-1l4244b0 css-13owws" />
-                                                        </div>
-                                                    )
-                                                })
-                                            }
-                                            
-                                                <a className="css-1khann70 css-1khann71 css-g0mr225 css-zj48px" onClick={this.createEnrollment.bind(this)}>Enroll</a>
-                                                
-                                            
-                                            
-                                        </section>
-                                    </div>
+                                  
                                 </div>
                             </div>
                             </div>
