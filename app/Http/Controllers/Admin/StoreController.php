@@ -11,6 +11,8 @@ use App\Product;
 USE App\Cart;
 use DB;
 use App\ProductComment;
+use App\Order;
+use App\OrderProduct;
 
 class StoreController extends Controller
 {
@@ -310,4 +312,40 @@ class StoreController extends Controller
         ];
         return $response;
     }
+    public function create_order(Request $request){  
+        $cart = $this->get_cookie_session_cart($request);
+       $order = new Order();
+       $order->customer_id	 = $request->user_id;
+       $order->first_name = $request->first_name;
+       $order->last_name = $request->last_name;
+       $order->email = $request->email;
+       $order->phone = $request->phone;
+       $order->address = $request->address;
+       $order->city = $request->city;
+       $order->country = $request->country;
+       $order->postcode = $request->postcode;
+       $order->totals = $request->totals;
+       $order->subtotal = $request->subtotal;
+      
+       $order->save();
+   
+      
+       foreach($request->cart as $c){
+        //    return $request->cart;
+       $product = new OrderProduct();
+       $product->order_id = $order->id;
+       $product->product_id = $c['product_id'];
+       $product->price = $c['price'];
+       $product->quantity = $c['quantity'];
+       $product->total_price = $c['price'] * $c['quantity'] ;
+       $product->save();
+     }
+     $response = ['status' => 200 , 'msg' => 'Order Placed SuccessFully'];
+     return $response;
+     }
 }
+   
+
+  
+
+

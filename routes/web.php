@@ -82,6 +82,7 @@ Route::view('/adminpanel/tournaments-ongoingweek', 'admin');
 Route::view('/adminpanel/tournament-create', 'admin');
 Route::view('/adminpanel/edit-tournament', 'admin');
 Route::view('/adminpanel/edit-tournament/{id}', 'admin');
+
 // Route::view('/adminpanel/tournament-basic-details', 'admin');
 // Route::view('/adminpanel/tournament-info', 'admin');
 Route::view('/adminpanel/tournament-list', 'admin');
@@ -108,6 +109,7 @@ Route::view('/adminpanel/withoutsubscription-users','admin');
 Route::view('/tournamentDetail/{id}', 'front');
 Route::view('/productDetail/{id}', 'front');
 Route::view('/enrollment/{id}', 'front');
+Route::view('/tournament/{id}', 'front');
 Route::view('/teamenrollment/{id}', 'front');
 Route::view('/artical-detail/{id}', 'front');
 Route::view('/video-detail/{id}', 'front');

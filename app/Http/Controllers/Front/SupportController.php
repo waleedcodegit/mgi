@@ -32,7 +32,10 @@ class SupportController extends Controller
 
     public function create_ticket(Request $request) {
         $validator = Validator::make($request->all(), [
-            'title' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'subject' => 'required',
+            'issues' => 'required',
             'description' => 'required',
         ]);
         if($validator->fails()){
@@ -41,18 +44,16 @@ class SupportController extends Controller
         }else{
             $data = new Support();
             $data->user_id = $request->user_id;
-            $data->title = $request->title;
+            $data->subject = $request->subject;
             $data->save();
 
             $ticket_detail = new SupportTicketDetail();
             $ticket_detail->support_id = $data->id;
-            $ticket_detail->user_id = $request->user_id;        
+            $ticket_detail->user_id = $request->user_id;  
+            $ticket_detail->name = $request->name; 
+            $ticket_detail->email = $request->email;  
+            $ticket_detail->issues = $request->issues;      
             $ticket_detail->description = $request->description;
-            if ($request->image) {       
-                $name = time() . '.' . explode('/', explode(':', substr($request->image, 0, strpos($request->image, ';')))[1])[1];
-                \Image::make($request->image)->resize(115, 115)->save(public_path('images/').  $name);
-                $ticket_detail->image = $name;
-            }
             $ticket_detail->save();
 
             $response = [

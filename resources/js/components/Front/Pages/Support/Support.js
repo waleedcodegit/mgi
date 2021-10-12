@@ -57,7 +57,7 @@ class Support extends Component {
                                                                 <div className="item-head-body">
                                                                     <span className="info">
                                                                     <span className="what">Ticket Title</span>
-                                                                    <span className="then">{data.title}</span>
+                                                                    <span className="then">{data.subject}</span>
                                                                     </span>
                                                                     <span className="done">{data.status}</span>
                                                                     

@@ -66,9 +66,9 @@ input:focus , select:focus , textarea:focus{
 #adminpanel td , th {
   text-align: center;
 }
- .modal-dialog {
+ /* .modal-dialog {
   margin-top: 10%;
-} 
+}  */
 .modal-content{
   border-radius: 1px !important;
 }

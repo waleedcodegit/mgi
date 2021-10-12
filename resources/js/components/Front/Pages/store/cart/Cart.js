@@ -122,7 +122,7 @@ export default class Cart extends Component {
                                             <td className="name"><img className="product-image" src={img_base+data.product[0].images[0].image} alt="cart-product" style={{width: "80px"}} />{data.product[0].name}</td>
                                             <td className="cost">$ {data.price}</td>
                                             <td className="quantity"><input type="number" value={data.quantity} onChange={(e)=>{this.changeQty(e.target.value,data)}} /></td>
-                                            <td className="total">$ {Number.parseFloat(data.price * data.quantity)}</td>
+                                            <td className="totals">$ {Number.parseFloat(data.price * data.quantity)}</td>
                                         </tr>
                                     )
                                 })

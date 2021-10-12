@@ -9,16 +9,26 @@ class CreateTicket extends Component {
         this.state={
             title: '',
             description: '',
-            image: ''
+            image: '',
+            first_name:'',
+            last_name:'',
+            email:'',
+            issues:'',
+            subject:'',
+            user_id: this.props.user.data.id
+            
         }
+    
+
+    
 
         if(!this.props.user.is_login) {
             window.open('/login', '_self');
         }
     }
-    getTitle(e) {
+    getSubject(e) {
         this.setState({
-            title:e.target.value
+            subject:e.target.value
         })
     }
     getDescription(e) {
@@ -26,36 +36,44 @@ class CreateTicket extends Component {
             description:e.target.value
         })
     }
-    getImage(e) {
-        if (e.target.files) {
-            const files = Array.from(e.target.files);
-
-            const promises = files.map(file => {
-                return (new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.addEventListener('load', (ev) => {
-                        resolve(ev.target.result);
-                    });
-                    reader.addEventListener('error', reject);
-                    reader.readAsDataURL(file);
-                }))
-            });
-            let img_arr = [];
-            Promise.all(promises).then(images => {
-                this.setState({
-                    image: images[0]
-                })
-            }, error => { console.error(error); });
+    getName(e) {
+        this.setState({
+           name:e.target.value 
            
-        }
+        })
+    }
+    getEmail(e) {
+        this.setState({
+            email:e.target.value
+        })
+    }
+    getissues(e) {
+        this.setState({
+            issues:e.target.value
+        })
+    }
+  
+    
+    componentDidMount(){
+       
+        Axios.post('/api/get_user_profile',{id: this.props.user.data.id}).then(res=>{
+            console.log(res);
+            this.setState({
+               first_name:res.data.data.first_name,
+               last_name:res.data.data.last_name,
+               email:res.data.data.email,
+            })
+        })
     }
 
     create(e) {
         e.preventDefault();
         let senddata = {
-            title: this.state.title,
+           name: this.state.first_name,
+            email: this.state.email,
+            subject: this.state.subject,
             description: this.state.description,
-            image: this.state.image,
+            issues:this.state.issues,
             user_id: this.props.user.data.id
         }
         
@@ -83,58 +101,110 @@ class CreateTicket extends Component {
     render() {
         return (
             <div>
-                <section className="image-header">
-                </section>
-                <section className="login-sec">
-                    <div className="container-form">
-                        <div className="row">
-                            <div className="customer-info">
-                                <div className="col-md-12">
-                                    <h4>Create Ticket</h4>
-                                    <form>
-                                        <div className="row">
-                                            <div className="col-md-12">
-                                            <div className="item">
-                                                <label>
-                                                <span>Title/Team Name <i>*</i></span>
-                                                <input type="text" name="primary game" className="form-input" onChange={this.getTitle.bind(this)} />
-                                                </label>
-                                            </div>
-                                            </div>
-                                            <div className="col-md-12">
-                                            <div className="item">
-                                                <label>
-                                                <span>Your comment</span>
-                                                <textarea className="cmt-text" onChange={this.getDescription.bind(this)} />
-                                                </label>
-                                            </div>
-                                            </div>
-                                            <div className="col-md-12">
-                                            <div class="calnder-img ad-image-new">
-				                                <img src="/images/common/placeholder.jpg" class="img-up-thumb2"  />
-				                            </div>
-                                            <div className="item brse-img">
-                                                <label>
-                                                <span>Add image <i>*</i></span>
-                                                <input type="file" id="image" name="image" onChange={this.getImage.bind(this)} className="clg-img" />
-                                                </label>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <div className="long-btn">
-                                                <a onClick={this.create.bind(this)}>Create Ticket</a>
-                                            </div>
-                                        </div>
+                 <section class="image-header">
+    
+    </section>
+   
+    
+       
+    <section class="login-sec">
+        <div  class="container">
+            <div class="row">
+                <div class="ticket-info">
+                <div class="col-md-12 text-left">
+                    <h4>Ticket <br></br>Submission Form</h4>
+     
+                        <form>
+                            <div class="row">
+                          
+                                
+                                
+                                <div class="col-md-4">
+                                    <div class="item">
+                                        <label>
+                                            <span> Name </span>
+                                            <input type="text" name="primary game" class="issu-text" onChange={this.getName.bind(this)} value={this.state.first_name}/>
+                                        </label>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                                
+                                      <div class="col-md-4">
+                                    <div class="item">
+                                        <label>
+                                            <span>Email <i></i></span>
+                                            <input type="text" name="primary game" class=" issu-text" onChange={this.getEmail.bind(this)} value={this.state.email}/>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                    <div class="col-md-4">
+                                    <div class="item">
+                                        <label>
+                                            <span>Issue Selection</span>
+                                            <br></br>
+                                           <select name="issues" id="issues" class="issue-select" onChange={this.getissues.bind(this)} value={this.state.issues} >
+                                           <option value="">Select</option>
+                                             <option value="Billing">Billing</option>
+                                                <option value="Naming">Naming</option>
+                                                 <option value="Opel">Opel</option>
+                                                  <option value="Gaming">Gaming</option>
+                                              </select>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                 </div>
+                            
+                                <div class="row"> 
+                                        <div class="col-md-12">
+                                    <div class="item">
+                                        <label>
+                                            <span>Subject <i></i></span><br></br>
+                                            <input  type="text" name="primary game" onChange={this.getSubject.bind(this)} class=" issu-text" value={this.state.subject}/>
+                                        </label>
+                                    </div>
+                                </div>
+                                 </div>
+                                 <div class="row">
+                                     <div class="col-md-12">
+                                                <div class="item">
+                                                    <label>
+                                                        <span>Discription</span><br></br>
+                                                        <textarea  onChange={this.getDescription.bind(this)} class="issu-text" placeholder="Message"></textarea>
+                                                    </label>
+                                                </div>
+                                            </div>
+             
+                                  </div>
+                            
+                        </form>
+                
+          
+                    
+                            <div class="row">
+                            
+                           <div class="col-md-4">
+                                    <div class="long-btn">
+                                        
+                                         <a onClick={this.create.bind(this)}>Submit</a>
+                                        
+                                        </div>
+                                </div>
+                            <div class="col-md-8">
+                                </div>
+                         </div>
+    
+                    
+                        
                     </div>
-                </section>
+            
+                </div>
+                
             </div>
+        </div>
+    </section>
+            </div>
+           
 
         )
     }

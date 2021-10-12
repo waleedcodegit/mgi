@@ -182,7 +182,7 @@ class PostsController extends Controller
        
     }
     public function get_articals_latest(){
-        $posts = Post::where('delete_status',0)->where('status','Public')->where('feature',1)->orderBy('id', 'DESC')->latest()->limit(3)->get();
+        $posts = Post::where('delete_status',0)->where('status','Public')->where('feature',1)->inRandomOrder()->limit(3)->get();
         return $posts;
     }
     

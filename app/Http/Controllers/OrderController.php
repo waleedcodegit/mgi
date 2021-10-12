@@ -10,6 +10,7 @@ use App\OrderProduct;
 class OrderController extends Controller
 {
     public function create_order(Request $request){  
+     $cart = $this->get_cookie_session_cart($request);
     $order = new Order();
     $order->customer_id	 = $request->user_id;
     $order->first_name = $request->first_name;
@@ -24,18 +25,18 @@ class OrderController extends Controller
     $order->subtotal = $request->subtotal;
    
     $order->save();
-    
+
+   
+    foreach($cart['cart'] as $c){
     $product = new OrderProduct();
-
-    
     $product->order_id = $order->id;
-    $product->product_id = $request->product_id;
-    $product->price = $request->cart_totals;
-    $product->sub_cart_totals = $request->sub_cart_totals;
-    $product->quantity = $request->quantity;
+    $product->product_id = $c->product_id[0];
+    $product->price = $c->cart_totals;
+    $product->sub_cart_totals = $c->sub_cart_totals;
+    $product->quantity = $c->quantity;
     $product->save();
-
-    $response = ['msg'=> 'Your Order Placed', 'status'=> '200'];
-    return $response;
+  }
+  $response = ['status' => 200 , 'msg' => 'Order Placed SuccessFully'];
+  return $response;
   }
 }

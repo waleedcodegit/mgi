@@ -84,8 +84,9 @@ class ArticalDetail extends Component {
                                                         <span>200</span>
                                                     </div> */}
                                                     <div className="artcle-text" style={{marginTop: "20px"}}>
-                                                        <span className="date" style={{color:"#fff"}} value="title" onChange=""><b>{this.state.title}</b></span>
-                                                        <span className="name" style={{color:"#fff"}} dangerouslySetInnerHTML={{__html:this.state.body}} value="body"></span>
+                                                        <span  className="date" style={{color:"#fff"}} value="title" onChange=""><b>{this.state.title}</b></span>
+                                                        <span  className="name" style={{color:"#fff" }} dangerouslySetInnerHTML={{__html:this.state.body}} value="body"></span>
+                                                
                                                     </div>
                                                     </div>
                                                 </div>

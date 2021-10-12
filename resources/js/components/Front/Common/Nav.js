@@ -99,7 +99,7 @@ class Nav extends Component {
                             <a href="/"><span>Home</span></a>
                           </li>
                           <li>
-                            <a href="/tournament"><span>Tournaments</span></a>
+                            <a href="/games"><span>Tournaments</span></a>
                           </li>
                           <li><a href="/articles"><span>Articles</span></a></li>
                           <li><a href="/store"><span>Store</span></a></li>

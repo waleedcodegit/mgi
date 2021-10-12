@@ -12,30 +12,34 @@ class Ontournamnet extends Component {
       week_tournaments: [],
       month_tournaments: [],
       game_tournaments: [],
+      // id:this.props.match.params.id,
       display_drop_down: false,
     }
   }
   componentDidMount(){
-    Axios.get('/api/get_games').then(res=>{
-        this.setState({
-            games:res.data.games
-        })
-    })
-    Axios.get('/api/get_today_tournaments').then(res=>{
+    // Axios.get('/api/get_games').then(res=>{
+    //     this.setState({
+    //         games:res.data.games
+    //     })
+    // })
+    // console.log(this.props.match.params.id);
+    Axios.post('/api/get_today_tournaments_by_id',{id:this.props.match.params.id}).then(res=>{
       // console.log(res);
       this.setState({
         today_tournaments:res.data.todayTournaments
       })
     })
 
-    Axios.get('/api/get_this_week_tournaments').then(res=>{
+    Axios.post('/api/get_this_week_tournaments_by_id',{id:this.props.match.params.id}).then(res=>{
+   
       this.setState({
         week_tournaments:res.data.weekTournaments
       })
     })
-    Axios.get('/api/get_this_month_tournaments').then(res=>{
+    Axios.post('/api/get_this_month_tournaments_by_id',{id:this.props.match.params.id}).then(res=>{
+      console.log(res);
       this.setState({
-        month_tournaments:res.data.monthTournaments
+        month_tournaments:res.data.month_tournaments
       })
     })
   }
@@ -45,22 +49,22 @@ class Ontournamnet extends Component {
     })
   }
 
-  gameTournament(game_id) {
-    let senddata = {
-      game_id: game_id
-    }
-    Axios.post('/api/get_tournament_with_game_id', senddata).then(res=>{
-      console.log(res);
-      this.setState({
-        game_tournaments:res.data.tournaments
-      })
-    })
-  }
+  // gameTournament(game_id) {
+  //   let senddata = {
+  //     game_id: game_id
+  //   }
+  //   Axios.post('/api/get_tournament_with_game_id', senddata).then(res=>{
+  //     console.log(res);
+  //     this.setState({
+  //       game_tournaments:res.data.tournaments
+  //     })
+  //   })
+  // }
 
     render() {
         return (
             <div className="row">
-              <div className="col-md-12 col-sm-12">
+              {/* <div className="col-md-12 col-sm-12">
                 <div className="games-list">
                   <h3>Choose your Game</h3>
                   <ul>
@@ -72,9 +76,10 @@ class Ontournamnet extends Component {
                         })
                     }  
                     <li></li>
-                  </ul>
+                  </ul> 
                 </div>
-            </div>
+            </div> */}
+          
   <div className="col-md-12 col-sm-12">
     <div className="row row-offcanvas row-offcanvas-left">
       <div className="col-md-12 tab-line">
@@ -136,7 +141,7 @@ class Ontournamnet extends Component {
           </div>
            
               <div className="trnmt-back">
-                <a>
+                <a href={`/tournamentDetail/${this.state.today_tournaments[0].id}`}>
                     <img src={img_base+this.state.today_tournaments[0].header_image} />
                 </a>
                 <div >
@@ -144,11 +149,13 @@ class Ontournamnet extends Component {
                     <div className="col-md-9 col-sm-12">
                       <div className="battle-div">
                         <h2>{this.state.today_tournaments[0].mode}</h2>
-                        <p><span>Total Prize </span><span dangerouslySetInnerHTML={{__html:this.state.today_tournaments[0].prizez}}></span></p>
+                        <p><span>Total Prices </span><span dangerouslySetInnerHTML={{__html:this.state.today_tournaments[0].prizez}}></span></p>
                       </div>
                     </div>
-                  </a><div className="col-md-3 col-sm-12"><a href="">
-                    </a><div className="battle-icon"><a href="">
+                  </a>
+                  <div className="col-md-3 col-sm-12">
+                    <a href={`/tournamentDetail/${this.state.today_tournaments[0].id}`}>
+                    </a><div className="battle-icon"><a href={`/tournamentDetail/${this.state.today_tournaments[0].id}`}>
                         <div className="battle-left-icon">
                           <img src="/images/common/current-ico.png" />
                         </div>
@@ -162,7 +169,7 @@ class Ontournamnet extends Component {
                         </div>
                         <div className="battle-right-text">
                           <h3>Team Size</h3>
-                          <p>1-2 Players</p>
+                          <p>{this.state.today_tournaments[0].mode}</p>
                         </div>
                         <div className="divide-line-wht" />
                         <div className="battle-left-icon">
@@ -200,7 +207,7 @@ class Ontournamnet extends Component {
                                 </div>
                                 <div className="card-details">
                                   <div className="tournament-card-label-row" flex layout="flex-start center">
-                                    <p className="text-hyphenate overflow-ellipsis game-name-pill">League of Legends</p>
+                                    <p className="text-hyphenate overflow-ellipsis game-name-pill">{data.title}</p>
                                   </div>
                                   <p className="tournament-name" data-ellipsis>{data.title}</p>
                                   <div className="details-content-desktop text-12px font-500 text-gray" flex row layout="space-between start">
@@ -253,13 +260,13 @@ class Ontournamnet extends Component {
                               <div className="game-bg-container">
                                 <bf-image ratio="300/645" style={{paddingTop: '46.5116%'}}>
                                     <div className="animated actual-image fade-in">
-                                      <img src="/images/common/esport-main-slider-2.jpg" />
+                                      <img src={img_base+data.header_image}/>
                                     </div>
                                 </bf-image>
                               </div>
                               <div className="card-details">
                                 <div className="tournament-card-label-row" flex layout="flex-start center">
-                                  <p className="text-hyphenate overflow-ellipsis game-name-pill">League of Legends</p>
+                                  <p className="text-hyphenate overflow-ellipsis game-name-pill">{data.title}</p>
                                 </div>
                                 <p className="tournament-name" data-ellipsis>{data.title}</p>
                                 <div className="details-content-desktop text-12px font-500 text-gray" flex row layout="space-between start">
@@ -327,13 +334,13 @@ class Ontournamnet extends Component {
                               <div className="game-bg-container">
                                 <bf-image ratio="300/645" style={{paddingTop: '46.5116%'}}>
                                     <div className="animated actual-image fade-in">
-                                      <img src="/images/common/esport-main-slider-2.jpg" />
+                                      <img src={img_base+data.header_image} />
                                     </div>
                                 </bf-image>
                               </div>
                               <div className="card-details">
                                 <div className="tournament-card-label-row" flex layout="flex-start center">
-                                  <p className="text-hyphenate overflow-ellipsis game-name-pill">League of Legends</p>
+                                  <p className="text-hyphenate overflow-ellipsis game-name-pill">{data.title}</p>
                                 </div>
                                 <p className="tournament-name" data-ellipsis>{data.title}</p>
                                 <div className="details-content-desktop text-12px font-500 text-gray" flex row layout="space-between start">

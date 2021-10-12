@@ -35,7 +35,7 @@ class Login extends Component {
                 this.setState({
                     display:true
                 })
-                this.props.history.push('/tournament')
+                this.props.history.push('/')
             }else{
                 this.setState({
                     display:true
@@ -60,7 +60,7 @@ class Login extends Component {
             if(res.data.status == 200){
                 this.props.changeUser({is_login:true,data:res.data.user});
                 window.localStorage.setItem('mgltokenlogin',res.data.user.token);
-                this.props.history.push('/tournament');
+                this.props.history.push('/');
                 Swal.fire({
                     icon: 'success',
                     title: 'Login Successfully.',

@@ -17,7 +17,8 @@ class Index extends Component {
         super(props);
         this.state = {
             paths: [
-                '/tournament',
+                '/tournament/:id',
+                '/games',
                 '/tournamentDetail/:id',
                 '/store',
                 '/articles',

@@ -13,8 +13,8 @@ class Index extends Component {
                 <Banner></Banner>
                 <div className="tourna-sec">
                     <div className="container">
-                        <OnGoingTournament></OnGoingTournament>
-                        <UpCommingTournament></UpCommingTournament>
+                        <OnGoingTournament {...this.props}></OnGoingTournament>
+                        {/* <UpCommingTournament {...this.props}></UpCommingTournament> */}
                     </div>
                 </div>
             </div>

@@ -37,7 +37,7 @@ class Products extends Component {
                                 return(
                                     <div className="col-md-4 col-sm-6" key={index}>
                                         <div className="store-list-item">
-                                            <div>
+                                            <div style={{height:'500px'}}>
                                                 <a href={`/product-detail/${data.id}`}>
                                                     <img src={data.images.length > 0 ? img_base+data.images[0].image :''} alt="product" />
                                                 </a>

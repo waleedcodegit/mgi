@@ -134,7 +134,10 @@ Route::post('update-tournament-modes','Admin\TournamentController@update_tournam
 Route::post('get-tournament-by-id','Admin\TournamentController@get_tournament_by_id');
 Route::post('update-tournament-status','Admin\TournamentController@update_tournament_status');
 Route::post('delete_tournament','Admin\TournamentController@delete_tournament');
-// Route::post('get_tournaments_by_id','Admin\TournamentController@get_tournaments_by_id');
+
+Route::post('get_today_tournaments_by_id','Admin\TournamentController@get_today_tournaments_by_id');
+Route::post('get_this_week_tournaments_by_id','Admin\TournamentController@get_this_week_tournaments_by_id');
+Route::post('get_this_month_tournaments_by_id','Admin\TournamentController@get_this_month_tournaments_by_id');
 
 Route::post('get_tournament_chat_messages','Front\TournamentController@get_tournament_chat_messages');
 Route::post('send_tournament_chat_messages','Front\TournamentController@send_tournament_chat_messages');
@@ -166,6 +169,7 @@ Route::post('create_teamenrollment','User\EnrollmentController@create_teamenroll
 
 
 Route::get('get_all_users','User\UserController@get_all_users');
+Route::get('get_user_by_id','User\UserController@get_user_by_id');
 Route::post('get_team_details','Front\TeamController@get_team_details');
 Route::get('get_onsubscription_users','User\UserController@get_onsubscription_users');
 Route::get('get_withoutsubscription_users','User\UserController@get_withoutsubscription_users');
@@ -256,7 +260,7 @@ Route::post('user_message_sender','Front\UserChatController@user_message_sender'
 Route::post('create_email','EmailController@create_email');
 Route::post('get_emails','EmailController@get_emails');
 
-Route::post('create_order','OrderController@create_order');
+Route::post('create_order','Admin\StoreController@create_order');
 
 
 

@@ -2030,9 +2030,13 @@ pre code {
 	}
 	 .container-plan {
         width: 1200px;
-		 margin: 0 auto;
-
+		 margin: 0 auto;	
+}
 	
+	.games-list ul li {
+   
+    margin: 0px 29px;
+
 }
 }
 
@@ -3121,7 +3125,8 @@ legend {
 
 label {
     display: inline-block;
-    max-width: 100%;
+    width: 100%;
+	 max-width: 100%;
     margin-bottom: 5px;
     font-weight: 700
 }
@@ -16533,9 +16538,22 @@ h5.landing-sport-header {
     color: #fff;
     line-height: 1;
     padding-top: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 50px;
+	text-align: center;
     margin: 0;
 }
+.games-list img{
+cursor: pointer;
+    display: inline-block;
+    border-radius: 10px;
+    height: 165px;
+    width: 165px;
+	margin-bottom: 10px;
+	border: solid 1px #ccc;
+	    object-fit: cover;
+    object-position: center;
+}
+
 .games-list ul{
 	list-style: none;
 }
@@ -16544,13 +16562,12 @@ h5.landing-sport-header {
 cursor: pointer;
     display: inline-block;
     border-radius: 6px;
-    height: 64px;
-    width: 64px;
-    margin-right: 20px;
+    margin: 0px 28px;
 	margin-bottom: 10px;
 }
+
 .games-list ul li a img{
-	width: 100%;
+	
 	border-radius: 6px;
 }
 .games-list ul li a img:hover{
@@ -17444,6 +17461,13 @@ padding: 4px 20px;
     padding: 10px;
 }
 
+.ticket-info{
+	background:#f1f1f1;
+    overflow: hidden;
+    margin: 30px;
+    padding: 30px 50px;
+	border-radius:10px;
+}
 
 input[type=text] {
     padding: 15px 10px;
@@ -17571,8 +17595,7 @@ body.admin-bar .is-sticky .main-menu-wrap {
     margin-left: 20px;
     border-radius: 100px;
     padding-left: 30px;
-    padding-right: 40px;
-    width: auto;
+    width: 625px;
     float: left;
     margin-top: 20px;
 }
@@ -21618,7 +21641,7 @@ overflow-scroll.table tr td {
 @media (max-width:1200px) {
 	
 	.esport-team-player-profile img{
-		width:100%;
+		width:auto;
 	
 }
 .profile-sec img {
@@ -25329,7 +25352,7 @@ overflow-scroll.table tr td {
 }
 
 .broadcast-item .info {
-    padding-left: 35px;
+    padding-left: 0px;
     display: inline-block;
     vertical-align: middle
 }
@@ -26970,6 +26993,35 @@ td a {
     text-transform: capitalize;
 }
 
+.ticket-info h4{
+    padding-top: 20px;
+    padding-bottom: 20px;
+	font-weight:normal;
+    color: #666;
+    text-align: left;
+    font-size: 30px;
+	text-transform: uppercase;
+    
+}
+.issue-select{
+	width: 100%;
+	padding: 12px 10px;
+	border: solid 2px #e5e5e5;
+	cursor: pointer;
+	    margin-bottom: 20px;
+	    
+}
+
+.login-sec h6{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    color: #fff;
+    text-align: left;
+    font-size: 22px;
+	font-weight: normal;
+    text-transform: capitalize;
+}
+
 .team-alert {
     padding: 21px 70px 22px 30px;
     position: relative;
@@ -28086,14 +28138,6 @@ table tr td .organisation-name {
     position: relative;
     overflow: hidden;
 	    height: 900px;
-    background-size: cover;
-    background-position: center center;
-	
-}
-.CarouselItem {
-    position: relative;
-    overflow: hidden;
-	    height: 700px;
     background-size: cover;
     background-position: center center;
 	
@@ -33245,7 +33289,14 @@ div.fancy-select div.trigger:after {
 	  .esport-landing-big-section h5 span {
 		font-size: 40px;
 	 }
-	  
+	  .games-list img {
+    height: 45vh;
+    width: 100%;
+    margin-bottom: 10px;
+    border: solid 1px #ccc;
+    object-fit: cover;
+    object-position: center;
+}
 	  
 	.container-long {
     width: 90%;
@@ -33366,6 +33417,10 @@ div.fancy-select div.trigger:after {
     margin-top: 10px!important;
 		  margin-left: 20px!important;
 	  }
+	  .ticket-info {
+     padding: 0px;
+
+}
 	  
 }
 
@@ -33472,6 +33527,14 @@ div.fancy-select div.trigger:after {
 	  .tab-filters {
     float: none;
 }
+	
+.games-list ul li {
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 6px;
+    margin: 0px 35px;
+    margin-bottom: 10px;
+}  
 	  .ad-banner2{
 		      margin-top: 20px;
     margin-bottom: 20px;
@@ -36936,6 +36999,11 @@ ul.esport-championship-timline-tabs>li>a:before {
     background-size: cover;
     background-position: center center;
 }
+.esport-team-landing-main-slider .msp_post_slider .msp_post_slide.slide-1b {
+    background: url(../images/common/esport-team-landing-news-1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
 
 .esport-team-landing-main-slider .msp_post_slider .msp_post_slide.slide-2 {
     background: url(../images/common/esport-team-landing-main-slider-slide-2.jpg) no-repeat;
@@ -40202,7 +40270,7 @@ display: block;
     /* background: #4caf50; */
     line-height: 30px;
     color: #fff;
-    display: inline-block;
+    display: none;
     position: absolute;
     top: 50%;
     right: 11%;
@@ -40237,6 +40305,21 @@ display: block;
 	    background: #fcfcfc24;
     color: #fff;
 }
+
+.issu-text{
+	    background: #fff!important;
+    color: #ccc!important;
+	    border: solid 2px #e5e5e5!important;
+	    margin-bottom: 20px;
+}
+.issu-text:focus-visible{
+	border: none;
+}
+
+.issu-text::-webkit-input-placeholder {
+    color: #ddd;
+}
+
 .modal-open .modal {
     overflow-x: hidden;
     overflow-y: auto;
@@ -40269,7 +40352,7 @@ display: block;
     }
     .right-bar{
             float: right;
-        width: 90%;
+        width: 92%;
     }
 
     ::-webkit-calendar-picker-indicator {

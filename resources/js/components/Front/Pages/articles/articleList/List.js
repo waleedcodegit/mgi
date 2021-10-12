@@ -55,7 +55,7 @@ class List extends Component {
                                                 </div>
                                                 <div className="artcle-text">
                                                     <span className="date">{data.title}</span>
-                                                    <span className="name" dangerouslySetInnerHTML={{__html:data.body}}></span>
+                                                    {/* <span className="name" dangerouslySetInnerHTML={{__html:data.body}}></span> */}
                                                 </div>
                                                 </div>
                                             </a>

@@ -274,9 +274,9 @@ class Addproduct extends Component {
 
                                 </select>
                             </div>
-                            <h1 className="col-md-1"></h1>
+                            <h1 className="col-md-1"></h1> 
                             <div class="form-group input_div col-md-5">
-                            <label for="img" className="input_label" for="exampleInputEmail1">Product Thumbnail</label>
+                            <label for="img" className="input_label" for="exampleInputEmail1">Product Thumbnail   (size 545*790)</label>
                                 <div className="card p-1">
                                 {
                                     this.state.imageArray.map((data,index)=>{

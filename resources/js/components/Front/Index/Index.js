@@ -4,6 +4,7 @@ import Footer from '../Common/Footer';
 import Landing from '../LandingComponents/Index';
 import {Route} from 'react-router-dom';
 import Tournament from '../Pages/tournament/Index';
+import Games from '../Pages/tournament/games';
 import TournamentDeatil from '../Pages/tournamentDeatil/Index';
 import AllArticle from '../Pages/articles/Index';
 import AllVideos from '../Pages/videos/Index';
@@ -107,7 +108,8 @@ class Index extends Component {
                       }
                             <Nav></Nav>
                                     <Route exact path="/" component={Landing}></Route>
-                                    <Route path="/tournament" component={Tournament}></Route>
+                                    <Route path="/tournament/:id" component={Tournament}></Route>
+                                    <Route path="/games" component={Games}></Route>
                                     <Route path="/tournamentDetail/:id" component={TournamentDeatil}></Route>
                                     <Route path="/articles" component={AllArticle}></Route>
                                     <Route path="/videos" component={AllVideos}></Route>

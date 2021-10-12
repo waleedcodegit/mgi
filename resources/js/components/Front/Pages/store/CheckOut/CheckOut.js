@@ -17,12 +17,14 @@ export default class CheckOut extends Component {
             postcode: "",
             city: "",
             user_id:'',
-            cart_totals: [],
-            totals:  [],
+            cart_totals: [0],
+            totals:  [0],
             sub_cart_totals:  [],
             master_totals:  [],
+            product_id:'',
 
-            loading: true
+            loading: true,
+            cart:[]
         }
     }
     componentDidMount() {
@@ -43,6 +45,7 @@ export default class CheckOut extends Component {
                     postcode: res.data.cus.user.postcode,
                     city: res.data.cus.user.city,
                     country: res.data.cus.user.country,
+                
                     loading:false,
                },function(){
                 this.setState({
@@ -69,18 +72,20 @@ export default class CheckOut extends Component {
             cart_cookie_id : window.localStorage.getItem('cart_cookie_id')
         }
         Axios.post('/api/get_cookie_session_cart', senderdata).then(res => {
-            console.log(res);
+            console.log(res.data.cart);
           
             if(res.data.cart){
                 if(res.data.cart.length > 0){
                     this.setState({
-                        
-                        cart_totals: res.data.cart.cart_totals,    
-                        totals: res.data.cart.cart_totals,
-                        master_totals:res.data.cart.cart_totals,      
-                        sub_cart_totals:res.data.cart.sub_cart_totals,
-                        product_id:res.data.cart.product_id,
-                        quantity:res.data.cart.quantity
+                        cart:res.data.cart,
+                        cart_totals: res.data.cart[0].cart_totals,    
+                        totals: res.data.cart[0].cart_totals,
+                        master_totals:res.data.cart[0].cart_totals,      
+                        sub_cart_totals:res.data.cart[0].sub_cart_totals,
+                        // sub_cart_totals:res.data.cart[0].sub_cart_totals,
+                        product_id:res.data.cart[0].product_id,
+                        quantity:res.data.cart[0].quantity,
+                       
                     })
                 }else{
                     this.setState({
@@ -146,9 +151,10 @@ export default class CheckOut extends Component {
         e.preventDefault();
 
         let senddata = {
-            user_id: this.state.id,
-            name: this.state.name,
-            description:this.state.description,
+            
+            // user_rt:[]id: this.state.id,
+            // name: this.state.name,
+            // description:this.state.description,
         }
         
         console.log(senddata);

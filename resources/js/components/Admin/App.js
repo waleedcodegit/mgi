@@ -249,7 +249,7 @@ class App extends Component {
                     : '' 
                     }
                      {this.state.is_users ?
-                    <li className={this.props.history.location.pathname == "/adminpanel/add-teams" || this.props.history.location.pathname == "/adminpanel/admins" ? "dropdown active": "dropdown"}>
+                    <li className={this.props.history.location.pathname == "/adminpanel/users-list" || this.props.history.location.pathname == "/adminpanel/onsubscription-users"  || this.props.history.location.pathname == "/adminpanel/withoutsubscription-users" ? "dropdown active": "dropdown"}>
                       <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="watch" /><span>Users</span></a>
                       <ul className="dropdown-menu">
                       <li><Link to="/adminpanel/users-list">Users List</Link></li>
@@ -260,7 +260,7 @@ class App extends Component {
                     : ''
                     }
                      {this.state.is_enrolleddetails ?
-                    <li className={this.props.history.location.pathname == "/adminpanel/add-admin" || this.props.history.location.pathname == "/adminpanel/admins" ? "dropdown active": "dropdown"}>
+                    <li className={this.props.history.location.pathname == "/adminpanel/teams_enrolled_list" || this.props.history.location.pathname == "/adminpanel/user_enrolled_list" ?  "dropdown active": "dropdown"}>
                       <a href="#" className="menu-toggle nav-link has-dropdown"><i data-feather="watch" /><span>Enrollements Details</span></a>
                       <ul className="dropdown-menu">
                         <li><Link to="/adminpanel/user_enrolled_list">Enrolled Users List</Link></li>

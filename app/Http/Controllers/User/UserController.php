@@ -277,4 +277,9 @@ class UserController extends Controller
         ];
         return $response;
     }
+    public function get_user_by_id(Request $request){
+        $user = User::find($request->id);
+        $response = [ 'msg'=>'User', 'status'=>'200', 'user'=> $user];
+        return $response;
+    }
 }
