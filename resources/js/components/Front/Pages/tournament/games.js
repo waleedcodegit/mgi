@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Banner from './banner/Banner';
 import Axios from 'axios';
-import OnGoingTournament from './ongoingTournaments/Ontournamnet';
-import UpCommingTournament from './upCommingTournament/Uptournament';
 import {img_base} from '../../../Configs/baseUrls';
 import {Link} from 'react-router-dom';
 
@@ -41,8 +39,9 @@ class games extends Component {
                     
                 </section>
                 <Banner></Banner>
+				{/* <Banner></Banner> */}
                 <div class="tourna-sec">
-<div class="container">
+         <div class="container">
 	
 	
 	<div class="row">

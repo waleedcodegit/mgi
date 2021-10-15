@@ -93,7 +93,7 @@ class Enrollmentform extends Component {
                             showConfirmButton: false,
                             timer: 1500
                             })
-                            window.open(`/tournament`, '_self')
+                            window.open(`/tournamentDetail/${this.props.match.params.id}`, '_self')
                     }else{
                         Swal.fire({
                             icon: 'warning',

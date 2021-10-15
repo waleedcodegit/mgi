@@ -70,6 +70,12 @@ class Announcements extends Component {
                   )
                 })
             }  
+             {
+                                    this.state.announcement.length == 0 ? 
+                                    <div className="col-md-12 col-sm-12 matches-over">
+                                    <h3>No Announcement Available</h3>
+                                          </div>:null
+                                }
             </div>
         )
     }

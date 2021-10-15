@@ -61,19 +61,19 @@ class Login extends Component {
                 this.props.changeUser({is_login:true,data:res.data.user});
                 window.localStorage.setItem('mgltokenlogin',res.data.user.token);
                 this.props.history.push('/');
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Login Successfully.',
-                    showConfirmButton: false,
-                    timer: 1500
-                    })
+                // Swal.fire({
+                //     icon: 'success',
+                //     title: 'Login Successfully.',
+                //     showConfirmButton: false,
+                //     timer: 1500
+                //     })
             }else{
-                Swal.fire({
-                    icon: 'error',
-                    title: res.data.msg,
-                    showConfirmButton: false,
-                    timer: 1500
-                    })
+                // Swal.fire({
+                //     icon: 'error',
+                //     title: res.data.msg,
+                //     showConfirmButton: false,
+                //     timer: 1500
+                //     })
             }
         })
     }

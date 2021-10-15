@@ -29,7 +29,20 @@ class Brackets extends Component {
             <div>
                 <div className="col-md-12 col-sm-12 matches-over">
                     <div className="elimnation">
-                        <img src={img_base+this.state.image} />
+                        {
+                            this.state.image !=''?
+                           <img src={img_base+this.state.image} />
+                           : <h3>No Brackets Available Yet</h3>
+                           
+                        }
+                         {/* { this.state.binary_img !=''?
+                        
+                              <img className="img_thumb" src={this.state.binary_img}></img>
+                             : "Select Image"
+                            //  <h3>No Announcement Available</h3>
+                             
+                            } */}
+                       
                         
                     </div>
                 </div>

@@ -30,7 +30,8 @@ class ArticalDetail extends Component {
             body:res.data.posts.body,
           });
       }
-      Axios.post('/api/get_articals_latest').then(res=>{
+      Axios.post('/api/get_articals_latest',{id:this.props.match.params.id}).then(res=>{
+    //   Axios.post('/api/get_articals_latest').then(res=>{
         console.log(res);
         this.setState({
             articals:res.data
@@ -99,28 +100,40 @@ class ArticalDetail extends Component {
                                 <div className="recent-news">
                                     <h6>More Articles</h6>
                                     {
-                            this.state.articals.map((data,index)=>{
+                            this.state.articals.slice(0, 3).map((data,index)=>{
                                     return(
-                                        <div className="item">
-                                        <div className="row no-gutters row-eq-height">
-                                            <div className="col-md-12">
-                                            <a href={`/artical-detail/${data.id}`} className="article-wprapper">
-                                            <div className="artcle-text">
-                                                    <span className="name">{data.title}</span>
+                                        <>
+                                        {/* {
+                                            this.props.match.params.id === data.id ?
+                                           null
+                                           :  */}
+                                           <div className="item">
+                                           <div className="row no-gutters row-eq-height">
+                                               <div className="col-md-12">
+                                                  
+                                                       <a href={`/artical-detail/${data.id}`} className="article-wprapper">
+                                                       <div className="artcle-text">
+                                                               <span className="name">{data.title.substring(0, 12)}....</span>
+                                                              
+                                                           </div>
+                                                           <img src={img_base+data.image} alt="news-img"  className="img-side-thumb"/>
+                                                           <div className="news-border">
+                                                           <div className="left-news">
+                                                               <span>{data.type}</span>
+                                                           </div>
+                                               
+                                                           
+                                                           </div>
+                                                       </a>
+   
                                                    
-                                                </div>
-                                                <img src={img_base+data.image} alt="news-img"  className="img-side-thumb"/>
-                                                <div className="news-border">
-                                                <div className="left-news">
-                                                    <span>{data.type}</span>
-                                                </div>
-                                    
-                                                
-                                                </div>
-                                            </a>
-                                            </div>
-                                        </div>
-                                        </div>
+                                              
+                                               </div>
+                                           </div>
+                                           </div>
+                                        {/* } */}
+                                        </>
+                                        
                                     )
                                 })
                             }

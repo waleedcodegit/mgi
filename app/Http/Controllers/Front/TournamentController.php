@@ -19,7 +19,7 @@ class TournamentController extends Controller
             return $response;
     }
     public function get_tournament_chat_messages(Request $request) {
-        $messages = TournamentMessage::where('tournament_id', $request->id)->get();
+        $messages = TournamentMessage::where('tournament_id', $request->id)->with('user')->get();
         $response = [
             'status' => 200,
             'msg' => 'Tournament Messages', 
@@ -37,7 +37,7 @@ class TournamentController extends Controller
         $message->date = date("d-m-Y");
         $message->save();
 
-        $messages = TournamentMessage::where('tournament_id', $request->tournament_id)->get();
+        $messages = TournamentMessage::where('tournament_id', $request->tournament_id)->with('user')->get();
 
         $response = [
             'status' => 200,

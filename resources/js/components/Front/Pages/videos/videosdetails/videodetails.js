@@ -28,7 +28,7 @@ class VideoDetail extends Component {
         description:res.data.video.description,
       });
        }
-       Axios.post('/api/get_videos_latest').then(res=>{
+       Axios.post('/api/get_videos_latest',{id:this.props.match.params.id}).then(res=>{
         console.log(res);
         this.setState({
             videos:res.data,
@@ -96,7 +96,7 @@ class VideoDetail extends Component {
                             <div className="recent-news">
                                 <h6>More Videos</h6>
                                 {
-                                this.state.videos.map((data,index)=>{
+                                this.state.videos.slice(0,3).map((data,index)=>{
                                    
                                         return(
                                              <div className="item">
@@ -104,7 +104,7 @@ class VideoDetail extends Component {
                                                 <div className="col-md-12">
                                                 <a href={`/video-detail/${data.id}`} className="article-wprapper">
                                                 <div className="artcle-text">
-                                                    <span className="name">{data.title}</span>                                                      
+                                                    <span className="name">{data.title.substring(0, 12)}....</span>                                                      
                                                     </div>
                                                     <iframe width={200} height={170} src={"https://www.youtube.com/embed/"+data.video_youtube_id} title="YouTube video player" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
                                                     <div className="news-border">

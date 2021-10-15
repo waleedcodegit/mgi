@@ -43,7 +43,7 @@ componentDidMount(){
             <li><a href="/subscription">Subscription</a></li>
             <li><a href="/term-and-condition">Terms &amp; Condition</a></li>
             <li>Social Media</li>
-            <li><a href="/tournament">Tournament</a></li>
+            <li><a href="/games">Tournament</a></li>
             <li><a href="/privacy">Privacy Policy</a></li>
           </ul>
         </div> 

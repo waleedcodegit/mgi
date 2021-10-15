@@ -85,8 +85,8 @@ class VideoController extends Controller
         ]);
        
     }
-    public function get_videos_latest(){
-        $video = Video::where('delete_status',0)->latest()->limit(3)->get();
+    public function get_videos_latest(Request $request){
+        $video = Video::where('id','!=',$request->id)->where('delete_status',0)->inRandomOrder()->limit(10)->get();
         return $video;
     }
 

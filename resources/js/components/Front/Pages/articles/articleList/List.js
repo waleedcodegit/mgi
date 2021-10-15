@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component , useState } from 'react';
 import Axios from 'axios';
 import { baseurl, img_base } from '../../../../Configs/baseUrls';
 
@@ -6,9 +6,12 @@ class List extends Component {
     constructor(props){
         super(props);
         this.state = {
-            articals: []
+            articals: [],
+            visiable: 2,
         }
+        this.loadmore = this.loadmore.bind(this);
     }
+   
     componentDidMount(){
         Axios.post('/api/get_articals').then(res=>{
             console.log(res.data.data);
@@ -17,6 +20,13 @@ class List extends Component {
             })
         })
       }
+      loadmore(){
+          this.setstate((old)=>{
+              return {visiable:old.visiable+2}
+
+          })
+      }
+      
     render() {
         return (
             <div>
@@ -39,7 +49,7 @@ class List extends Component {
                         <div className="row row-eq-height">
                             <div className="col-md-12">
                             {
-                            this.state.articals.map((data,index)=>{
+                            this.state.articals.slice(0,this.state.visiable).map((data,index)=>{
                                     return(
                                         <div className="row no-gutters row-eq-height">
                                             <div className="col-md-12">
@@ -68,7 +78,7 @@ class List extends Component {
                         </div> 
                         <div className="row">
                             <div className="col-md-3 ">
-                            <a href="#" className="btn-more">
+                            <a href="#" className="btn-more" onClick={this.loadmore}>
                                 See More
                             </a>
                             </div>

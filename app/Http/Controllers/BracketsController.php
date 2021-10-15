@@ -55,7 +55,7 @@ class BracketsController extends Controller
             return $response;
         }
         public function get_brackets_by_id(Request $request){
-            $bracket = Brackets::where('tournament_id', $request->id)->first();
+            $bracket = Brackets::where('tournament_id', $request->id)->where('delete_status',0)->first();
             $response = [ 'msg'=>'Brackets', 'status'=>'200', 'bracket'=> $bracket ];
             return $response;
         }

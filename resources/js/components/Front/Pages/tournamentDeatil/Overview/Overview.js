@@ -5,6 +5,8 @@ import Rules from './Rules/Rules';
 import Prizes from './Prizes/Prizes';
 import Contact from './Contact/Contact';
 import { connect } from 'react-redux';
+import {img_base} from '../../../../Configs/baseUrls';
+import { values } from 'lodash';
 
 class Overview extends Component {
     constructor(props) {
@@ -12,10 +14,14 @@ class Overview extends Component {
         this.state = {
             watchstream:'',
             videolink:'',
+            first_name:"",
             contact_details: '',
             chat_messages: [],
-            message: '',
-            chat_display: false
+            // message: '',
+            message:[],
+            header_image:'',
+            chat_display: false,
+            user:'',
         }
     }
     componentDidMount(){
@@ -44,17 +50,27 @@ class Overview extends Component {
         setInterval(()=>{
             Axios.post('/api/get_tournament_chat_messages',{id:this.props.match.params.id}).then(res=>{
                 this.set_scroll();
+                console.log(res.data.messages);
                 this.setState({
-                    chat_messages: res.data.messages
+                    chat_messages: res.data.messages,
+                    // first_name:res.data.messages.user.first_name
                 })
             })
             this.set_scroll();
-        }, 5000)  
+        }, 5000) 
+        Axios.post('/api/get-tournament-by-id',{id:this.props.match.params.id}).then(res=>{
+            console.log(res.data.tournament.header_image);
+            this.setState({
+                header_image: res.data.tournament.header_image,
+            })
+        })
+    
     }
 
     getMessage(e) {
         this.setState({
-            message: e.target.value
+            message: e.target.value,
+            // message: '',
         })
     }
 
@@ -63,12 +79,27 @@ class Overview extends Component {
         let senddata = {
             message: this.state.message,
             tournament_id:this.props.match.params.id,
-            sender_id:this.props.user.data.id
+            sender_id:this.props.user.data.id,
+            first_name: this.state.first_name
         }
+        console.log(senddata)
+        let temp = this.state.chat_messages;
+        temp.push(senddata);
+        this.setState({
+            chat_messages:temp
+        },function(){
+            this.set_scroll();
+            this.setState({
+                message:''
+            })
+        })
+    
 
         Axios.post('/api/send_tournament_chat_messages',senddata).then(res=>{
+            console.log(res)
             this.setState({
-                chat_messages: res.data.messages
+                chat_messages: res.data.messages,
+                // first_name: this.state.first_name
             })
         })
     }
@@ -83,7 +114,7 @@ class Overview extends Component {
             <div>
                 <div className="col-md-12 col-sm-12">
                             <div className="matches-over">
-                                <img src="/images/common/article-list.jpg" className="img-up-detail-thumb"/>
+                                <img src={img_base+this.state.header_image} className="img-up-detail-thumb"/>
                                 <a href={"https://www.youtube.com/embed/"+this.state.videolink} target="_blank" className="btn-stream"><i className="fa fa-video-camera" aria-hidden="true" /> Watch Stream </a>
                             </div>
                             </div>
@@ -105,9 +136,10 @@ class Overview extends Component {
                                                         return(
                                                             <>
                                                             {
-                                                                this.props.user.data.id == data.sender ?
+                                                                this.props.user.data.id == data.sender || this.props.user.data.id == data.sender_id ?
                                                                 <div className="outgoing_msg">
                                                                     <div className="sent_msg">
+                                                                   you
                                                                         <p>{data.message}</p>
                                                                         <span className="time_date"> {data.time}    |    {data.date}</span>
                                                                     </div>
@@ -116,7 +148,10 @@ class Overview extends Component {
                                                                 <div className="incoming_msg">
                                                                     <div className="incoming_msg_img"></div>
                                                                     <div className="received_msg">
+                                                                        
                                                                         <div className="received_withd_msg">
+                                                                        
+                                                                        <img style={{width:'30px'}} src={img_base+data.user.image}></img> {data.user.first_name}
                                                                             <p>{data.message}</p>
                                                                             <span className="time_date"> {data.time}    |    {data.date}</span>
                                                                         </div>
@@ -132,8 +167,8 @@ class Overview extends Component {
                                             </div>
                                         <div className="type_msg">
                                             <div className="input_msg_write">
-                                            <input type="text" className="write_msg" placeholder="Type a message" onChange={this.getMessage.bind(this)} />
-                                            <button className="msg_send_btn" type="button" onClick={this.sendMessage.bind(this)}><i className="fa fa-paper-plane-o" aria-hidden="true" /></button>
+                                            <input type="text" className="write_msg" value={this.state.message || "   "} placeholder="Type a message" onChange={this.getMessage.bind(this)} />
+                                            <button className="msg_send_btn"  type="button" onClick={this.sendMessage.bind(this)}><i className="fa fa-paper-plane-o" aria-hidden="true" /></button>
                                             </div>
                                         </div>
                                     </div>

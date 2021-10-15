@@ -82,7 +82,7 @@ class List extends Component {
                                     <tr>
                                         <td>{index+1}</td>
                                         <td>{data.title}</td>
-                                        <td dangerouslySetInnerHTML={{__html:data.description}}></td>
+                                        <td style={{width:'100px'}} dangerouslySetInnerHTML={{__html:data.description}}></td>
                                         <td><img style={{width:'200px'}} src={img_base+data.image}></img></td>
                                         <td><Link to={`/adminpanel/edit-game/${data.id}`}><button className="btn btn-success"> <i style={{color:'white'}} className="far fa-edit "> </i></button></Link>
                                         <button className="btn btn-light" onClick={this.deleteBanner.bind(this,data.id,index)}> <i  style={{color:'red'}}  className="fas fa-trash-alt"></i></button></td>

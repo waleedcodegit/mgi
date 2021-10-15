@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import Banner from '../banner/Banner';
 import {img_base} from '../../../../Configs/baseUrls';
+// import {img_base} from '../../../Configs/baseUrls';
 import { Link } from 'react-router-dom';
 
 class Ontournamnet extends Component {
@@ -9,7 +11,7 @@ class Ontournamnet extends Component {
     this.state = {
       games: [],
       today_tournaments: [],
-      week_tournaments: [],
+      weekTournaments: [],
       month_tournaments: [],
       game_tournaments: [],
       // id:this.props.match.params.id,
@@ -31,13 +33,13 @@ class Ontournamnet extends Component {
     })
 
     Axios.post('/api/get_this_week_tournaments_by_id',{id:this.props.match.params.id}).then(res=>{
-   
+   console.log(res);
       this.setState({
-        week_tournaments:res.data.weekTournaments
+        weekTournaments:res.data.weekTournaments
       })
     })
     Axios.post('/api/get_this_month_tournaments_by_id',{id:this.props.match.params.id}).then(res=>{
-      console.log(res);
+      // console.log(res);
       this.setState({
         month_tournaments:res.data.month_tournaments
       })
@@ -63,6 +65,8 @@ class Ontournamnet extends Component {
 
     render() {
         return (
+         
+          
             <div className="row">
               {/* <div className="col-md-12 col-sm-12">
                 <div className="games-list">
@@ -79,7 +83,7 @@ class Ontournamnet extends Component {
                   </ul> 
                 </div>
             </div> */}
-          
+           
   <div className="col-md-12 col-sm-12">
     <div className="row row-offcanvas row-offcanvas-left">
       <div className="col-md-12 tab-line">
@@ -241,7 +245,8 @@ class Ontournamnet extends Component {
 
           {
               this.state.today_tournaments.length == 0 ? 
-              <h3 className="text-light text-center">No records founded</h3>:null
+              <div className="col-md-12 col-sm-12 matches-over">
+                <h3>No Tournament Today</h3></div>:null
           }
             
           </div>
@@ -249,7 +254,7 @@ class Ontournamnet extends Component {
         <div className="tab-pane" id="Week" role="tabpanel">
           <div className="row">
             {
-              this.state.week_tournaments.map((data,index)=>{
+              this.state.weekTournaments.map((data,index)=>{
                 return(
                   <div className="col-md-4 col-sm-6" key={index}>
                     <div className="main-lates-matches">
@@ -299,8 +304,9 @@ class Ontournamnet extends Component {
             }
 
           {
-              this.state.week_tournaments.length == 0 ? 
-              <h3 className="text-light text-center">No records founded</h3>:null
+              this.state.weekTournaments.length == 0 ? 
+              <div className="col-md-12 col-sm-12 matches-over">
+                <h3>No Tournament This Week</h3></div>:null
           }
           </div>
           <div className="row">
@@ -374,8 +380,10 @@ class Ontournamnet extends Component {
 
           {
               this.state.month_tournaments.length == 0 ? 
-              <h3 className="text-light text-center">No records founded</h3>:null
+              <div className="col-md-12 col-sm-12 matches-over">
+              <h3>No Tournament This Months</h3></div>:null
           }
+           
           </div>
           <div className="row">
             <div className="col-md-3">
@@ -398,7 +406,6 @@ class Ontournamnet extends Component {
     </div>
   </div>
 </div>
-
         )
     }
 }

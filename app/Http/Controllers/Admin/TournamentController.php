@@ -19,7 +19,7 @@ class TournamentController extends Controller
     }
 
     public function get_tournament_with_game_id(Request $request){
-        $tournaments = Tournament::where('game_id', $request->game_id)->where('status', 'Publish')->with('game')->get();
+        $tournaments = Tournament::where('game_id', $request->game_id)->where('status', 'Publish')->where('delete_status',0)->with('game')->get();
         $response = [
             'msg'=> 'Tournaments',
             'status'=> '200',
@@ -28,7 +28,7 @@ class TournamentController extends Controller
         return $response;
     }
     public function get_today_tournaments_by_id(Request $request) {
-        $today_tournaments = Tournament:: where('game_id',$request->id)->where('start_date', Carbon::now()->format('Y-m-d'))->where('status', 'Publish')->with('game')->get();
+        $today_tournaments = Tournament::where('game_id',$request->id)->where('start_date', Carbon::now()->format('Y-m-d'))->where('status', 'Publish')->where('delete_status',0)->orderBy('start_time')->with('game')->get();
         $response = [
             'msg'=> 'Today Tournament',
             'status'=> '200',
@@ -37,7 +37,8 @@ class TournamentController extends Controller
         return $response;
     }
     public function get_this_week_tournaments_by_id(Request $request) {
-        $weekTournaments = Tournament::where('game_id',$request->id)->where('start_date', Carbon::now()->format('Y-m-d'))->where('status', 'Publish')->with('game')->get();
+        $weekTournaments = Tournament::where('game_id',$request->id)->whereBetween('start_date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('status', 'Publish')->where('delete_status',0)->orderBy('start_date')->orderBy('start_time')->with('game')->get();
+        // return $week_tournaments;
         $response = [
             'msg'=> 'Today Tournament',
             'status'=> '200',
@@ -46,7 +47,10 @@ class TournamentController extends Controller
         return $response;
     }
     public function get_this_month_tournaments_by_id(Request $request) {
-        $month_tournaments = Tournament::where('game_id',$request->id)->where('start_date', Carbon::now()->format('Y-m-d'))->where('status', 'Publish')->with('game')->get();
+        $month_tournaments = Tournament::where('game_id',$request->id)->whereYear('start_date', Carbon::now()->year)
+                    ->whereMonth('start_date', Carbon::now()->month)
+                    ->where('status', 'Publish')->where('delete_status',0)->orderBy('start_date')->orderBy('start_time')
+                    ->with('game')->get();
         $response = [
             'msg'=> 'Today Tournament',
             'status'=> '200',
@@ -56,7 +60,7 @@ class TournamentController extends Controller
     }
 
     public function get_today_tournaments(Request $request) {
-        $today_tournaments = Tournament::where('start_date', Carbon::now()->format('Y-m-d'))->where('status', 'Publish')->with('game')->get();
+        $today_tournaments = Tournament::where('start_date', Carbon::now()->format('Y-m-d'))->where('status', 'Publish')->where('delete_status',0)->orderBy('start_time','DESC')->with('game')->get();
         $response = [
             'msg'=> 'Today Tournament',
             'status'=> '200',
@@ -65,7 +69,7 @@ class TournamentController extends Controller
         return $response;
     }
     public function get_this_week_tournaments(Request $request) {
-        $week_tournaments = Tournament::whereBetween('start_date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('status', 'Publish')->with('game')->get();
+        $week_tournaments = Tournament::whereBetween('start_date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('status', 'Publish')->where('delete_status',0)->with('game')->get();
         $response = [
             'msg'=> 'Today Tournament',
             'status'=> '200' ,
@@ -76,7 +80,7 @@ class TournamentController extends Controller
     public function get_this_month_tournaments(Request $request) {
         $month_tournaments = Tournament::whereYear('start_date', Carbon::now()->year)
                     ->whereMonth('start_date', Carbon::now()->month)
-                    ->where('status', 'Publish')
+                    ->where('status', 'Publish')->where('delete_status',0)
                     ->with('game')->get();
         $response = [
                 'msg'=> 'Today Tournament',

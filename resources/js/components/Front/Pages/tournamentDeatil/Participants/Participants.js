@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import {img_base} from '../../../../Configs/baseUrls';
 
 
 class Participants extends Component {
@@ -31,17 +32,18 @@ class Participants extends Component {
                                                 <div className="player-in-game-name">
                                                     <div className="avatar-container">
                                                     <bf-avatar><div className="wrapper sticker-boarder">
-                                                        <p className="non-avatar user-char-text absolute-stretch text-14px text-gray font-300 text-uppercase"> <img src="/images/common/match-list-team-img.png" /> </p>
+                                                        <p className="non-avatar user-char-text absolute-stretch text-14px text-gray font-300 text-uppercase"> <img style={{width:'70px', height:'70px'}} src={img_base+data.user.image} /> </p>
                                                         </div>
                                                     </bf-avatar>
                                                     </div>
                                                     <div className="player-label">
-                                                    {/* <h1>{data.user.first_name} {data.user.first_name}</h1> */}
+                                                    <h1>{data.user.first_name} {data.user.last_name}</h1>
                                                     </div>
                                                 </div>
                                                 <div className="player-stat">
                                                     <div className="player-stat-label">
                                                     <bf-class-pick-displayer>
+                                                    <p className="non-avatar user-char-text absolute-stretch text-14px text-gray font-300 text-uppercase"> {data.user.address} </p>
                                                     </bf-class-pick-displayer>
                                                     </div>
                                                 </div>

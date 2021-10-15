@@ -76,7 +76,9 @@ class Game extends Component {
         const mystyle = {
             border: "green",
             borderStyle: "solid",
-            borderWidth: "thick"
+            borderWidth: "thick",
+            height: '200px',
+            width: '200px',
           };
         return (
             <div className="container">
@@ -94,7 +96,7 @@ class Game extends Component {
                             this.state.games.map((data,index)=>{
                                 return(
                                         <div style={{marginRight:'60px'}} className="col-md-4">
-                                            <img style={ this.state.image_index == index ? mystyle : {display:'block'}  } onClick={this.create.bind(this, index, data.id , data.title )}  src={img_base+data.image}></img>
+                                            <img style={ this.state.image_index == index ? mystyle : {display:'block' , cursor: 'pointer', display: 'inline-block', height: '165px', width: '165px',margin: '10px',border: 'solid 1px #ccc'  }} onClick={this.create.bind(this, index, data.id , data.title )}  src={img_base+data.image}></img>
                                              {/* <label className="input_label" for="exampleInputEmail1">{data.title}</label> */}
                                              {/* <input type="checkbox" id={"cb"+(index+1)} />
                                              <label for={"cb"+(index+1)}>

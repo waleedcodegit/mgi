@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Banner from './banner/Banner';
 import OnGoingTournament from './ongoingTournaments/Ontournamnet';
 import UpCommingTournament from './upCommingTournament/Uptournament';
+import {img_base} from '../../../Configs/baseUrls';
 
 class Index extends Component {
     render() {
@@ -10,7 +11,7 @@ class Index extends Component {
                 <section className="image-header">
                     
                 </section>
-                <Banner></Banner>
+                {/* <Banner></Banner> */}
                 <div className="tourna-sec">
                     <div className="container">
                         <OnGoingTournament {...this.props}></OnGoingTournament>

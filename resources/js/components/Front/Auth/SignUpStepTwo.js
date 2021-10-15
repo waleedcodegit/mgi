@@ -68,23 +68,23 @@ class SignUpStepTwo extends Component {
                     window.localStorage.setItem('mgltokenlogin',res.data.user.token);
                     window.open('/subscription', '_self');
                 } else {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: res.data.message,
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                    // Swal.fire({
+                    //     icon: 'warning',
+                    //     title: res.data.message,
+                    //     showConfirmButton: false,
+                    //     timer: 1500
+                    // })
                 }
             })  
 
 
             }else{
-                Swal.fire({
-                    icon: 'warning',
-                    title: res.data.message,
-                    showConfirmButton: false,
-                    timer: 1500
-                })
+            //     Swal.fire({
+            //         icon: 'warning',
+            //         title: res.data.message,
+            //         showConfirmButton: false,
+            //         timer: 1500
+            //     })
             }
         })        
     }

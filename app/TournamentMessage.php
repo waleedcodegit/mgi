@@ -14,4 +14,7 @@ class TournamentMessage extends Model
         'time',
 	    'date'
     ];
+    public function user(){
+        return $this->belongsTo('App\User', 'sender');
+    }
 }
